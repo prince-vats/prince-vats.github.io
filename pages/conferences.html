@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conferences - Prince Vats</title>
+  <link rel="icon" type="image/png" href="../assets/images/PV.png" />
+  <link rel="stylesheet" href="../css/style.css?v=3" />
+</head>
+<body>
+
+<!-- Aerosol particle canvas -->
+<canvas id="particleCanvas"></canvas>
+
+<!-- ===== Navigation ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <img src="../assets/images/PV.png" alt="PV Logo" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="conferences.html" class="active">Conferences</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== Page Header ===== -->
+<div class="page-header">
+  <div class="section-container reveal">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a> <span class="separator">/</span> <span>Conferences</span>
+    </div>
+    <span class="section-label">Events & Network</span>
+    <h1 class="section-title">Research Events Attended</h1>
+    <p class="section-subtitle">Presenting research, engaging with the scientific community, and staying updated on the latest advancements in environmental data science.</p>
+  </div>
+</div>
+
+<!-- ===== Events Area ===== -->
+<section id="conferences" style="padding-top: 2rem;">
+  <div class="section-container reveal">
+    
+    <!-- Year Filters -->
+    <div class="filter-controls" id="eventFilters">
+      <button class="btn btn-primary filter-btn active" data-filter="all">All</button>
+      <button class="btn btn-outline filter-btn" data-filter="2025">2025</button>
+      <button class="btn btn-outline filter-btn" data-filter="2023">2023</button>
+    </div>
+
+    <div class="event-list" id="eventList">
+      
+      <!-- Event 1 -->
+      <div class="event-item filterable-item" data-year="2025">
+        <div class="event-date year-2025">
+          <span class="label">Dec</span>
+          <span class="year">2025</span>
+        </div>
+        <div class="event-content">
+          <h3>Symposium on Advances in Tools and Technologies to Quantify Health Impacts of Air Pollution</h3>
+          <p>IIT Gandhinagar.</p>
+          <span class="event-tag">Participant</span>
+        </div>
+      </div>
+
+      <!-- Event 2 -->
+      <div class="event-item filterable-item" data-year="2025">
+        <div class="event-date year-2025">
+          <span class="label">Dec</span>
+          <span class="year">2025</span>
+        </div>
+        <div class="event-content">
+          <h3>Asian Aerosol Conference (AAC 2025)</h3>
+          <p>Organized by IASTA, Mumbai.</p>
+          <span class="event-tag">1 Presentation &amp; 1 Poster</span>
+        </div>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="event-item filterable-item" data-year="2025">
+        <div class="event-date year-2025">
+          <span class="label">Aug</span>
+          <span class="year">2025</span>
+        </div>
+        <div class="event-content">
+          <h3>India Clean Air Summit 2025</h3>
+          <p>Organized by CSTEP, Bengaluru.</p>
+          <span class="event-tag">2 Poster Presentations</span>
+        </div>
+      </div>
+
+      <!-- Event 4 -->
+      <div class="event-item filterable-item" data-year="2025">
+        <div class="event-date year-2025">
+          <span class="label">Mar</span>
+          <span class="year">2025</span>
+        </div>
+        <div class="event-content">
+          <h3>Smart Sensors and Data Analytics for Air Quality Management Workshop</h3>
+          <p>IIT Bombay.</p>
+          <span class="event-tag">Participant</span>
+        </div>
+      </div>
+
+      <!-- Event 5 -->
+      <div class="event-item filterable-item" data-year="2023">
+        <div class="event-date year-2023">
+          <span class="label">Dec</span>
+          <span class="year">2023</span>
+        </div>
+        <div class="event-content">
+          <h3>International Conference on Advances in Air Quality Management (IICAQM 2023)</h3>
+          <p>IISc, Bengaluru.</p>
+          <span class="event-tag">1 Paper Presentation</span>
+        </div>
+      </div>
+
+      <!-- Event 6 -->
+      <div class="event-item filterable-item" data-year="2023">
+        <div class="event-date year-2023">
+          <span class="label">Aug</span>
+          <span class="year">2023</span>
+        </div>
+        <div class="event-content">
+          <h3>AI4Water: Advanced Data-Driven and Artificial Intelligence Tools in Water Resources Workshop</h3>
+          <p>IIT Roorkee.</p>
+          <span class="event-tag">Participant</span>
+        </div>
+      </div>
+
+      <!-- Event 7 -->
+      <div class="event-item filterable-item" data-year="2023">
+        <div class="event-date year-2023">
+          <span class="label">Aug</span>
+          <span class="year">2023</span>
+        </div>
+        <div class="event-content">
+          <h3>7th National Water Seminar</h3>
+          <p>National Institute of Hydrology, Roorkee.</p>
+          <span class="event-tag">2 Paper Presentations</span>
+          <span class="event-tag" style="background:rgba(52, 211, 153, 0.15);color:#34d399;margin-left:5px;">🏆 Best Paper Award</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  © 2026 Prince Vats · <a href="../index.html">Home</a> · <a href="education.html">Education</a> · <a href="research.html">Research</a> · <a href="publications.html">Publications</a> · <a href="conferences.html">Conferences</a>
+</footer>
+
+<!-- ===== Scripts ===== -->
+<script src="../js/particles.js"></script>
+<script src="../js/nav.js"></script>
+<script>
+  // Simple filtering logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('#eventFilters .filter-btn');
+    const items = document.querySelectorAll('#eventList .filterable-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active class
+        filterBtns.forEach(b => {
+          b.classList.remove('btn-primary', 'active');
+          if(!b.classList.contains('btn-outline')) b.classList.add('btn-outline');
+        });
+        btn.classList.add('btn-primary', 'active');
+        btn.classList.remove('btn-outline');
+
+        const filterVal = btn.getAttribute('data-filter');
+
+        // Show/hide items
+        items.forEach(item => {
+          if (filterVal === 'all' || item.getAttribute('data-year') === filterVal) {
+            item.style.display = 'grid'; // .event-item uses grid
+            // trigger small reflow for animation if wanted
+            item.style.opacity = '1';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

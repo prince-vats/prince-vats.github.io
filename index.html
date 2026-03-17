@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prince Vats - Environmental Engineer | Aerosol Science & Air Quality</title>
+  <meta name="description" content="Prince Vats - PhD Researcher at IIT Gandhinagar specializing in aerosol science, environmental engineering, air pollution monitoring, AI/ML calibration, and deep-learning based spatio-temporal modelling." />
+  <link rel="icon" type="image/png" href="assets/images/PV.png" />
+  <link rel="stylesheet" href="css/style.css?v=3" />
+</head>
+<body>
+
+<!-- Aerosol particle canvas -->
+<canvas id="particleCanvas"></canvas>
+
+<!-- ===== Navigation ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/images/PV.png" alt="PV Logo" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="pages/education.html">Education</a></li>
+      <li><a href="pages/research.html">Research</a></li>
+      <li><a href="pages/publications.html">Publications</a></li>
+      <li><a href="pages/conferences.html">Conferences</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="hero">
+  <div class="section-container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="hero-badge"><span class="dot"></span> Open to Collaborations</div>
+        <h1 class="hero-name">Prince <span class="gradient">Vats</span></h1>
+        <p class="hero-title">Environmental Engineer &amp; PhD Researcher</p>
+        <p class="hero-affiliation">Indian Institute of Technology Gandhinagar</p>
+        <div class="hero-buttons">
+          <a href="#overview" class="btn btn-primary">Explore My Work ↓</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
+        <!-- Social links -->
+        <div class="hero-socials">
+          <a href="https://www.linkedin.com/in/prince-vats-iitrpr/" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://scholar.google.com/citations?user=SPHQZR8AAAAJ&hl=en" target="_blank" rel="noopener" class="social-link" title="Google Scholar">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-image-wrapper">
+        <div class="hero-image-frame">
+          <img src="assets/images/PV3.jpg" alt="Prince Vats" class="hero-image" />
+          <div class="floating-particle"></div>
+          <div class="floating-particle"></div>
+          <div class="floating-particle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section id="about">
+  <div class="section-container reveal">
+    <span class="section-label">Profile</span>
+    <h2 class="section-title">Bridging Aerosol Science, Sensors &amp; AI</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          I am a PhD researcher at the <strong>Indian Institute of Technology Gandhinagar</strong> studying <strong>Aerosol Science</strong>, with an extensive focus on its applications in environmental engineering, including air-pollution monitoring, spatio-temporal modelling, and the deployment of low-cost IoT sensor networks. 
+        </p>
+        <p>
+          I am highly skilled in developing advanced machine learning and deep learning models (GNN, LSTM, CNN) for <strong>PM<sub>2.5</sub> prediction</strong>, dynamic forecasting, and integrating high-resolution air quality data with meteorological features to generate impactful, research-driven insights that support environmental decision-making.
+        </p>
+        <p style="color: var(--accent-1); font-weight: 500;">
+          <br>⭐ Achieved 29th rank nationwide (99.56 percentile) in India's Graduate Aptitude Test in Engineering (GATE) - a highly competitive national exam for engineering graduates.
+        </p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">IoT</div>
+          <div class="stat-label">Sensor Networks</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">AI/ML</div>
+          <div class="stat-label">Calibration</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">DL</div>
+          <div class="stat-label">Spatio-Temporal</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">AQ</div>
+          <div class="stat-label">Monitoring</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Overview - Summary Cards ===== -->
+<section id="overview">
+  <div class="section-container reveal">
+    <span class="section-label">At a Glance</span>
+    <h2 class="section-title">Explore My Journey</h2>
+    <div class="summary-grid">
+
+      <!-- Education -->
+      <div class="summary-card">
+        <div class="summary-icon">🎓</div>
+        <h3>Academic Background</h3>
+        <p>PhD at IIT Gandhinagar (ongoing), M.Tech from IIT Ropar, and B.Tech from GBPUA&T, Pantnagar - a journey driven by curiosity in environmental engineering and civil science.</p>
+        <a href="pages/education.html" class="btn btn-outline btn-sm">View Details →</a>
+      </div>
+
+      <!-- Research -->
+      <div class="summary-card">
+        <div class="summary-icon">🔬</div>
+        <h3>Research Experience</h3>
+        <p>Working on ambient and indoor air pollution monitoring, IoT sensor networks, CNN/GNN deep-learning models, feature engineering, and predictive air quality tracking.</p>
+        <a href="pages/research.html" class="btn btn-outline btn-sm">View Details →</a>
+      </div>
+
+      <!-- Publications -->
+      <div class="summary-card">
+        <div class="summary-icon">📄</div>
+        <h3>Publications &amp; Manuscripts</h3>
+        <p>Authored peer-reviewed research on health risk assessments in industrial environments, with ongoing manuscripts under review focused on AI/ML applications in AQI prediction.</p>
+        <a href="pages/publications.html" class="btn btn-outline btn-sm">View Details →</a>
+      </div>
+
+      <!-- Conferences -->
+      <div class="summary-card">
+        <div class="summary-icon">🎤</div>
+        <h3>Events &amp; Conferences</h3>
+        <p>Active participant and presenter at prominent global symposiums including AAC 2025, India Clean Air Summit, and IICAQM, contributing to scientific discourse.</p>
+        <a href="pages/conferences.html" class="btn btn-outline btn-sm">View Details →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== Skills ===== -->
+<section id="skills">
+  <div class="section-container reveal">
+    <span class="section-label">Technical Toolkit</span>
+    <h2 class="section-title">Skills &amp; Methodologies</h2>
+    
+    <div style="margin-bottom: 2rem;">
+      <h3 style="color: var(--accent-2); font-size: 1.1rem; margin-bottom: 0.5rem;">Programming &amp; Software</h3>
+      <div class="skills-container">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">C</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">MATLAB</span>
+        <span class="skill-tag">R</span>
+        <span class="skill-tag">ArcGIS / QGIS</span>
+        <span class="skill-tag">MS Office Suite</span>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+      <h3 style="color: var(--accent-2); font-size: 1.1rem; margin-bottom: 0.5rem;">Deep Learning &amp; AI</h3>
+      <div class="skills-container">
+        <span class="skill-tag">CNN</span>
+        <span class="skill-tag">GNN</span>
+        <span class="skill-tag">LSTM / GRU</span>
+        <span class="skill-tag">Transformers / Predictors</span>
+        <span class="skill-tag">TensorFlow / PyTorch</span>
+        <span class="skill-tag">Feature Engineering (PCA)</span>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+      <h3 style="color: var(--accent-2); font-size: 1.1rem; margin-bottom: 0.5rem;">Specialized Context</h3>
+      <div class="skills-container">
+        <span class="skill-tag">IoT Sensor Design</span>
+        <span class="skill-tag">Environmental Data Calibration</span>
+        <span class="skill-tag">Deterministic Health Risk Assessments</span>
+        <span class="skill-tag">Stochastic Modeling</span>
+        <span class="skill-tag">Air Quality Monitoring (PM2.5, PM10, TVOCs)</span>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+      <!-- Languages -->
+      <div>
+        <h3 style="color: var(--accent-2); font-size: 1.1rem; margin-bottom: 0.5rem;">Languages</h3>
+        <ul style="list-style-type: none; padding-left: 0; color: var(--text-secondary); line-height: 1.8;">
+          <li>• English (Fluent)</li>
+          <li>• Hindi (Fluent)</li>
+          <li>• Japanese (Basic)</li>
+        </ul>
+      </div>
+
+      <!-- Co-Curricular -->
+      <div>
+        <h3 style="color: var(--accent-2); font-size: 1.1rem; margin-bottom: 0.5rem;">Co-Curricular &amp; Leadership</h3>
+        <ul style="list-style-type: none; padding-left: 0; color: var(--text-secondary); line-height: 1.8;">
+          <li>• Taught underprivileged students through NGO initiative</li>
+          <li>• Vice President of the Green Club</li>
+          <li>• Volunteered in community clean-up drives &amp; tree plantations</li>
+          <li>• Managed cultural fest events &amp; acted in college dramas</li>
+          <li>• Organized technical seminars &amp; joined environmental hackathons</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section id="contact">
+  <div class="section-container reveal">
+    <span class="section-label">Contact</span>
+    <h2 class="section-title">Let's Connect</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <strong>Phone</strong><br />
+            +91-9027902245
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <strong>Email</strong><br />
+            <a href="mailto:princevatsiitrpr@gmail.com">princevatsiitrpr@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <strong>Location</strong><br />
+            Haridwar, India (and IIT Gandhinagar)
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#a8a8a8"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div>
+            <strong>LinkedIn</strong><br />
+            <a href="https://www.linkedin.com/in/prince-vats-iitrpr/" target="_blank" rel="noopener">linkedin.com/in/prince-vats-iitrpr</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#a8a8a8"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+          </div>
+          <div>
+            <strong>Google Scholar</strong><br />
+            <a href="https://scholar.google.com/citations?user=SPHQZR8AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar Profile</a>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <input type="text" placeholder="Your Name" required />
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Your Email" required />
+        </div>
+        <div class="form-group">
+          <textarea placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  © 2026 Prince Vats · <a href="index.html">Home</a> · <a href="pages/education.html">Education</a> · <a href="pages/research.html">Research</a> · <a href="pages/publications.html">Publications</a> · <a href="pages/conferences.html">Conferences</a>
+</footer>
+
+<!-- ===== Scripts ===== -->
+<script src="js/particles.js"></script>
+<script src="js/nav.js"></script>
+
+</body>
+</html>

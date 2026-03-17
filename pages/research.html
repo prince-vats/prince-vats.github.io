@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research - Prince Vats</title>
+  <meta name="description"
+    content="Research projects of Prince Vats - Air pollution monitoring, low-cost sensors, AI/ML calibration, spatio-temporal deep learning." />
+  <link rel="icon" type="image/png" href="../assets/images/PV.png" />
+  <link rel="stylesheet" href="../css/style.css?v=3" />
+</head>
+
+<body>
+
+  <!-- Aerosol particle canvas -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- ===== Navigation ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <img src="../assets/images/PV.png" alt="PV Logo" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="research.html" class="active">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="conferences.html">Conferences</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== Page Header ===== -->
+  <div class="page-header">
+    <div class="section-container reveal">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a> <span class="separator">/</span> <span>Research</span>
+      </div>
+      <span class="section-label">Research Experience</span>
+      <h1 class="section-title">Projects &amp; Focus Areas</h1>
+      <p class="section-subtitle">Exploring the intersection of atmospheric science, environmental engineering, and
+        artificial intelligence to tackle real-world air quality challenges.</p>
+    </div>
+  </div>
+
+  <!-- ===== Research Areas ===== -->
+  <section id="research" style="padding-top: 2rem;">
+    <div class="section-container reveal">
+
+      <div style="margin-bottom: 4rem;">
+        <h2
+          style="font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:1.5rem; color:var(--text-primary);">
+          Ongoing Project</h2>
+        <div class="publication-item">
+          <h3 class="publication-title" style="font-size:1.2rem; color:var(--accent-1);">Environmental Quality
+            Monitoring System Using Low-Cost Sensors for Urban Air Quality Monitoring</h3>
+          <ul style="padding-left:1rem; color:var(--text-secondary); margin-top:1rem; line-height:1.7;">
+            <li style="margin-bottom:0.5rem;">Developing monitors using multiple low-cost sensors for monitoring
+              <strong>PM1, PM2.5, PM10, CO2, temperature, pressure, humidity, noise levels, CO, wind speed, and
+                TVOCs</strong>.</li>
+            <li style="margin-bottom:0.5rem;">Deploying a dense network across urban areas with real-time data
+              transmission to a custom-made central server.</li>
+            <li style="margin-bottom:0.5rem;">Implementing CNN-Bidirectional LSTM model for anomaly detection,
+              spatio-temporal analysis, and forecasting for 24h, 7d, and 1-month horizons.</li>
+            <li>Supporting policy-making through real-time urban air quality insights.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- General Areas Grid -->
+      <div>
+        <h2
+          style="font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:1.5rem; color:var(--text-primary);">
+          Core Competencies</h2>
+        <div class="research-grid">
+          <div class="research-card">
+            <div class="research-icon">📡</div>
+            <h3>IoT Sensor Networks</h3>
+            <p>Design, deployment, and real-time data integration of affordable Internet-of-Things sensor nodes.</p>
+          </div>
+          <div class="research-card">
+            <div class="research-icon">🤖</div>
+            <h3>AI/ML-Based Calibration</h3>
+            <p>Machine-learning pipelines for field calibration of low-cost sensors against reference instruments.</p>
+          </div>
+          <div class="research-card">
+            <div class="research-icon">🧠</div>
+            <h3>Spatio-Temporal Modelling</h3>
+            <p>Graph neural networks and transformer architectures for high-resolution pollutant concentration
+              forecasting.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    © 2026 Prince Vats · <a href="../index.html">Home</a> · <a href="education.html">Education</a> · <a
+      href="research.html">Research</a> · <a href="publications.html">Publications</a> · <a
+      href="conferences.html">Conferences</a>
+  </footer>
+
+  <!-- ===== Scripts ===== -->
+  <script src="../js/particles.js"></script>
+  <script src="../js/nav.js"></script>
+
+</body>
+
+</html>
