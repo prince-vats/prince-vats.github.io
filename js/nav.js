@@ -118,14 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="lightbox-container">
         <button class="lightbox-close" id="lightboxClose" aria-label="Close enlarged view">&times;</button>
         <img class="lightbox-img" id="lightboxImg" src="" alt="Enlarged view" />
-        <div class="lightbox-caption" id="lightboxCaption"></div>
+        <div class="lightbox-details" id="lightboxDetails"></div>
       </div>
     `;
     document.body.appendChild(lightbox);
   }
 
   const lightboxImg = document.getElementById('lightboxImg');
-  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxDetails = document.getElementById('lightboxDetails');
   const lightboxClose = document.getElementById('lightboxClose');
   const lightboxPrev = document.getElementById('lightboxPrev');
   const lightboxNext = document.getElementById('lightboxNext');
@@ -145,12 +145,19 @@ document.addEventListener('DOMContentLoaded', () => {
       lightboxImg.src = src;
       lightboxImg.alt = alt || 'Enlarged Image';
     }
-    if (lightboxCaption) {
-      if (alt) {
-        lightboxCaption.textContent = alt;
-        lightboxCaption.style.display = 'block';
+
+    const eventItem = mediaItem.closest('.event-item');
+    const eventContent = eventItem ? eventItem.querySelector('.event-content') : null;
+
+    if (lightboxDetails) {
+      if (eventContent) {
+        lightboxDetails.innerHTML = eventContent.innerHTML;
+        lightboxDetails.style.display = 'block';
+      } else if (alt) {
+        lightboxDetails.innerHTML = `<p style="text-align:center;margin:0;">${alt}</p>`;
+        lightboxDetails.style.display = 'block';
       } else {
-        lightboxCaption.style.display = 'none';
+        lightboxDetails.style.display = 'none';
       }
     }
 
