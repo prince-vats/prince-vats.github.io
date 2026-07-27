@@ -104,3 +104,80 @@ const counterObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 
 document.querySelectorAll('.stat-card').forEach(card => counterObserver.observe(card));
+
+// ─── Image Lightbox Modal ───
+document.addEventListener('DOMContentLoaded', () => {
+  let lightbox = document.getElementById('lightboxModal');
+  if (!lightbox) {
+    lightbox = document.createElement('div');
+    lightbox.id = 'lightboxModal';
+    lightbox.className = 'lightbox-modal';
+    lightbox.innerHTML = `
+      <div class="lightbox-container">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close enlarged view">&times;</button>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="Enlarged view" />
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+      </div>
+    `;
+    document.body.appendChild(lightbox);
+  }
+
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  function openLightbox(src, altText) {
+    if (lightboxImg) {
+      lightboxImg.src = src;
+      lightboxImg.alt = altText || 'Enlarged Image';
+    }
+    if (lightboxCaption) {
+      if (altText) {
+        lightboxCaption.textContent = altText;
+        lightboxCaption.style.display = 'block';
+      } else {
+        lightboxCaption.style.display = 'none';
+      }
+    }
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      if (lightboxImg) lightboxImg.src = '';
+    }, 350);
+  }
+
+  // Intercept click on any .event-media container or image element
+  document.body.addEventListener('click', (e) => {
+    const mediaItem = e.target.closest('.event-media');
+    if (mediaItem) {
+      e.preventDefault();
+      const img = mediaItem.querySelector('img');
+      const src = mediaItem.getAttribute('href') || (img ? img.src : '');
+      const alt = img ? img.alt : '';
+      if (src) {
+        openLightbox(src, alt);
+      }
+    }
+  });
+
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', closeLightbox);
+  }
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+});
