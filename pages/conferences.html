@@ -7,31 +7,31 @@
   <link rel="icon" type="image/png" href="../assets/images/PV_logo.png" />
   <link rel="stylesheet" href="../css/style.css?v=3" />
   <style>
-    /* Custom Year Event Colors */
-    .event-date.year-2027 {
-      --event-bg: rgba(245, 158, 11, 0.1); /* Example: Orange theme */
-      --event-border: rgba(245, 158, 11, 0.3);
-      --event-grad: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+    /* Custom Year Event Badge Colors */
+    .event-date-badge.year-2027 {
+      --event-bg: rgba(245, 158, 11, 0.12);
+      --event-border: rgba(245, 158, 11, 0.35);
+      --event-text: #fbbf24;
     }
-    .event-date.year-2026 {
-      --event-bg: rgba(59, 130, 246, 0.1); /* Example: Blue theme */
-      --event-border: rgba(59, 130, 246, 0.3);
-      --event-grad: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    .event-date-badge.year-2026 {
+      --event-bg: rgba(59, 130, 246, 0.12);
+      --event-border: rgba(59, 130, 246, 0.35);
+      --event-text: #60a5fa;
     }
-    .event-date.year-2025 {
-      --event-bg: rgba(147, 51, 234, 0.1);
-      --event-border: rgba(147, 51, 234, 0.3);
-      --event-grad: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+    .event-date-badge.year-2025 {
+      --event-bg: rgba(168, 85, 247, 0.12);
+      --event-border: rgba(168, 85, 247, 0.35);
+      --event-text: #c084fc;
     }
-    .event-date.year-2024 {
-      --event-bg: rgba(236, 72, 153, 0.1); /* Example: Pink theme */
-      --event-border: rgba(236, 72, 153, 0.3);
-      --event-grad: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+    .event-date-badge.year-2024 {
+      --event-bg: rgba(236, 72, 153, 0.12);
+      --event-border: rgba(236, 72, 153, 0.35);
+      --event-text: #f472b6;
     }
-    .event-date.year-2023 {
-      --event-bg: rgba(16, 185, 129, 0.1);
-      --event-border: rgba(16, 185, 129, 0.3);
-      --event-grad: linear-gradient(135deg, #10b981 0%, #2dd4bf 100%);
+    .event-date-badge.year-2023 {
+      --event-bg: rgba(16, 185, 129, 0.12);
+      --event-border: rgba(16, 185, 129, 0.35);
+      --event-text: #34d399;
     }
   </style>
 </head>
@@ -91,11 +91,8 @@
       
       <!-- Event -->
       <div class="event-item filterable-item" data-year="2026">
-        <div class="event-date year-2026">
-          <span class="label">Feb</span>
-          <span class="year">2026</span>
-        </div>
         <div class="event-content">
+          <span class="event-date-badge year-2026">Feb 2026</span>
           <h3>Symposium on Promoting Aerosol Education and Research</h3>
           <p>Organized by IIT Gandhinagar.</p>
           <span class="event-tag">Participant</span>
@@ -104,11 +101,8 @@
 
       <!-- Event -->
       <div class="event-item filterable-item" data-year="2025">
-        <div class="event-date year-2025">
-          <span class="label">Dec</span>
-          <span class="year">2025</span>
-        </div>
         <div class="event-content">
+          <span class="event-date-badge year-2025">Dec 2025</span>
           <h3>Symposium on Advances in Tools and Technologies to Quantify Health Impacts of Air Pollution</h3>
           <p>Organized by IIT Gandhinagar.</p>
           <span class="event-tag">Participant</span>
@@ -117,11 +111,8 @@
 
       <!-- Event -->
       <div class="event-item filterable-item" data-year="2025">
-        <div class="event-date year-2025">
-          <span class="label">Dec</span>
-          <span class="year">2025</span>
-        </div>
         <div class="event-content">
+          <span class="event-date-badge year-2025">Dec 2025</span>
           <h3>Asian Aerosol Conference (AAC 2025)</h3>
           <p>Organized by IASTA, Mumbai.</p>
           <a href="../assets/pdf/AAC_2025_Oral.pdf" target="_blank" rel="noopener"><span class="event-tag">View Oral Presentation (PDF)</span></a>
@@ -131,11 +122,8 @@
 
       <!-- Event -->
       <div class="event-item filterable-item" data-year="2025">
-        <div class="event-date year-2025">
-          <span class="label">Aug</span>
-          <span class="year">2025</span>
-        </div>
         <div class="event-content">
+          <span class="event-date-badge year-2025">Aug 2025</span>
           <h3>India Clean Air Summit 2025</h3>
           <p>Organized by CSTEP, Bengaluru.</p>
           <a href="../assets/pdf/ICAS_2025_Poster_1.pdf" target="_blank" rel="noopener"><span class="event-tag">View Poster 1 (PDF)</span></a>
@@ -145,11 +133,8 @@
 
       <!-- Event -->
       <div class="event-item filterable-item" data-year="2025">
-        <div class="event-date year-2025">
-          <span class="label">Mar</span>
-          <span class="year">2025</span>
-        </div>
         <div class="event-content">
+          <span class="event-date-badge year-2025">Mar 2025</span>
           <h3>Smart Sensors and Data Analytics for Air Quality Management Workshop</h3>
           <p>Organized by IIT Bombay.</p>
           <span class="event-tag">Participant</span>
@@ -158,24 +143,18 @@
 
       <!-- Event -->
       <div class="event-item filterable-item" data-year="2023">
-        <div class="event-date year-2023">
-          <span class="label">Dec</span>
-          <span class="year">2023</span>
-        </div>
         <div class="event-content">
+          <span class="event-date-badge year-2023">Dec 2023</span>
           <h3>International Conference on Advances in Air Quality Management (IICAQM 2023)</h3>
           <p>Organized by IISc, Bengaluru.</p>
-          <a href="https://doi.org/10.1007/978-981-96-2359-4_18"><span class="event-tag">https://doi.org/10.1007/978-981-96-2359-4_18</span></a>
+          <a href="https://doi.org/10.1007/978-981-96-2359-4_18" target="_blank" rel="noopener"><span class="event-tag">https://doi.org/10.1007/978-981-96-2359-4_18</span></a>
         </div>
       </div>
 
       <!-- Event -->
       <div class="event-item filterable-item" data-year="2023">
-        <div class="event-date year-2023">
-          <span class="label">Aug</span>
-          <span class="year">2023</span>
-        </div>
         <div class="event-content">
+          <span class="event-date-badge year-2023">Aug 2023</span>
           <h3>AI4Water: Advanced Data-Driven and Artificial Intelligence Tools in Water Resources Workshop</h3>
           <p>Organized by IIT Roorkee.</p>
           <span class="event-tag">Participant</span>
@@ -184,11 +163,8 @@
 
       <!-- Event -->
       <div class="event-item filterable-item" data-year="2023">
-        <div class="event-date year-2023">
-          <span class="label">Aug</span>
-          <span class="year">2023</span>
-        </div>
         <div class="event-content">
+          <span class="event-date-badge year-2023">Aug 2023</span>
           <h3>7th National Water Seminar</h3>
           <p>Organized by National Institute of Hydrology, Roorkee.</p>
           <span class="event-tag">2 Paper Presentations</span>
@@ -244,8 +220,7 @@
         // Show/hide items
         items.forEach(item => {
           if (filterVal === 'all' || item.getAttribute('data-year') === filterVal) {
-            item.style.display = 'grid'; // .event-item uses grid
-            // trigger small reflow for animation if wanted
+            item.style.display = 'block'; // .event-item uses block
             item.style.opacity = '1';
           } else {
             item.style.display = 'none';

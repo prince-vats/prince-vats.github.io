@@ -127,7 +127,7 @@
         // Show/hide items
         items.forEach(item => {
           if (filterVal === 'all' || item.getAttribute('data-year') === filterVal) {
-            item.style.display = 'grid'; // .event-item uses grid
+            item.style.display = 'block'; // .event-item uses block
             // trigger small reflow for animation if wanted
             item.style.opacity = '1';
           } else {

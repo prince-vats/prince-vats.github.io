@@ -1265,13 +1265,10 @@ section {
   background: var(--bg-glass);
   border: 1.5px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 2.2rem;
+  padding: 2rem 2.2rem;
   transition: var(--transition-smooth);
   backdrop-filter: blur(10px);
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 1.75rem;
-  align-items: start;
+  display: block;
   box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
@@ -1299,33 +1296,26 @@ section {
   opacity: 1;
 }
 
-.event-date {
-  display: flex;
-  flex-direction: column;
+.event-date-badge {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-width: 80px;
-  padding: 0.85rem;
-  border-radius: var(--radius-sm);
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
   background: var(--event-bg, var(--accent-soft-glow));
   border: 1.5px solid var(--event-border, var(--border-accent));
-  transition: var(--transition-smooth);
+  color: var(--event-text, var(--accent-1));
+  margin-bottom: 0.85rem;
+  transition: var(--transition-fast);
 }
 
-.event-date .year {
-  font-size: 1.4rem;
-  font-weight: 700;
-  background: var(--event-grad, var(--accent-gradient));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.event-date .label {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.event-date-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--accent-glow);
 }
 
 .event-content h3 {
