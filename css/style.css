@@ -1265,10 +1265,13 @@ section {
   background: var(--bg-glass);
   border: 1.5px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 2rem 2.2rem;
+  padding: 1.5rem 1.75rem;
   transition: var(--transition-smooth);
   backdrop-filter: blur(10px);
-  display: block;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 1.75rem;
+  align-items: center;
   box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
@@ -1294,6 +1297,37 @@ section {
 
 .event-item:hover::before {
   opacity: 1;
+}
+
+.event-media {
+  display: block;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1.5px solid var(--border-subtle);
+  background: var(--bg-secondary);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+  flex-shrink: 0;
+}
+
+.event-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.event-item:hover .event-media {
+  border-color: var(--accent-1);
+  box-shadow: var(--shadow-glow);
+}
+
+.event-item:hover .event-media img {
+  transform: scale(1.05);
 }
 
 .event-date-badge {
