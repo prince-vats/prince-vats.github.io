@@ -1403,26 +1403,34 @@ section {
 }
 
 .contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
 }
 
 .contact-item {
   display: flex;
-  align-items: flex-start;
-  gap: 1.2rem;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-glass);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(10px);
   color: var(--text-secondary);
   transition: var(--transition-smooth);
 }
 
 .contact-item:hover {
-  transform: translateX(4px);
+  border-color: var(--border-accent-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+  background: rgba(255, 69, 0, 0.04);
 }
 
 .contact-icon {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   border-radius: var(--radius-sm);
   background: var(--accent-soft-glow);
   display: flex;
@@ -1437,6 +1445,17 @@ section {
 .contact-item:hover .contact-icon {
   border-color: var(--accent-1);
   box-shadow: var(--shadow-glow);
+}
+
+.contact-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--text-secondary);
+  transition: var(--transition-fast);
+}
+
+.contact-item:hover .contact-icon svg {
+  fill: var(--accent-1);
 }
 
 .contact-item a {
@@ -1486,10 +1505,47 @@ section {
   position: relative;
   z-index: 1;
   text-align: center;
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   border-top: 1px solid var(--border-subtle);
   color: var(--text-muted);
   font-size: 0.85rem;
+}
+
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.footer-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-glass);
+  border: 1.5px solid var(--border-subtle);
+  transition: var(--transition-smooth);
+}
+
+.footer-socials a:hover {
+  border-color: var(--accent-1);
+  background: var(--accent-soft-glow);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-glow);
+}
+
+.footer-socials svg {
+  width: 19px;
+  height: 19px;
+  fill: var(--text-secondary);
+  transition: var(--transition-fast);
+}
+
+.footer-socials a:hover svg {
+  fill: var(--accent-1);
 }
 
 .footer a {
