@@ -1435,10 +1435,64 @@ section {
   font-weight: 600;
   color: var(--accent-1);
   background: rgba(59, 130, 246, 0.1);
-  padding: 0.15rem 0.55rem;
+  padding: 0.2rem 0.65rem;
   border-radius: 100px;
   margin-top: 0.5rem;
+  transition: var(--transition-fast);
 }
+
+.event-tag:hover {
+  background: rgba(59, 130, 246, 0.2);
+  transform: translateY(-1px);
+}
+
+.event-citation {
+  margin-top: 0.85rem;
+  margin-bottom: 0.85rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid var(--accent-1);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.event-citation strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.event-citation em {
+  font-style: italic;
+  color: var(--text-primary);
+}
+
+.event-citation a {
+  color: var(--accent-1);
+  word-break: break-all;
+}
+
+.event-citation a:hover {
+  text-decoration: underline;
+}
+
+:root.light-mode .event-citation {
+  background: rgba(0, 0, 0, 0.03);
+  border-left-color: var(--accent-1);
+}
+
+.event-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.event-links .event-tag {
+  margin-top: 0;
+}
+
 
 /* ===== Skills / Tools ===== */
 .skills-container {
