@@ -420,7 +420,18 @@ section {
 .hero-affiliation {
   font-size: 1rem;
   color: var(--text-muted);
+  margin-bottom: 1.15rem;
+}
+
+.hero-tagline {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  font-style: italic;
   margin-bottom: 2rem;
+  border-left: 2.5px solid var(--accent-1);
+  padding-left: 0.9rem;
+  max-width: 580px;
 }
 
 .hero-buttons {
