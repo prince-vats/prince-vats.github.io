@@ -1844,6 +1844,14 @@ section {
   transform: translateY(0);
 }
 
+/* Mobile safety fallback: ensure content is never hidden on phones */
+@media (max-width: 768px) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
   .hero-grid {
@@ -1973,6 +1981,11 @@ section {
     width: 45px;
     height: 45px;
     font-size: 1.1rem;
+  }
+
+  .event-item,
+  .publication-item {
+    padding: 1.35rem 1.15rem;
   }
 }
 
