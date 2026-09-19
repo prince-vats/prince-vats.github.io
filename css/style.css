@@ -1493,6 +1493,35 @@ section {
   margin-top: 0;
 }
 
+.event-presentation {
+  margin-top: 1.15rem;
+  padding-top: 0.9rem;
+  border-top: 1px dashed var(--border-subtle);
+}
+
+.event-presentation:first-of-type {
+  margin-top: 0.85rem;
+  padding-top: 0;
+  border-top: none;
+}
+
+.presentation-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-1);
+  margin-bottom: 0.25rem;
+}
+
+.event-presentation .event-citation {
+  margin-top: 0.35rem;
+  margin-bottom: 0.6rem;
+}
+
 
 /* ===== Skills / Tools ===== */
 .skills-container {
