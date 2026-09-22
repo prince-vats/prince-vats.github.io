@@ -2164,3 +2164,223 @@ section {
     font-size: 1.1rem;
   }
 }
+
+/* ===== Teaching Section Styles ===== */
+.teaching-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.teaching-card {
+  background: var(--bg-glass);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.teaching-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent-gradient);
+  opacity: 0.7;
+  transition: opacity var(--transition-fast), width var(--transition-fast);
+}
+
+.teaching-card:hover {
+  border-color: var(--border-accent-hover);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+  transform: translateY(-3px);
+}
+
+.teaching-card:hover::before {
+  opacity: 1;
+  width: 6px;
+}
+
+.teaching-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.teaching-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.role-badge.ta {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1.5px solid rgba(16, 185, 129, 0.35);
+  color: #34d399;
+}
+
+:root.light-mode .role-badge.ta {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(5, 150, 105, 0.35);
+  color: #059669;
+}
+
+.role-badge.gtf {
+  background: rgba(168, 85, 247, 0.12);
+  border: 1.5px solid rgba(168, 85, 247, 0.35);
+  color: #c084fc;
+}
+
+:root.light-mode .role-badge.gtf {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: rgba(147, 51, 234, 0.35);
+  color: #7c3aed;
+}
+
+.teaching-period {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.teaching-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.teaching-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.teaching-institution {
+  color: var(--accent-1);
+  font-weight: 600;
+}
+
+.teaching-desc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.teaching-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.teaching-subcard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  transition: var(--transition-fast);
+}
+
+:root.light-mode .teaching-subcard {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.teaching-subcard:hover {
+  border-color: var(--border-accent);
+}
+
+.teaching-subcard h4 {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--accent-2);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.teaching-subcard ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.teaching-subcard ul li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.teaching-subcard ul li:last-child {
+  margin-bottom: 0;
+}
+
+.teaching-subcard ul li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--accent-1);
+  font-size: 0.85rem;
+}
+
+.teaching-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.teaching-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  transition: var(--transition-fast);
+}
+
+:root.light-mode .teaching-tag {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.teaching-tag:hover {
+  border-color: var(--accent-1);
+  color: var(--accent-1);
+  background: var(--accent-soft-glow);
+}
+
+@media (max-width: 768px) {
+  .teaching-card {
+    padding: 1.5rem;
+  }
+  .teaching-title {
+    font-size: 1.25rem;
+  }
+  .teaching-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
