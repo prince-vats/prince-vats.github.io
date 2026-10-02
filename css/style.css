@@ -2256,6 +2256,53 @@ section {
   text-transform: uppercase;
 }
 
+.teaching-terms {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.teaching-term-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.32rem 0.8rem;
+  border-radius: 50px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.32);
+  color: #38bdf8;
+  letter-spacing: 0.02em;
+  transition: var(--transition-fast);
+}
+
+:root.light-mode .teaching-term-badge {
+  background: rgba(2, 132, 199, 0.08);
+  border-color: rgba(2, 132, 199, 0.28);
+  color: #0284c7;
+}
+
+.teaching-term-badge:hover {
+  transform: translateY(-1px);
+  border-color: #38bdf8;
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+}
+
+:root.light-mode .teaching-term-badge:hover {
+  border-color: #0284c7;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
+}
+
+.teaching-term-badge svg {
+  width: 13px;
+  height: 13px;
+  stroke: currentColor;
+  flex-shrink: 0;
+}
+
 .teaching-title {
   font-size: 1.5rem;
   font-weight: 700;
