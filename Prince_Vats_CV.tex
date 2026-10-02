@@ -1,0 +1,317 @@
+%----------------------------------------------------------------------------------------
+%   CURRICULUM VITAE - PRINCE VATS
+%   Academic CV (Formal LaTeX Template)
+%   Doctoral Researcher, Indian Institute of Technology Gandhinagar
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt,a4paper]{article}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.68in, top=0.7in, bottom=0.7in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{microtype}
+
+% --- Color Palette (Formal Academic) ---
+\definecolor{primary}{RGB}{15, 23, 42}       % Deep Slate / Charcoal
+\definecolor{accent}{RGB}{11, 69, 120}       % Academic Navy Blue
+\definecolor{rulecolor}{RGB}{50, 60, 75}     % Muted rule
+\definecolor{subtext}{RGB}{80, 85, 95}       % Gray for dates/metadata
+
+% --- Hyperlink Configuration ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=accent,
+    filecolor=accent,
+    urlcolor=accent,
+    citecolor=accent
+}
+
+% --- Header and Footer Styling ---
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{rulecolor!30}\leaders\hrule height \footrulewidth\hfill}}
+\fancyfoot[C]{\fontsize{8.5pt}{10pt}\selectfont\color{subtext} Prince Vats \textbar\ Curriculum Vitae \quad\textendash\quad Page \thepage\ of \pageref{LastPage}}
+
+\fancypagestyle{firstpage}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0.4pt}
+    \renewcommand{\footrule}{\hbox to\headwidth{\color{rulecolor!30}\leaders\hrule height \footrulewidth\hfill}}
+    \fancyfoot[C]{\fontsize{8.5pt}{10pt}\selectfont\color{subtext} Prince Vats \textbar\ Curriculum Vitae \quad\textendash\quad Page \thepage\ of \pageref{LastPage}}
+}
+
+% --- Section Heading Formatting ---
+\titleformat{\section}
+    {\large\bfseries\scshape\color{primary}}
+    {}
+    {0em}
+    {}
+    [\titlerule]
+
+\titlespacing*{\section}{0pt}{10pt}{5pt}
+\titlespacing*{\subsection}{0pt}{6pt}{3pt}
+
+% --- List Environments ---
+\setlist[itemize]{
+    leftmargin=1.4em,
+    itemsep=2pt,
+    topsep=1.5pt,
+    partopsep=0pt,
+    parsep=0pt
+}
+\setlist[enumerate]{
+    leftmargin=1.5em,
+    itemsep=3pt,
+    topsep=2pt,
+    partopsep=0pt,
+    parsep=0pt
+}
+
+% --- Custom Formatting Helpers ---
+\newcommand{\entryheader}[4]{
+    \noindent\textbf{#1} \hfill \textbf{\color{subtext}#2} \\
+    \textit{#3} \hfill \textit{\color{subtext}#4}
+    \vspace{1.5pt}
+}
+
+\newcommand{\pubitem}[4]{
+    \item #1. \textbf{``#2.''} \textit{#3}. #4
+}
+
+%----------------------------------------------------------------------------------------
+\begin{document}
+\thispagestyle{firstpage}
+
+%========================================================================================
+%   HEADER
+%========================================================================================
+\begin{center}
+    {\LARGE \textbf{\textsc{Prince Vats}}}\\[3pt]
+    {\small\textbf{Ph.D. Researcher in Environmental Engineering \& Aerosol Science}}\\[2pt]
+    {\footnotesize Department of Civil \& Environmental Engineering \textbar\ Indian Institute of Technology Gandhinagar, Palaj, Gujarat, India}\\[3pt]
+    {\footnotesize
+        \textbf{Email:} \href{mailto:princevatsiitrpr@gmail.com}{princevatsiitrpr@gmail.com} \quad\textbar\quad
+        \textbf{Phone:} +91-9027902245 \quad\textbar\quad
+        \textbf{Location:} Haridwar, Uttarakhand / Gandhinagar, Gujarat, India\\[2pt]
+        \textbf{Website:} \href{https://prince-vats.github.io}{prince-vats.github.io} \quad\textbar\quad
+        \textbf{Google Scholar:} \href{https://scholar.google.com/citations?user=SPHQZR8AAAAJ&hl=en}{Prince Vats} \quad\textbar\quad
+        \textbf{LinkedIn:} \href{https://www.linkedin.com/in/prince-vats-iitrpr/}{in/prince-vats-iitrpr} \quad\textbar\quad
+        \textbf{GitHub:} \href{https://github.com/prince-vats}{github.com/prince-vats}
+    }
+\end{center}
+\vspace{-4pt}
+\hrule height 1.2pt
+\vspace{4pt}
+
+%========================================================================================
+%   RESEARCH INTERESTS
+%========================================================================================
+\section{Research Interests}
+\begin{itemize}
+    \item \textbf{Aerosol Science \& Atmospheric Physics:} Particle number size distribution (PNSD) reconstruction from optical light-scattering, particle growth and dynamics, atmospheric aerosol transformation, and optical instrumentation (SMPS/OPC).
+    \item \textbf{Air Quality Monitoring \& IoT Networks:} Multi-pollutant low-cost environmental sensing (PM$_{1}$, PM$_{2.5}$, PM$_{10}$, CO$_{2}$, CO, TVOCs), dense network deployment, sensor calibration, drift correction, and quality assurance.
+    \item \textbf{Machine Learning \& Deep Learning:} Graph Neural Networks (GNN), CNN-LSTM, CNN-BiLSTM, GRU, ensemble models (Extra Trees, XGBoost, LightGBM), spatio-temporal modeling, multi-horizon urban forecasting (24-hour, 7-day, 1-month).
+    \item \textbf{Environmental Health \& Exposure Modeling:} Deterministic hazard ratios, stochastic Monte Carlo exposure modeling, occupational and indoor air quality risk profiling, spirometry-linked pulmonary health evaluation.
+\end{itemize}
+
+%========================================================================================
+%   EDUCATION
+%========================================================================================
+\section{Education}
+
+\entryheader{Indian Institute of Technology Gandhinagar (IITGN)}{Gandhinagar, Gujarat, India}{Doctor of Philosophy (Ph.D.) in Environmental Engineering}{2024 -- Present}
+\begin{itemize}
+    \item \textbf{Doctoral Research:} \textit{AI-Driven Spatio-Temporal Analysis and Prediction of Urban Air Quality Using Dense IoT-Based Environmental Monitoring Networks}.
+    \item \textbf{Core Investigations:} Architectural engineering and dense deployment of multi-pollutant Environmental Quality Monitoring Systems (EQMS); automated machine learning pipelines for field calibration against regulatory reference monitors; deep learning spatio-temporal models (GNN, CNN-BiLSTM, GRU) for short-term and day-ahead PM$_{2.5}$ forecasting and anomaly detection.
+\end{itemize}
+\vspace{3pt}
+
+\entryheader{Indian Institute of Technology Ropar (IIT Ropar)}{Rupnagar, Punjab, India}{Master of Technology (M.Tech) in Environmental Engineering}{2022 -- 2024}
+\begin{itemize}
+    \item \textbf{Master's Thesis:} \textit{Investigation of Indoor Air Quality and Evaluation of Phytoremediation Strategies for Particulate Matter Mitigation}.
+    \item \textbf{Air Quality Monitoring:} Quantified real-time indoor concentrations of PM$_{10}$, PM$_{2.5}$, PM$_{1}$, and Black Carbon (BC) across university classrooms, hostels, and administrative offices; observed severe exposures with PM$_{2.5}$ (59.60~$\mu$g/m$^3$) and PM$_{10}$ (71.12~$\mu$g/m$^3$) consistently exceeding Central Pollution Control Board (CPCB) permissible limits.
+    \item \textbf{Botanical Mitigation:} Evaluated phytoremediation capacity of indoor plants; demonstrated 39.3\% PM$_{2.5}$ reduction by Ajwain (\textit{Trachyspermum ammi}) and 38.7\% PM$_{10}$ reduction by Money plant (\textit{Epipremnum aureum}). Proposed room-scale mitigation guidelines (20 Ajwain or 30 Money plants per room) to satisfy CPCB indoor standards.
+    \item \textbf{Clinical Health Assessment:} Administered spirometry pulmonary function tests on 303 student participants; detected 35.97\% restrictive lung impairments, 34.65\% obstructive patterns, and 74.59\% asthma prevalence, proving statistically significant links between indoor particulate exposure and respiratory health deterioration.
+\end{itemize}
+\vspace{3pt}
+
+\entryheader{Govind Ballabh Pant University of Agriculture and Technology (GBPUA\&T)}{Pantnagar, Uttarakhand, India}{Bachelor of Technology (B.Tech) in Civil Engineering}{2018 -- 2022}
+\begin{itemize}
+    \item Graduated with First Class with Distinction; built foundational competencies in environmental engineering, fluid mechanics, hydrology, structural mechanics, and numerical analysis.
+\end{itemize}
+
+%========================================================================================
+%   HONORS, AWARDS & FELLOWSHIPS
+%========================================================================================
+\section{Honors, Awards \& Fellowships}
+\begin{itemize}
+    \item \textbf{GATE 2025 (Graduate Aptitude Test in Engineering):} \textbf{All India Rank 29 (AIR 29)}, \textbf{99.56 Percentile} nationwide in Environmental Science \& Engineering (India's premier competitive exam for engineering postgraduates).
+    \item \textbf{GATE 2026 (Graduate Aptitude Test in Engineering):} \textbf{All India Rank 32 (AIR 32)}, \textbf{99.56 Percentile} nationwide.
+    \item \textbf{Best Paper Award:} 7th National Water Seminar (7NWS), National Institute of Hydrology (NIH), Roorkee (August 2023).
+    \item \textbf{Graduate Teaching Fellowship (GTF):} Competitive pedagogical fellowship awarded by IIT Gandhinagar (2025 -- Present).
+    \item \textbf{Institute Doctoral Fellowship:} Ministry of Education (MoE), Government of India / IIT Gandhinagar (2024 -- Present).
+    \item \textbf{MHRD Post-Graduate Fellowship:} Ministry of Human Resource Development, Government of India (2022 -- 2024).
+\end{itemize}
+
+%========================================================================================
+%   PUBLICATIONS
+%========================================================================================
+\section{Publications}
+
+\subsection*{Peer-Reviewed Journal Articles}
+\begin{enumerate}
+    \pubitem{Indramani Dhada, \textbf{Prince Vats}, and Shailesh Kumar Samal}
+    {Potential Health Risk Estimation Through Deterministic and Stochastic Approaches for the Air Pollutants Found Inside Bottling Beverage Industries of Himachal Pradesh in India}
+    {Discover Environment (Springer Nature), vol.~3, article~221, March 2025}
+    {DOI: \href{https://doi.org/10.1007/s44274-025-00221-x}{10.1007/s44274-025-00221-x}.}
+    \begin{itemize}
+        \item Monitored TVOCs, PM$_{10}$, PM$_{2.5}$, PM$_{1}$, black carbon (BC), and noise levels across 12 beverage bottling facilities during the monsoon season; computed deterministic hazard ratios (HR 0.52--0.80) and probabilistic Monte Carlo simulations; quantified lifetime carcinogenic risk from BC ($5.8\times 10^{-4}$ to $6.8\times 10^{-4}$) and recommended targeted industrial mitigation strategies.
+    \end{itemize}
+\end{enumerate}
+
+\subsection*{Peer-Reviewed Book Chapters \& Conference Proceedings}
+\begin{enumerate}[resume]
+    \pubitem{Indramani Dhada, \textbf{Prince Vats}, and Brajesh Singh}
+    {Probable Health Risk of Pollutants and Noise Found Inside Bottling Beverage Plant of Himachal Pradesh, India}
+    {Select Proceedings of the 8th Indian International Conference on Air Quality Management (IICAQM 2023), Lecture Notes in Civil Engineering (LNCE), vol.~582, pp.~219--238, Springer, Singapore, 2025}
+    {DOI: \href{https://doi.org/10.1007/978-981-96-2359-4_18}{10.1007/978-981-96-2359-4\_18}.}
+\end{enumerate}
+
+\subsection*{Manuscripts Under Review \& Working Papers}
+\begin{enumerate}[resume]
+    \pubitem{\textbf{Prince Vats}, A.~P. Singh, and Sameer Patel}
+    {Evaluating CNN-LSTM and GNN-GRU Hybrid Models for Enhanced Air Quality Prediction and Dynamic Forecasting}
+    {Under Review, 2025/2026}
+    {}
+    \begin{itemize}
+        \item Formulated a comparative spatio-temporal deep learning framework for 24-hour PM$_{2.5}$ forecasting across 35 continuous monitoring stations in Delhi NCR; optimized CNN-LSTM achieved RMSE of 26.67~$\mu$g/m$^3$; demonstrated that GNN-GRU effectively captured topological spatial relationships with reduced parameter complexity.
+    \end{itemize}
+    \pubitem{A.~P. Singh, \textbf{Prince Vats}, and M.~K. Jain}
+    {Evaluating Multiple ML Models for AQI Prediction in Gangetic Plain Using Air Quality and Meteorological Features}
+    {Under Review in Atmosphere (MDPI) / Environmental Monitoring and Assessment, 2025/2026}
+    {}
+    \begin{itemize}
+        \item Evaluated 15 machine learning models for PM$_{2.5}$-based AQI prediction in 25 Gangetic Plain cities using multi-year (2018--2023) observational data; proved the superiority of ensemble trees (Extra Trees, Gradient Boosting, LightGBM, XGBoost) over linear and kernel models in capturing non-linear AQI-meteorology dynamics.
+    \end{itemize}
+\end{enumerate}
+
+%========================================================================================
+%   CONFERENCE PRESENTATIONS & SYMPOSIA
+%========================================================================================
+\section{Conference Presentations \& Symposia}
+
+\subsection*{Oral Presentations}
+\begin{itemize}
+    \item \textbf{Prince Vats}, A.~K. Thakur, and Sameer Patel. \textit{``Development and Deployment of a Low-Cost IoT Based Environmental Quality Monitoring System (EQMS) with Spatio-Temporal Predictive Modeling.''} \textbf{14th Asian Aerosol Conference (AAC 2025)}, Indian Aerosol Science and Technology Association (IASTA), Mumbai, India, Dec 2025.
+    \item \textbf{Prince Vats} et al. \textit{``Data-Driven Assessment and Hydrological Modeling of Water Resources.''} (Two Paper Presentations). \textbf{7th National Water Seminar (7NWS)}, National Institute of Hydrology (NIH), Roorkee, India, Aug 2023. \textbf{[Winner: Best Paper Award]}.
+    \item Indramani Dhada, \textbf{Prince Vats}, and Brajesh Singh. \textit{``Probable Health Risk of Pollutants and Noise Found Inside Bottling Beverage Plant of Himachal Pradesh, India.''} \textbf{8th Indian International Conference on Air Quality Management (IICAQM 2023)}, Indian Institute of Science (IISc), Bengaluru, India, Dec 2023.
+\end{itemize}
+
+\subsection*{Poster Presentations}
+\begin{itemize}
+    \item \textbf{Prince Vats}, C.~Nagar, S.~Sen, and Sameer Patel. \textit{``Low-Cost Environmental Quality Monitoring System for High-Resolution Spatiotemporal Urban Air Quality Monitoring and Multi-Scale Forecasting.''} \textbf{Industry Partnership Conclave (IPC 2026)}, IIT Gandhinagar, India, Apr 2026.
+    \item \textbf{Prince Vats}, C.~Nagar, S.~Sen, and Sameer Patel. \textit{``Environmental Quality Monitoring System Using Low-Cost Sensors for Urban Air Quality Monitoring and Multi-Scale Forecasting.''} \textbf{KPCSD Poster Competition on Sustainability}, Kiran C. Patel Centre for Sustainable Development, IIT Gandhinagar, India, Apr 2026.
+    \item A.~P. Singh, \textbf{Prince Vats}, and M.~K. Jain. \textit{``ML Model Evaluation for AQI Prediction in IGP Using Air Quality and Meteorological Features.''} \textbf{14th Asian Aerosol Conference (AAC 2025)}, IASTA, Mumbai, India, Dec 2025.
+    \item \textbf{Prince Vats} and Sameer Patel. \textit{``Environmental Quality Monitoring System Using Low-Cost Sensors for Urban Air Quality Monitoring and Multi-Scale Forecasting.''} \textbf{Chemical Engineering Symposium (CES 2025)}, IIT Gandhinagar \& SVNIT Surat, India, Oct 2025.
+    \item \textbf{Prince Vats}, A.~P. Singh, and Sameer Patel. \textit{``Evaluating CNN-LSTM and GNN-GRU Hybrid Models for Enhanced Air Quality Prediction and Dynamic Forecasting.''} \textbf{India Clean Air Summit 2025 (ICAS 2025)}, Center for Study of Science, Technology and Policy (CSTEP), Bengaluru, India, Aug 2025.
+    \item A.~P. Singh, \textbf{Prince Vats}, and M.~K. Jain. \textit{``ML Model Evaluation for AQI Prediction in Gangetic Plain Using Air Quality and Meteorological Features.''} \textbf{India Clean Air Summit 2025 (ICAS 2025)}, CSTEP, Bengaluru, India, Aug 2025.
+\end{itemize}
+
+%========================================================================================
+%   ACADEMIC SERVICE & LEADERSHIP
+%========================================================================================
+\section{Academic Leadership \& Conference Organization}
+\begin{itemize}
+    \item \textbf{Organizing Committee Member:} \textit{Faculty Development Program (FDP) for ASEAN and Global South}, Indian Institute of Technology Gandhinagar (September 2026).
+    \item \textbf{Organizing Committee Member:} \textit{Industry Partnership Conclave (IPC 2026)}, Indian Institute of Technology Gandhinagar (April 2026).
+    \item \textbf{Organizing Committee Member:} \textit{Symposium on Promoting Aerosol Education and Research (PAER 2026)}, Indian Institute of Technology Gandhinagar (February 2026).
+    \item \textbf{Organizing Committee Member:} \textit{Symposium on Advances in Tools and Technologies to Quantify Health Impacts of Air Pollution (APHES 2025)}, Indian Institute of Technology Gandhinagar (December 2025).
+\end{itemize}
+
+%========================================================================================
+%   TEACHING & MENTORSHIP
+%========================================================================================
+\section{Teaching \& Mentorship Experience}
+
+\entryheader{Graduate Teaching Fellow (GTF)}{IIT Gandhinagar}{ES 101: Engineering Graphics (Undergraduate Foundation)}{AY 2025--26 (Sem I \& Summer) \& AY 2026--27 (Sem I)}
+\begin{itemize}
+    \item Instructed first-year B.Tech cohorts (~50 students per lab section) in classical engineering drawing, orthographic and isometric projections, sectioning of solids, and technical dimensioning standards.
+    \item Conducted hands-on computer-aided design (CAD) laboratory instruction in \textbf{Autodesk Inventor} and \textbf{Autodesk Fusion 360}; mentored student mechanical drafting projects and evaluated design assignments and examinations.
+\end{itemize}
+\vspace{3pt}
+
+\entryheader{Teaching Assistant (TA)}{IIT Gandhinagar}{Fundamentals of Aerosol Science (Postgraduate / Advanced Undergrad)}{AY 2025--26 (Semester II)}
+\begin{itemize}
+    \item Delivered weekly problem-solving tutorial sessions covering aerosol physics, particle dynamics, light scattering, size distributions (PNSD), and SMPS/OPC measurement principles; assisted with grading and coursework evaluation.
+\end{itemize}
+\vspace{3pt}
+
+\entryheader{Teaching Assistant (TA)}{IIT Gandhinagar}{Introduction to Writing (Undergraduate Foundation)}{AY 2024--25 (Semester I)}
+\begin{itemize}
+    \item Mentored first-year undergraduate students in technical communication, academic writing mechanics, thesis structuring, and peer review analysis; provided detailed constructive editorial feedback on research essays and reports.
+\end{itemize}
+
+%========================================================================================
+%   WORKSHOPS & ADVANCED TRAINING
+%========================================================================================
+\section{Advanced Academic Workshops \& Training}
+\begin{itemize}
+    \item \textbf{Smart Sensors and Data Analytics for Air Quality Management Workshop:} Technical training on low-cost sensor calibration, sensor drift detection, and environmental data telemetry, Indian Institute of Technology Bombay (IIT Bombay), March 2025.
+    \item \textbf{AI4Water: Advanced Data-Driven and AI Tools in Water Resources Workshop:} Computational training on machine learning and artificial intelligence applications in environmental and water systems, Indian Institute of Technology Roorkee (IIT Roorkee), August 2023.
+\end{itemize}
+
+%========================================================================================
+%   SCIENTIFIC SOFTWARE & OPEN-SOURCE TOOLS
+%========================================================================================
+\section{Scientific Software \& Open-Source Tools Developed}
+\begin{itemize}
+    \item \textbf{Atmospheric Gas Unit Converter:} Web application for converting atmospheric trace gas concentrations between volumetric mixing ratios (ppm, ppb) and mass densities ($\mu$g/m$^3$, mg/m$^3$) across customizable temperature and pressure baselines. Available at: \href{https://prince-vats.github.io/unit-converter/}{prince-vats.github.io/unit-converter}.
+    \item \textbf{Sensor Calibration Tool for Atmospheric Measurements:} Interactive data analytics tool designed for field calibration of low-cost environmental sensor suites against reference-grade monitors; incorporates non-linear RH-hysteresis compensation and multivariate machine learning regression. Available at: \href{https://prince-vats.github.io/sensor-calibration/}{prince-vats.github.io/sensor-calibration}.
+\end{itemize}
+
+%========================================================================================
+%   TECHNICAL SKILLS & INSTRUMENTATION
+%========================================================================================
+\section{Technical Skills \& Experimental Instrumentation}
+\begin{tabularx}{\textwidth}{@{}p{0.25\textwidth}X@{}}
+    \textbf{Programming \& Computing:} & Python (NumPy, SciPy, Pandas, Scikit-learn, PyTorch, TensorFlow), MATLAB, R, C, C++, SQL, Bash. \\
+    \textbf{Machine Learning \& AI:} & Graph Neural Networks (GNN), CNN-LSTM, CNN-BiLSTM, GRU, XGBoost, LightGBM, Extra Trees, Random Forest, PCA, Anomaly Detection, Time-Series \& Spatio-Temporal Forecasting. \\
+    \textbf{Environmental Sensing:} & Low-Cost Optical Particle Counters (OPC -- Plantower, Sensirion), NDIR CO$_{2}$ Sensors, Electrochemical Sensors (CO, NO$_{2}$, O$_{3}$, SO$_{2}$), PID TVOC Sensors, Microcontrollers (ESP32, Arduino), IoT Telemetry. \\
+    \textbf{Aerosol Instrumentation:} & Scanning Mobility Particle Sizer (SMPS), Beta Attenuation Monitor (BAM), Aethalometer (Black Carbon), Gravimetric High-Volume Samplers, Clinical Spirometer. \\
+    \textbf{Spatial \& CAD Software:} & ArcGIS, QGIS (Geospatial Analysis \& Mapping), Autodesk Inventor, Autodesk Fusion 360, AutoCAD. \\
+    \textbf{Scientific Typesetting:} & \LaTeX, Overleaf, Bib\TeX, Markdown, Microsoft Office Suite (Word, Excel, PowerPoint).
+\end{tabularx}
+
+%========================================================================================
+%   LEADERSHIP & COMMUNITY ENGAGEMENT
+%========================================================================================
+\section{Leadership, Co-Curricular \& Community Engagement}
+\begin{itemize}
+    \item \textbf{Vice President, Green Club:} Directed university environmental advocacy initiatives, orchestrated campus-wide tree plantation drives, sustainability workshops, and community clean-up campaigns.
+    \item \textbf{Volunteer Educator:} Provided academic tutoring in mathematics and physical sciences to underprivileged primary and middle school students through an educational non-profit organization (NGO).
+    \item \textbf{Cultural Organization \& Theatre:} Core organizing member for inter-college annual cultural festivals; performed as an actor in collegiate dramatic society productions.
+    \item \textbf{Competitions \& Hackathons:} Active participant in regional/national mathematics and science olympiads, and data-driven environmental hackathons.
+\end{itemize}
+
+%========================================================================================
+%   LANGUAGES
+%========================================================================================
+\section{Languages}
+\begin{itemize}
+    \item \textbf{English:} Full Professional Proficiency (Fluent in academic instruction, scientific writing, and presentation)
+    \item \textbf{Hindi:} Native Proficiency
+    \item \textbf{Japanese:} Elementary / Basic Proficiency
+\end{itemize}
+
+\end{document}
