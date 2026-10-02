@@ -1,0 +1,234 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[margin=18mm]{geometry}
+\usepackage{times}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+% Color definitions
+\definecolor{linkcolor}{RGB}{21, 62, 103}
+\definecolor{rulecolor}{RGB}{34, 34, 34}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=linkcolor,
+    pdftitle={Prince Vats - Academic Curriculum Vitae},
+    pdfauthor={Prince Vats}
+}
+
+% Section formatting
+\titleformat{\section}
+  {\large\bfseries\scshape\raggedright}
+  {}{0em}
+  {}[\titlerule]
+
+\titlespacing*{\section}{0pt}{10pt}{5pt}
+
+% Subsection formatting
+\titleformat{\subsection}
+  {\normalsize\bfseries\raggedright}
+  {}{0em}
+  {}
+
+\titlespacing*{\subsection}{0pt}{6pt}{3pt}
+
+% Custom list environment
+\setlist[itemize]{leftmargin=14pt, itemsep=2pt, topsep=2pt, parsep=0pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+
+\begin{document}
+
+% ==================== HEADER ====================
+\begin{center}
+    {\LARGE \textbf{\textsc{Prince Vats}}}\\[3pt]
+    {\large \textbf{Ph.D. Researcher in Environmental Engineering}}\\[2pt]
+    {\normalsize \textit{Department of Civil \& Environmental Engineering $\bullet$ Indian Institute of Technology Gandhinagar}}\\[4pt]
+    \small
+    Email: \href{mailto:princevatsiitrpr@gmail.com}{princevatsiitrpr@gmail.com} $\;\bullet\;$
+    Phone: +91-9027902245 $\;\bullet\;$
+    Location: Haridwar / Gandhinagar, India\\[2pt]
+    Website: \href{https://prince-vats.github.io}{prince-vats.github.io} $\;\bullet\;$
+    \href{https://scholar.google.com/citations?user=SPHQZR8AAAAJ&hl=en}{Google Scholar} $\;\bullet\;$
+    \href{https://www.linkedin.com/in/prince-vats-iitrpr/}{LinkedIn} $\;\bullet\;$
+    \href{https://github.com/prince-vats}{GitHub}
+\end{center}
+
+\vspace{2pt}
+
+% ==================== RESEARCH FOCUS ====================
+\section*{Research Focus \& Core Interests}
+\textbf{Aerosol Science \& Particle Dynamics:} Particle number size distribution (PNSD) reconstruction from light-scattering measurements, aerosol microphysics, atmospheric transformation, and human respiratory exposure.\\
+\textbf{Environmental IoT Networks:} Design, multi-pollutant sensing ($\text{PM}_1, \text{PM}_{2.5}, \text{PM}_{10}, \text{CO}_2, \text{CO}, \text{TVOCs}$), automated telemetry, and machine-learning field calibration against reference monitors.\\
+\textbf{Spatio-Temporal Deep Learning:} Advanced neural network architectures (CNNs, GNNs, LSTMs, GRUs) for high-resolution dynamic forecasting, spatial air pollution interpolation, and pattern recognition.\\
+\textbf{Health Risk Modeling:} Deterministic and stochastic environmental exposure analysis, indoor air quality mitigation via phytoremediation, and epidemiological health outcome assessments.
+
+% ==================== EDUCATION ====================
+\section*{Education}
+
+\textbf{Indian Institute of Technology Gandhinagar} \hfill \textbf{2024 -- Present (Ongoing)}\\
+\textit{Ph.D. Candidate, Environmental Engineering} \hfill \textit{Gandhinagar, Gujarat, India}
+\begin{itemize}
+    \item \textbf{Doctoral Research:} AI-driven spatio-temporal analysis and high-resolution prediction of urban air quality using dense IoT-based environmental monitoring networks.
+    \item Development and field deployment of low-cost Environmental Quality Monitoring Systems (EQMS) for high-frequency urban monitoring.
+    \item Machine learning pipelines for field sensor calibration, data fusion, and exposure modeling.
+    \item Deep learning models (GNN, LSTM/GRU, CNN-BiLSTM) for short-term and multi-scale $\text{PM}_{2.5}$ forecasting.
+\end{itemize}
+
+\vspace{3pt}
+\textbf{Indian Institute of Technology Ropar} \hfill \textbf{2022 -- 2024}\\
+\textit{Master of Technology (M.Tech), Environmental Engineering} \hfill \textit{Rupnagar, Punjab, India}
+\begin{itemize}
+    \item \textbf{M.Tech Thesis:} Investigated indoor air pollution ($\text{PM}_{10}, \text{PM}_{2.5}, \text{PM}_1$, and black carbon) across classrooms, hostels, and offices; $\text{PM}_{2.5}$ ($59.6\,\mu\text{g/m}^3$) and $\text{PM}_{10}$ ($71.12\,\mu\text{g/m}^3$) substantially exceeded CPCB permissible limits.
+    \item \textbf{Phytoremediation Strategy:} Evaluated Ajwain (\textit{Trachyspermum ammi}, 39.3\% $\text{PM}_{2.5}$ reduction) and Money plant (\textit{Epipremnum aureum}, 38.7\% $\text{PM}_{10}$ reduction), establishing practical room-scale botanical mitigation recommendations.
+    \item \textbf{Respiratory Health Assessment:} Conducted clinical spirometry on 303 students, identifying 35.97\% restrictive patterns, 34.65\% obstructive patterns, and 74.59\% asthma prevalence linked to particulate exposure.
+\end{itemize}
+
+\vspace{3pt}
+\textbf{G. B. Pant University of Agriculture and Technology (GBPUAT)} \hfill \textbf{2018 -- 2022}\\
+\textit{Bachelor of Technology (B.Tech), Civil Engineering} \hfill \textit{Pantnagar, Uttarakhand, India}
+
+% ==================== HONORS & AWARDS ====================
+\section*{Honors \& National Competitive Examinations}
+\begin{itemize}
+    \item \textbf{GATE 2025:} \textbf{All India Rank (AIR) 29} (99.56 percentile) nationwide in India's premier Graduate Aptitude Test in Engineering.
+    \item \textbf{GATE 2026:} \textbf{All India Rank (AIR) 32} (99.56 percentile) nationwide.
+    \item \textbf{Best Paper Award:} 7th National Water Seminar (7NWS), National Institute of Hydrology (NIH), Roorkee (August 2023).
+\end{itemize}
+
+% ==================== PUBLICATIONS ====================
+\section*{Peer-Reviewed Publications}
+
+\subsection*{Journal Articles}
+\begin{enumerate}[leftmargin=18pt, label={[\arabic*]}]
+    \item Dhada, I., \textbf{Vats, P.}, and Samal, S. K. (2025). Potential Health Risk Estimation Through Deterministic and Stochastic Approaches for the Air Pollutants Found Inside Bottling Beverage Industries of Himachal Pradesh in India. \textit{Discover Environment}, Springer, March 2025.\\
+    DOI: \href{https://doi.org/10.1007/s44274-025-00221-x}{10.1007/s44274-025-00221-x}
+\end{enumerate}
+
+\subsection*{Refereed Book Chapters \& Conference Proceedings}
+\begin{enumerate}[leftmargin=18pt, label={[\arabic*]}, resume]
+    \item Dhada, I., \textbf{Vats, P.}, and Singh, B. (2025). Probable Health Risk of Pollutants and Noise Found Inside Bottling Beverage Plant of Himachal Pradesh, India. In: Shiva Nagendra, S.M., Ramamurthy, P.C., Vardoulakis, S., Tantrakarnapa, K., Ball, R.J. (eds) \textit{Select Proceedings of the 8th Indian International Conference on Air Quality Management (IICAQM 2023)}. \textit{Lecture Notes in Civil Engineering}, vol 582, pp. 219--238. Springer, Singapore. \textit{(Oral Presentation at IICAQM 2023)}.\\
+    DOI: \href{https://doi.org/10.1007/978-981-96-2359-4_18}{10.1007/978-981-96-2359-4\_18}
+\end{enumerate}
+
+% ==================== CONFERENCES ====================
+\section*{Conference Presentations \& Scholarly Contributions}
+
+\subsection*{Peer-Reviewed Oral Presentations}
+\begin{enumerate}[leftmargin=18pt, label={[\arabic*]}]
+    \item \textbf{Vats, P.}, Thakur, A. K., and Patel, S. (2025, Dec). ``Development and Deployment of a Low-Cost IoT Based Environmental Quality Monitoring System (EQMS) with Spatio-Temporal Predictive Modeling'', \textit{14th Asian Aerosol Conference (AAC 2025)}, Indian Aerosol Science and Technology Association (IASTA), Mumbai, India. \textit{(Presented by P. Vats)}.
+    \item Dhada, I., \textbf{Vats, P.}, and Singh, B. (2023, Dec). ``Probable Health Risk of Pollutants and Noise Found Inside Bottling Beverage Plant of Himachal Pradesh, India'', \textit{8th Indian International Conference on Air Quality Management (IICAQM 2023)}, IISc Bengaluru, India. \textit{(Presented by I. Dhada; Published in Springer LNCE, 2025)}.
+\end{enumerate}
+
+\subsection*{Refereed Poster Presentations}
+\begin{enumerate}[leftmargin=18pt, label={[\arabic*]}, resume]
+    \item \textbf{Vats, P.}, Nagar, C., Sen, S., and Patel, S. (2026, Apr). ``Low-Cost Environmental Quality Monitoring System for High-Resolution Spatiotemporal Urban Air Quality Monitoring and Multi-Scale Forecasting'', \textit{Industry Partnership Conclave (IPC 2026)}, IIT Gandhinagar, India.
+    \item \textbf{Vats, P.}, Nagar, C., Sen, S., and Patel, S. (2026, Apr). ``Environmental Quality Monitoring System Using Low-Cost Sensors for Urban Air Quality Monitoring and Multi-Scale Forecasting'', \textit{KPCSD Poster Competition on Sustainability}, Kiran C. Patel Centre for Sustainable Development, IIT Gandhinagar, India.
+    \item Singh, A. P., \textbf{Vats, P.}, and Jain, M. K. (2025, Dec). ``ML Model Evaluation for AQI Prediction in IGP Using Air Quality and Meteorological Features'', \textit{14th Asian Aerosol Conference (AAC 2025)}, Mumbai, India.
+    \item \textbf{Vats, P.}, and Patel, S. (2025, Oct). ``Environmental Quality Monitoring System Using Low-Cost Sensors for Urban Air Quality Monitoring and Multi-Scale Forecasting'', \textit{Chemical Engineering Symposium (CES 2025)}, IIT Gandhinagar \& SVNIT, India.
+    \item \textbf{Vats, P.}, Singh, A. P., and Patel, S. (2025, Aug). ``Evaluating CNN-LSTM and GNN-GRU Hybrid Models for Enhanced Air Quality Prediction and Dynamic Forecasting'', \textit{India Clean Air Summit (ICAS 2025)}, CSTEP, Bengaluru, India.
+    \item Singh, A. P., \textbf{Vats, P.}, and Jain, M. K. (2025, Aug). ``ML Model Evaluation for AQI Prediction in Gangetic Plain Using Air Quality and Meteorological Features'', \textit{India Clean Air Summit (ICAS 2025)}, CSTEP, Bengaluru, India.
+    \item \textbf{Two Paper Presentations} (2023, Aug). \textit{7th National Water Seminar (7NWS)}, National Institute of Hydrology (NIH), Roorkee, India. \textit{(Conferred Best Paper Award)}.
+\end{enumerate}
+
+% ==================== TEACHING ====================
+\section*{Teaching \& Academic Mentorship}
+
+\textbf{Fundamentals of Aerosol Science} --- \textit{Teaching Assistant} \hfill \textbf{AY 2025--2026, Semester II}\\
+\textit{Indian Institute of Technology Gandhinagar $\bullet$ Advanced Undergraduate \& Postgraduate Level}
+\begin{itemize}
+    \item Assisted in instruction of core aerosol physics and atmospheric chemistry: particle mechanics, dynamics, size distribution functions (PNSD), and atmospheric transformation processes.
+    \item Conducted problem-solving tutorial sessions, guided students on atmospheric datasets, and instructed on measurement instrumentation including Scanning Mobility Particle Sizers (SMPS) and Optical Particle Counters (OPC).
+\end{itemize}
+
+\vspace{3pt}
+\textbf{ES 101: Engineering Graphics} --- \textit{Graduate Teaching Fellow} \hfill \textbf{AY 2025--2026 \& AY 2026--2027}\\
+\textit{Indian Institute of Technology Gandhinagar $\bullet$ First-Year B.Tech ($\sim$50 Students per cohort)}
+\begin{itemize}
+    \item Taught classical engineering drafting: orthographic projections, isometric views, and sectioning of solids.
+    \item Conducted weekly laboratory sessions instructing 3D parametric CAD modeling in \textbf{Autodesk Inventor} and \textbf{Autodesk Fusion 360}; evaluated design coursework and mentored student mechanical projects.
+\end{itemize}
+
+\vspace{3pt}
+\textbf{Introduction to Writing} --- \textit{Teaching Assistant} \hfill \textbf{AY 2024--2025, Semester I}\\
+\textit{Indian Institute of Technology Gandhinagar $\bullet$ First-Year B.Tech Foundation Course}
+\begin{itemize}
+    \item Mentored undergraduate students in academic and technical communication, structured argumentation, critical reading, and peer-review workflows; provided detailed editorial critique on technical writing.
+\end{itemize}
+
+% ==================== RESEARCH PROJECTS ====================
+\section*{Research Projects \& Field Studies}
+
+\textbf{Environmental Quality Monitoring System (EQMS) for Urban Air Quality} \hfill \textit{IIT Gandhinagar}
+\begin{itemize}
+    \item Developed an integrated, low-cost multi-pollutant sensing network measuring $\text{PM}_1, \text{PM}_{2.5}, \text{PM}_{10}, \text{CO}_2, \text{CO}$, TVOCs, and ambient meteorology (temperature, relative humidity, barometric pressure).
+    \item Engineered end-to-end data pipeline streaming real-time measurements across a dense urban grid to a centralized database server.
+    \item Implemented CNN-BiLSTM architectures for anomaly detection and multi-scale air quality forecasting across 24-hour, 7-day, and 1-month horizons to generate actionable environmental policy insights.
+\end{itemize}
+
+\vspace{2pt}
+\textbf{Institutional Indoor Air Quality, Phytoremediation \& Spirometry Assessment} \hfill \textit{IIT Ropar}
+\begin{itemize}
+    \item Conducted longitudinal indoor air quality monitoring across classrooms, hostels, and offices, demonstrating high exposure risks.
+    \item Benchmarked botanical mitigation efficacy of indoor plant species and administered clinical spirometry testing on 303 human subjects to establish correlations between particulate exposure and respiratory health.
+\end{itemize}
+
+\vspace{2pt}
+\textbf{Occupational Exposure \& Health Risk Assessment in Beverage Bottling Plants} \hfill \textit{Himachal Pradesh}
+\begin{itemize}
+    \item Monitored TVOCs, $\text{PM}_{10}, \text{PM}_{2.5}, \text{PM}_1$, black carbon (BC), and industrial noise across 12 manufacturing facilities during monsoon.
+    \item Formulated deterministic and stochastic health risk models, identifying non-carcinogenic hazard ratios (0.52--0.80) and carcinogenic BC risks (5.8E-04 to 6.8E-04) to guide industrial ventilation recommendations.
+\end{itemize}
+
+% ==================== ACADEMIC SERVICE ====================
+\section*{Academic Service \& Event Organization}
+\begin{itemize}
+    \item \textbf{Organizing Team Member:} Faculty Development Program (FDP) for ASEAN and Global South, IIT Gandhinagar (September 2026).
+    \item \textbf{Organizing Team Member:} Industry Partnership Conclave (IPC 2026), IIT Gandhinagar (April 2026).
+    \item \textbf{Organizing Team Member:} Symposium on Promoting Aerosol Education and Research (PAER 2026), IIT Gandhinagar (February 2026).
+    \item \textbf{Organizing Team Member:} Symposium on Advances in Tools and Technologies to Quantify Health Impacts of Air Pollution (APHES 2025), IIT Gandhinagar (December 2025).
+\end{itemize}
+
+% ==================== OPEN SOURCE TOOLS ====================
+\section*{Scientific Software \& Open Research Tools}
+\begin{itemize}
+    \item \textbf{Atmospheric Gas Unit Converter:} Online scientific utility for converting ambient gaseous concentration units ($\text{ppb}$, $\mu\text{g/m}^3$) across user-defined temperature and atmospheric pressure regimes. (\href{https://prince-vats.github.io/unit-converter/}{prince-vats.github.io/unit-converter})
+    \item \textbf{Sensor Calibration Tool for Atmospheric Measurements:} Interactive web-based data calibration framework designed for calibrating low-cost environmental sensors against reference-grade instrumentation. (\href{https://prince-vats.github.io/sensor-calibration/}{prince-vats.github.io/sensor-calibration})
+\end{itemize}
+
+% ==================== TECHNICAL TOOLKIT ====================
+\section*{Technical \& Computational Toolkit}
+\begin{tabularx}{\textwidth}{@{}p{0.26\textwidth}X@{}}
+    \textbf{Programming \& Software:} & Python, C, C++, MATLAB, R, MS Office Suite \\
+    \textbf{AI \& Deep Learning:} & CNN, Graph Neural Networks (GNN), LSTM, GRU, Transformers / Predictors, TensorFlow, PyTorch, Feature Engineering (PCA) \\
+    \textbf{Spatial \& CAD Prototyping:} & ArcGIS, QGIS, Autodesk Inventor, Autodesk Fusion 360 \\
+    \textbf{Specialized Domain Context:} & IoT Sensor Design \& Network Deployment, Environmental Data Calibration, Deterministic \& Stochastic Health Risk Assessments, Real-Time Air Quality Monitoring ($\text{PM}_{2.5}, \text{PM}_{10}, \text{TVOCs}$) \\
+    \textbf{Languages:} & English (Fluent), Hindi (Fluent), Japanese (Basic)
+\end{tabularx}
+
+% ==================== WORKSHOPS ====================
+\section*{Specialized Academic Workshops Attended}
+\begin{itemize}
+    \item \textbf{Smart Sensors and Data Analytics for Air Quality Management Workshop:} Indian Institute of Technology Bombay (March 2025).
+    \item \textbf{AI4Water: Advanced Data-Driven and Artificial Intelligence Tools in Water Resources Workshop:} Indian Institute of Technology Roorkee (August 2023).
+\end{itemize}
+
+% ==================== LEADERSHIP ====================
+\section*{Leadership \& Community Engagement}
+\begin{itemize}
+    \item \textbf{Vice President:} Green Club --- spearheaded environmental initiatives, clean-up drives, and campus sustainability projects.
+    \item \textbf{Community Mentorship:} Taught underprivileged students through an NGO initiative.
+    \item \textbf{Technical Seminars \& Hackathons:} Organized university technical seminars and actively participated in environmental hackathons.
+    \item \textbf{Campus Sustainability:} Volunteered in community clean-up drives and environmental tree plantation initiatives.
+\end{itemize}
+
+\end{document}
