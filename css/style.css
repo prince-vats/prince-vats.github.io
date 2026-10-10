@@ -989,6 +989,135 @@ section {
   z-index: 1;
 }
 
+/* ===== Patent Badge (Cyan Accent) ===== */
+.patent-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(6, 182, 212, 0.12);
+  border: 1.5px solid rgba(6, 182, 212, 0.5);
+  color: #00e5ff;
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.2);
+  margin-bottom: 0.85rem;
+  transition: var(--transition-fast);
+}
+
+:root.light-mode .patent-badge {
+  background: rgba(8, 145, 178, 0.1);
+  border-color: rgba(8, 145, 178, 0.4);
+  color: #0891b2;
+  box-shadow: 0 2px 8px rgba(8, 145, 178, 0.12);
+}
+
+.patent-badge:hover {
+  border-color: #00e5ff;
+  box-shadow: 0 0 22px rgba(6, 182, 212, 0.35);
+  transform: translateY(-1px);
+}
+
+/* ===== Research Media & Diagram Showcase ===== */
+.research-media-wrapper {
+  margin: 1.5rem 0;
+}
+
+.research-media {
+  display: block;
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1.5px solid var(--border-subtle);
+  background: var(--bg-secondary);
+  transition: var(--transition-smooth);
+  cursor: zoom-in;
+}
+
+.research-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.research-media:hover {
+  border-color: #00e5ff;
+  box-shadow: 0 8px 32px rgba(6, 182, 212, 0.25);
+}
+
+.research-media:hover img {
+  transform: scale(1.015);
+}
+
+.research-caption {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.project-showcase-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .project-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project-secondary {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-subtle);
+}
+
+.project-secondary::before {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, var(--accent-2) 100%);
+}
+
+.project-secondary:hover {
+  border-color: var(--border-accent);
+}
+
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+
+.spec-item {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.85rem;
+  text-align: center;
+}
+
+.spec-val {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent-1);
+}
+
+.spec-lbl {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.2rem;
+}
+
 /* ===== Research Cards ===== */
 .research-grid {
   display: grid;

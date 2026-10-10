@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function openLightbox(clickedMediaItem) {
-    mediaItems = Array.from(document.querySelectorAll('.event-media')).filter(el => el.offsetParent !== null || el.offsetWidth > 0);
+    mediaItems = Array.from(document.querySelectorAll('.event-media, .research-media')).filter(el => el.offsetParent !== null || el.offsetWidth > 0);
     const index = mediaItems.indexOf(clickedMediaItem);
     if (index !== -1) {
       updateLightboxItem(index);
@@ -171,9 +171,9 @@ document.addEventListener('DOMContentLoaded', () => {
     updateLightboxItem(prevIndex);
   }
 
-  // Intercept click on any .event-media container or image element
+  // Intercept click on any .event-media or .research-media container or image element
   document.body.addEventListener('click', (e) => {
-    const mediaItem = e.target.closest('.event-media');
+    const mediaItem = e.target.closest('.event-media, .research-media');
     if (mediaItem) {
       e.preventDefault();
       openLightbox(mediaItem);

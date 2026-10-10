@@ -57,19 +57,158 @@
   <section id="research" style="padding-top: 2rem;">
     <div class="section-container reveal">
 
+      <!-- Flagship Research Project -->
       <div style="margin-bottom: 4rem;">
         <h2
           style="font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:1.5rem; color:var(--text-primary);">
-          🔬 Primary Research Project</h2>
+          🔬 Flagship Research Project</h2>
         <div class="project-featured">
+          
           <div class="project-header">
-            <h3 style="font-size:1.3rem; color:var(--accent-1); margin-bottom:0.5rem;">Environmental Quality Monitoring System</h3>
-            <p style="color:var(--text-secondary); font-size:0.95rem; margin:0;">Urban Air Quality Monitoring Using Low-Cost IoT Sensors</p>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
+              <span class="patent-badge">💡 Patent Pending · IN Patent App. No. 202621106781</span>
+              <span style="font-size:0.8rem; color:var(--text-muted); font-weight:500;">Filing Date: 04 Sept 2026</span>
+            </div>
+            <h3 style="font-size:1.45rem; color:var(--accent-1); margin-bottom:0.35rem; line-height:1.4;">
+              Multi-Wavelength, Multi-Angle Optical Scattering Platform for Aerosol Size-Distribution Retrieval
+            </h3>
+            <p style="color:var(--text-secondary); font-size:0.95rem; margin:0; font-weight:500;">
+              Physics-Informed Neural Networks + Custom Optical Hardware for Aerosol Size Distribution &amp; Optical Characterisation
+            </p>
+            <p style="color:var(--accent-2); font-size:0.85rem; margin-top:0.35rem;">
+              <strong>Lead Inventors:</strong> Prince Vats &amp; Dr. Sameer Patel · Indian Institute of Technology Gandhinagar
+            </p>
+          </div>
+
+          <div class="project-description">
+            
+            <div class="project-showcase-grid">
+              <div>
+                <blockquote style="border-left:3px solid var(--accent-1); padding-left:1rem; margin:0 0 1.25rem 0; font-style:italic; color:var(--text-secondary);">
+                  “Air quality monitors tell you how dirty the air is. We tell you exactly what is in it in real time.”
+                </blockquote>
+                <p style="margin-bottom:1rem; line-height:1.8;">
+                  Conventional air quality monitoring faces a critical tradeoff: low-cost sensors only estimate bulk particulate mass and cannot resolve particles &lt;300 nm, while laboratory instruments (SMPS, APS) cost ₹50 Lakh–₹1.5 Crore+, require 5–10 minutes per scan, and rely on hazardous consumables (butanol, radioactive neutralizers).
+                </p>
+                <p style="margin-bottom:0; line-height:1.8;">
+                  This project introduces a patented, mass-deployable optical scattering diagnostic platform combining multi-wavelength laser probing, multi-angle light collection, and physics-informed deep learning for real-time nanoparticle detection down to ~10 nm at a fraction of laboratory instrument cost.
+                </p>
+              </div>
+
+              <!-- Prototype Hardware Preview Image -->
+              <div>
+                <a href="../assets/images/research/mwma_slide_4.webp" class="research-media" title="MWMA Real-Time Diagnostic Instrument (Hardware Product & Flexible Deployments)">
+                  <img src="../assets/images/research/mwma_slide_4.webp" alt="MWMA Real-Time Diagnostic Instrument Hardware and Deployment Specifications" loading="lazy" />
+                </a>
+                <p class="research-caption">MWMA Real-Time Diagnostic Instrument — Solid-State Hardware &amp; Flexible Deployments (Wall-Mount &amp; Desktop)</p>
+              </div>
+            </div>
+
+            <!-- Optical Scattering & AI Workflow Diagram (Full Complete Slide 3) -->
+            <div class="research-media-wrapper">
+              <h4 style="color:var(--accent-2); margin-bottom:0.6rem; font-size:0.95rem; text-transform:uppercase; letter-spacing:0.05em;">
+                Optical Probing &amp; Physics-AI Decoding Framework
+              </h4>
+              <a href="../assets/images/research/mwma_slide_3.webp" class="research-media" title="Figure 1: Multi-λ and Multi-θ Laser Scattering + Physics-AI Decoding Framework">
+                <img src="../assets/images/research/mwma_slide_3.webp" alt="Multi-Wavelength Multi-Angle Optical Scattering and AI Decoding Pipeline (Full Diagram)" loading="lazy" />
+              </a>
+              <p class="research-caption">Figure 1: Complete optical probing workflow — Continuous Air Flow → Multi-Wavelength Laser Probing → Multi-Angle Light Collection (9 unique scattering signals) → AI-Based Physical Decoding across 1,500,000+ realistic conditions.</p>
+            </div>
+
+            <!-- Accuracy Metrics Grid -->
+            <h4 style="color:var(--accent-2); margin-bottom:0.5rem; font-size:0.95rem; text-transform:uppercase; letter-spacing:0.05em;">Model Retrieval Accuracy (Tested on 1,500,000+ Atmospheric Conditions)</h4>
+            <div class="spec-grid">
+              <div class="spec-item">
+                <div class="spec-val">0.87%</div>
+                <div class="spec-lbl">Count (N) MAPE</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-val">0.29%</div>
+                <div class="spec-lbl">Mean Size (μ) MAPE</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-val">0.05%</div>
+                <div class="spec-lbl">Spread (σg) MAPE</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-val">0.01%</div>
+                <div class="spec-lbl">Refractive Index (n)</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-val">1.86%</div>
+                <div class="spec-lbl">Absorption (k) MAPE</div>
+              </div>
+            </div>
+
+            <!-- Core Pillars Grid -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap:2rem; margin:1.5rem 0;">
+              <div>
+                <h4 style="color:var(--accent-2); margin-bottom:0.75rem; font-size:1rem;">Optical Hardware &amp; Probing</h4>
+                <ul style="list-style:none; padding:0; color:var(--text-secondary); font-size:0.9rem; line-height:1.8;">
+                  <li>✓ <strong>Multi-λ &amp; Multi-θ Optics:</strong> Multi-wavelength laser probing + multi-angle photodetectors (9 unique optical signals)</li>
+                  <li>✓ <strong>Nanoparticle Resolution:</strong> Resolves particles from ~10 nm to coarse sizes</li>
+                  <li>✓ <strong>Real-Time Diagnostic:</strong> 1-second continuous response with no scan delays</li>
+                  <li>✓ <strong>Zero Consumables:</strong> Solid-state optics; no toxic chemicals or radioactive neutralizers</li>
+                  <li>✓ <strong>On-Device Edge AI:</strong> Microprocessor inference with zero cloud dependency</li>
+                </ul>
+              </div>
+              <div>
+                <h4 style="color:var(--accent-2); margin-bottom:0.75rem; font-size:1rem;">Physics-Based Optical Inversion</h4>
+                <ul style="list-style:none; padding:0; color:var(--text-secondary); font-size:0.9rem; line-height:1.8;">
+                  <li>✓ <strong>Aerosol Optical Theories:</strong> Rigorous inversion of Mie &amp; Rayleigh scattering physics via PINNs</li>
+                  <li>✓ <strong>Optical Characterisation:</strong> Inversion of complex refractive index (n, k), single scattering albedo, and extinction coefficient</li>
+                  <li>✓ <strong>Microphysical Retrieval:</strong> Continuous particle count (N), geometric mean diameter (μ), and geometric standard deviation (σg)</li>
+                  <li>✓ <strong>Robust Generalization:</strong> Validated across urban, industrial, rural, and seasonal regimes</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Aerosol Dynamics & Digital Twin Section (Full Complete Slide 5) -->
+            <div class="research-media-wrapper">
+              <h4 style="color:var(--accent-2); margin-bottom:0.6rem; font-size:0.95rem; text-transform:uppercase; letter-spacing:0.05em;">
+                Aerosol Dynamics: Real-Time Air Digital Twin &amp; Source Tracking
+              </h4>
+              <a href="../assets/images/research/mwma_slide_5.webp" class="research-media" title="Figure 2: Aerosol Dynamics — The Air Digital Twin, Instant Contamination Detection, and Time-Reversal Source Tracking">
+                <img src="../assets/images/research/mwma_slide_5.webp" alt="Aerosol Dynamics: Air Digital Twin and Time-Reversal Source Tracking (Full Diagram)" loading="lazy" />
+              </a>
+              <p class="research-caption">Figure 2: Complete aerosol dynamic evolution — tracking particle collision &amp; coagulation, surface deposition, room ventilation, instant anomaly detection, and inverting dynamic transport equations to pinpoint initial contamination time (t₀).</p>
+            </div>
+
+            <div style="margin-top:1.5rem; display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
+              <a href="../assets/pdf/MWMA.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                📄 View Platform Presentation Deck (PDF) ↗
+              </a>
+              <span style="color:var(--text-muted); font-size:0.85rem;">Indian Patent Application No. 202621106781</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Large-Scale Urban Sensing & Modeling -->
+      <div style="margin-bottom: 4rem;">
+        <h2
+          style="font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:1.5rem; color:var(--text-primary);">
+          📡 Urban Sensing &amp; Spatio-Temporal AI</h2>
+        <div class="project-featured project-secondary">
+          <div class="project-header">
+            <h3 style="font-size:1.3rem; color:var(--accent-1); margin-bottom:0.5rem;">Environmental Quality Monitoring System (EQMS)</h3>
+            <p style="color:var(--text-secondary); font-size:0.95rem; margin:0;">Urban Air Quality Monitoring &amp; Spatio-Temporal Forecasting Using Low-Cost IoT Sensor Networks</p>
           </div>
           <div class="project-description">
-            <p style="margin-bottom:1.25rem; line-height:1.8;">
-              Developing a comprehensive environmental monitoring system that integrates low-cost sensors for real-time air quality assessment across urban environments. This project combines hardware design, sensor calibration, data processing, and advanced ML/DL models for pollution forecasting.
-            </p>
+            <div class="project-showcase-grid">
+              <div>
+                <p style="margin-bottom:1rem; line-height:1.8;">
+                  Developing a comprehensive environmental monitoring network integrating distributed low-cost IoT sensor nodes for continuous, high-density air quality surveillance across urban micro-environments. This project combines embedded hardware integration, automated field calibration against reference-grade regulatory monitors, and spatio-temporal deep learning architectures for pollution forecasting.
+                </p>
+              </div>
+              <div>
+                <a href="../assets/images/research/eqms_hardware_components.webp" class="research-media" title="Figure 3: Hardware Architecture and Multi-Sensor Payload of the Custom Environmental Quality Monitor (EQM)">
+                  <img src="../assets/images/research/eqms_hardware_components.webp" alt="Hardware Architecture and Sensor Components of the Environmental Quality Monitor (EQM)" loading="lazy" />
+                </a>
+                <p class="research-caption">Figure 3: Custom hardware architecture and multi-sensor payload of the Environmental Quality Monitor (EQM) node — integrating microcontroller processing, optical PM sensing (PM₁, PM₂.₅, PM₁₀), trace gases (CO, CO₂, TVOC), meteorology (T, P, RH, wind speed), RTC, and on-board SD data logging.</p>
+              </div>
+            </div>
+
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap:2rem; margin-bottom:1.5rem;">
               <div>
                 <h4 style="color:var(--accent-2); margin-bottom:0.75rem; font-size:1rem;">Key Measurements</h4>
@@ -77,26 +216,46 @@
                   <li>✓ PM₁, PM₂.₅, PM₁₀ (Particulate Matter)</li>
                   <li>✓ CO₂, CO (Gaseous Pollutants)</li>
                   <li>✓ TVOCs (Volatile Organic Compounds)</li>
-                  <li>✓ Meteorological: Temp, Humidity, Pressure</li>
+                  <li>✓ Meteorological: Temp, Humidity, Pressure, Wind Speed</li>
+                  <li>✓ Environmental Acoustics: Ambient Noise Sensor</li>
                 </ul>
               </div>
               <div>
-                <h4 style="color:var(--accent-2); margin-bottom:0.75rem; font-size:1rem;">Technologies & Methods</h4>
+                <h4 style="color:var(--accent-2); margin-bottom:0.75rem; font-size:1rem;">Technologies &amp; Methods</h4>
                 <ul style="list-style:none; padding:0; color:var(--text-secondary); font-size:0.9rem; line-height:1.8;">
-                  <li>✓ IoT Sensor Networks (Dense Deployment)</li>
+                  <li>✓ Dense IoT Sensor Networks (Urban Deployment)</li>
+                  <li>✓ Automated Machine Learning Field Calibration</li>
                   <li>✓ CNN-BiLSTM for Anomaly Detection</li>
-                  <li>✓ Spatio-Temporal Forecasting</li>
-                  <li>✓ Real-time Data Analytics & Visualization</li>
+                  <li>✓ Spatio-Temporal Deep Learning (GNN, LSTM/GRU)</li>
                 </ul>
               </div>
             </div>
+
+            <!-- Field Deployment Showcase (Figure 4) -->
+            <div class="research-media-wrapper">
+              <h4 style="color:var(--accent-2); margin-bottom:0.6rem; font-size:0.95rem; text-transform:uppercase; letter-spacing:0.05em;">
+                Field Deployments &amp; Network Infrastructure
+              </h4>
+              <a href="../assets/images/research/eqms_hardware_deployed.webp" class="research-media" title="Figure 4: Authentic Field Deployments of the EQM Network at IIT Gandhinagar">
+                <img src="../assets/images/research/eqms_hardware_deployed.webp" alt="Authentic Field Deployments of the Environmental Quality Monitor Hardware at IIT Gandhinagar" loading="lazy" />
+              </a>
+              <p class="research-caption">Figure 4: Authentic field deployments of the Environmental Quality Monitor (EQM) network developed at IIT Gandhinagar — weatherproof pole-mounted and wall-mounted installations equipped with anemometer, multi-pollutant sensing, continuous power supply, and real-time cellular data streaming.</p>
+            </div>
+
             <div>
               <h4 style="color:var(--accent-2); margin-bottom:0.75rem; font-size:1rem;">Research Outcomes</h4>
               <ul style="padding-left:1.25rem; color:var(--text-secondary); margin:0; line-height:1.8; font-size:0.9rem;">
-                <li style="margin-bottom:0.5rem;">Dense sensor network deployed across urban areas with real-time server-based data integration</li>
-                <li style="margin-bottom:0.5rem;">24-hour, 7-day, and 1-month pollution forecasting capabilities with high accuracy</li>
-                <li>Policy-ready insights for urban air quality management and public health decision-making</li>
+                <li style="margin-bottom:0.5rem;">Dense sensor network deployed across IIT Gandhinagar campus with planned large-scale urban expansion (50–60 nodes) for real-time monitoring</li>
+                <li style="margin-bottom:0.5rem;">Automated QA/QC and machine learning calibration pipelines mitigating environmental cross-sensitivities against regulatory reference monitors</li>
+                <li>24-hour, 7-day, and multi-scale pollution forecasting capabilities enabling actionable air quality intelligence and public health intervention</li>
               </ul>
+            </div>
+
+            <div style="margin-top:1.5rem; display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
+              <a href="../assets/pdf/PV_AAC2025.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                📄 View EQMS Presentation Deck (AAC 2025) ↗
+              </a>
+              <span style="color:var(--text-muted); font-size:0.85rem;">Oral Presentation · 14th Asian Aerosol Conference (AAC 2025), Mumbai</span>
             </div>
           </div>
         </div>
@@ -109,14 +268,19 @@
           Research Focus Areas</h2>
         <div class="research-grid">
           <div class="research-card">
+            <div class="research-icon">🔬</div>
+            <h3>Optical Aerosol Instrumentation</h3>
+            <p>Multi-wavelength &amp; multi-angle light scattering, physics-informed neural inversion, and real-time nanoparticle size distribution retrieval down to ~10 nm.</p>
+          </div>
+          <div class="research-card">
             <div class="research-icon">📡</div>
             <h3>IoT Sensor Networks</h3>
             <p>Design, deployment, and real-time data integration of affordable sensor nodes. Focus on calibration accuracy and long-term sensor stability.</p>
           </div>
           <div class="research-card">
             <div class="research-icon">🤖</div>
-            <h3>AI/ML Calibration</h3>
-            <p>Machine-learning pipelines for field calibration of low-cost sensors against reference monitors. Sensor fusion and data quality assurance.</p>
+            <h3>AI/ML Calibration &amp; Inversion</h3>
+            <p>Physics-informed neural networks for optical inverse problems and ML pipelines for field calibration of low-cost sensors against reference monitors.</p>
           </div>
           <div class="research-card">
             <div class="research-icon">🧠</div>
@@ -126,17 +290,12 @@
           <div class="research-card">
             <div class="research-icon">📊</div>
             <h3>Health Risk Assessment</h3>
-            <p>Quantifying exposure-response relationships and health impacts from air pollution. Stochastic and deterministic risk modeling.</p>
-          </div>
-          <div class="research-card">
-            <div class="research-icon">🌍</div>
-            <h3>Ambient Air Quality</h3>
-            <p>Ambient pollution characterization, source apportionment, and seasonal/episodic analysis. Urban background and traffic-influenced sites.</p>
+            <p>Quantifying exposure-response relationships and health impacts from air pollution. Stochastic and deterministic risk modeling in industrial and ambient environments.</p>
           </div>
           <div class="research-card">
             <div class="research-icon">🏢</div>
-            <h3>Indoor Air Quality</h3>
-            <p>Indoor source identification, ventilation assessment, and occupant exposure estimation. Building energy efficiency vs. air quality trade-offs.</p>
+            <h3>Aerosol Dynamics &amp; Air Twins</h3>
+            <p>Indoor aerosol digital twins, real-time tracking of particle coagulation, surface deposition, ventilation rates, and time-reversal contamination source tracking.</p>
           </div>
         </div>
       </div>
