@@ -1148,6 +1148,7 @@ a.card:hover, .card.is-link:hover { border-color: var(--line-strong); background
   padding: 1.5rem 1.75rem;
 }
 .scholar-cta p { color: var(--text-2); }
+.scholar-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
 /* ===== Events page ===== */
 .year-group { margin-bottom: 3rem; }
