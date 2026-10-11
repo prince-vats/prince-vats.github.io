@@ -1,8 +1,9 @@
 // ─── Resources: PDF reader & presenter ───
 // Cards in pages/resources.html carry data-pdf / data-kind / data-pages. This script adds:
 //  • Reader: an in-page viewer with lazy page rendering, zoom, page jump and download.
-//  • Presenter (slide decks): full screen, one slide at a time, with a laser pointer, pen,
-//    blackout, slide overview, timer and keyboard/touch navigation.
+//  • Presenter (slide decks): full screen, one slide at a time, with laser, spotlight, zoom,
+//    pen/highlighter/shapes in colours, undo/redo, whiteboard, blackout, overview, talk countdown,
+//    progress bar, an audience QR code, save-as-image, and keyboard/touch/clicker navigation.
 //  • Deep links: resources.html#<card-id> opens that resource in the reader.
 // PDF.js is loaded from cdnjs only when the first document is opened.
 (function () {
@@ -336,6 +337,29 @@
   }
 
   // ── Presenter ──
+  // Tools: laser, spotlight, zoom, pen, highlighter, arrow / box / ellipse, colours and sizes, undo/redo,
+  // erase, whiteboard, black screen, overview, talk countdown, progress bar, QR code for the audience,
+  // and saving the current slide (with drawings) as an image.
+  const QR_URL = 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js';
+  const SITE_URL = 'https://prince-vats.github.io/pages/resources.html';
+  const COLORS = ['#ff3b1f', '#ffd400', '#22c55e', '#2f80ff', '#ffffff', '#111111'];
+  const SIZES = { s: 0.0025, m: 0.0042, l: 0.007 };    // stroke width as a fraction of slide width
+  const DRAW_TOOLS = ['pen', 'highlighter', 'arrow', 'rect', 'ellipse'];
+  const TOOL_KEYS = { l: 'laser', s: 'spotlight', z: 'zoom', d: 'pen', h: 'highlighter', a: 'arrow', r: 'rect', o: 'ellipse' };
+
+  const picon = {
+    spot: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M3 12a9 9 0 1 0 18 0 9 9 0 1 0-18 0"/></svg>',
+    zoom: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M11 8v6M8 11h6"/></svg>',
+    hl: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 15l-4 4h6l1.5-1.5M9 15l7.5-7.5 3 3L12 18M9 15l3 3"/></svg>',
+    arrow: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19L19 5M10 5h9v9"/></svg>',
+    rect: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="1"/></svg>',
+    ellipse: '<svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="8.5" ry="6"/></svg>',
+    undo: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg>',
+    board: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4M7 12l3-3 2 2 4-4"/></svg>',
+    qr: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h2v2h-2zM18 14h2M14 18v2M18 18h2v2"/></svg>',
+    more: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="19" cy="12" r="1.2"/></svg>',
+  };
+
   const presenter = document.createElement('div');
   presenter.className = 'presenter';
   presenter.hidden = true;
@@ -347,10 +371,18 @@
     <div class="presenter-stage">
       <canvas class="presenter-slide"></canvas>
       <canvas class="presenter-ink"></canvas>
-      <div class="presenter-laser" hidden></div>
     </div>
+    <div class="presenter-spot" hidden></div>
+    <div class="presenter-laser" hidden></div>
     <div class="presenter-black" hidden></div>
     <div class="presenter-overview" hidden><div class="overview-grid"></div></div>
+    <div class="presenter-qr" hidden>
+      <div class="qr-card">
+        <div class="qr-code" aria-hidden="true"></div>
+        <p class="qr-title">Scan for these slides</p>
+        <p class="qr-url"></p>
+      </div>
+    </div>
     <div class="presenter-help" hidden>
       <h3>Keyboard shortcuts</h3>
       <dl>
@@ -359,66 +391,135 @@
         <dt>Home / End</dt><dd>First / last slide</dd>
         <dt>number + Enter</dt><dd>Go to slide</dd>
         <dt>L</dt><dd>Laser pointer</dd>
-        <dt>D</dt><dd>Draw on the slide</dd>
-        <dt>E</dt><dd>Erase drawings</dd>
+        <dt>S</dt><dd>Spotlight (scroll to resize)</dd>
+        <dt>Z</dt><dd>Zoom: click a region (scroll to adjust)</dd>
+        <dt>D / H</dt><dd>Pen / highlighter</dd>
+        <dt>A / R / O</dt><dd>Arrow / box / ellipse</dd>
+        <dt>C · [ ]</dt><dd>Next colour · thinner / thicker</dd>
+        <dt>Ctrl+Z / Ctrl+Y</dt><dd>Undo / redo</dd>
+        <dt>E</dt><dd>Erase this slide's drawings</dd>
+        <dt>W</dt><dd>Whiteboard</dd>
         <dt>B</dt><dd>Black screen</dd>
         <dt>G</dt><dd>Slide overview</dd>
-        <dt>T</dt><dd>Reset timer</dd>
-        <dt>Esc</dt><dd>Exit</dd>
+        <dt>Q</dt><dd>QR code for the audience</dd>
+        <dt>T</dt><dd>Restart timer</dd>
+        <dt>Ctrl+S</dt><dd>Save slide as image</dd>
+        <dt>Esc</dt><dd>Close / exit (hold to leave full screen)</dd>
       </dl>
     </div>
-    <div class="presenter-bar">
+
+    <div class="presenter-pop pop-style" hidden>
+      <div class="pop-row swatches">${COLORS.map((c, i) => `<button type="button" class="swatch" data-color="${c}" style="--c:${c}" aria-label="Colour ${i + 1}"></button>`).join('')}</div>
+      <div class="pop-row sizes">
+        <button type="button" class="size-btn" data-size="s" aria-label="Thin"><span></span></button>
+        <button type="button" class="size-btn" data-size="m" aria-label="Medium"><span></span></button>
+        <button type="button" class="size-btn" data-size="l" aria-label="Thick"><span></span></button>
+      </div>
+    </div>
+    <div class="presenter-pop pop-timer" hidden>
+      <p class="pop-label">Talk length</p>
+      <div class="pop-row chips">
+        <button type="button" class="chip" data-duration="0">Count up</button>
+        ${[5, 10, 12, 15, 20, 30].map(m => `<button type="button" class="chip" data-duration="${m * 60}">${m} min</button>`).join('')}
+      </div>
+      <div class="pop-row">
+        <label class="pop-custom">Custom <input type="number" min="1" max="240" step="1" placeholder="min" /></label>
+        <button type="button" class="chip" data-timer="restart">Restart</button>
+      </div>
+    </div>
+    <div class="presenter-pop pop-more" hidden>
+      <button type="button" class="menu-item" data-v="p-save">Save slide as image <kbd>Ctrl+S</kbd></button>
+      <button type="button" class="menu-item" data-v="p-redo">Redo <kbd>Ctrl+Y</kbd></button>
+      <button type="button" class="menu-item" data-v="p-help">Keyboard shortcuts <kbd>?</kbd></button>
+    </div>
+
+    <div class="presenter-progress" aria-hidden="true"><span></span></div>
+    <div class="presenter-bar" role="toolbar" aria-label="Presentation tools">
       ${btn('p-prev', 'Previous slide', icon.prev)}
       <span class="presenter-count" id="presenterCount">1 / 1</span>
       ${btn('p-next', 'Next slide', icon.next)}
       <span class="vsep"></span>
-      ${btn('p-laser', 'Laser pointer (L)', icon.laser, 'aria-pressed="false"')}
-      ${btn('p-pen', 'Draw (D)', icon.pen, 'aria-pressed="false"')}
+      ${btn('t-laser', 'Laser pointer (L)', icon.laser, 'aria-pressed="false"')}
+      ${btn('t-spotlight', 'Spotlight (S)', picon.spot, 'aria-pressed="false"')}
+      ${btn('t-zoom', 'Zoom (Z)', picon.zoom, 'aria-pressed="false"')}
+      <span class="vsep"></span>
+      ${btn('t-pen', 'Pen (D)', icon.pen, 'aria-pressed="false"')}
+      ${btn('t-highlighter', 'Highlighter (H)', picon.hl, 'aria-pressed="false"')}
+      ${btn('t-arrow', 'Arrow (A)', picon.arrow, 'aria-pressed="false"')}
+      ${btn('t-rect', 'Box (R)', picon.rect, 'aria-pressed="false"')}
+      ${btn('t-ellipse', 'Ellipse (O)', picon.ellipse, 'aria-pressed="false"')}
+      <button type="button" class="vbtn style-btn" data-v="p-style" aria-label="Colour and size (C, [ ])" title="Colour and size (C, [ ])" aria-haspopup="true"><span class="style-dot"></span></button>
+      ${btn('p-undo', 'Undo (Ctrl+Z)', picon.undo)}
       ${btn('p-erase', 'Erase drawings (E)', icon.eraser)}
+      <span class="vsep"></span>
+      ${btn('p-board', 'Whiteboard (W)', picon.board, 'aria-pressed="false"')}
       ${btn('p-black', 'Black screen (B)', icon.black, 'aria-pressed="false"')}
       ${btn('p-grid', 'Slide overview (G)', icon.grid, 'aria-pressed="false"')}
       <span class="vsep"></span>
-      <button type="button" class="presenter-timer" data-v="p-timer" title="Elapsed time, click to reset (T)">00:00</button>
-      ${btn('p-help', 'Keyboard shortcuts (?)', icon.help)}
+      <button type="button" class="presenter-timer" data-v="p-timer" title="Timer: click to set a talk length (T restarts)" aria-haspopup="true">00:00</button>
+      ${btn('p-qr', 'QR code for the audience (Q)', picon.qr, 'aria-pressed="false"')}
+      ${btn('p-more', 'More', picon.more, 'aria-haspopup="true"')}
       ${btn('p-exit', 'Exit presentation (Esc)', icon.close)}
     </div>`;
   document.body.appendChild(presenter);
 
-  const stage = presenter.querySelector('.presenter-stage');
-  const slideCanvas = presenter.querySelector('.presenter-slide');
-  const inkCanvas = presenter.querySelector('.presenter-ink');
-  const laser = presenter.querySelector('.presenter-laser');
-  const black = presenter.querySelector('.presenter-black');
-  const overview = presenter.querySelector('.presenter-overview');
-  const overviewGrid = presenter.querySelector('.overview-grid');
-  const help = presenter.querySelector('.presenter-help');
-  const countEl = presenter.querySelector('#presenterCount');
-  const timerEl = presenter.querySelector('.presenter-timer');
+  const $ = sel => presenter.querySelector(sel);
+  const stage = $('.presenter-stage');
+  const slideCanvas = $('.presenter-slide');
+  const inkCanvas = $('.presenter-ink');
+  const laser = $('.presenter-laser');
+  const spot = $('.presenter-spot');
+  const black = $('.presenter-black');
+  const overview = $('.presenter-overview');
+  const overviewGrid = $('.overview-grid');
+  const qrLayer = $('.presenter-qr');
+  const help = $('.presenter-help');
+  const bar = $('.presenter-bar');
+  const countEl = $('#presenterCount');
+  const timerEl = $('.presenter-timer');
+  const progressEl = $('.presenter-progress span');
+  const popStyle = $('.pop-style');
+  const popTimer = $('.pop-timer');
+  const popMore = $('.pop-more');
+  const pops = [popStyle, popTimer, popMore];
   const inkCtx = inkCanvas.getContext('2d');
 
-  const pres = {
-    index: 1, mode: null, ink: new Map(), stroke: null, task: null, cache: new Map(),
-    started: 0, timer: null, idle: null, digits: '', size: null,
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem('presenter.' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem('presenter.' + k, JSON.stringify(v)); } catch (e) { /* ignore */ } },
   };
 
+  const pres = {
+    index: 1, tool: null, color: store.get('color', COLORS[0]), size: store.get('size', 'm'),
+    ink: new Map(), drawing: null, cache: new Map(), size_: null,
+    started: 0, duration: store.get('duration', 0), timer: null, idle: null, digits: '',
+    zoom: 0, zoomOrigin: [0.5, 0.5], board: false, spotR: 170, wheelAt: 0, touchX: undefined,
+  };
+
+  // ── Lifecycle ──
   async function startPresenting() {
     if (!state.doc) return;
     pres.index = Math.min(state.current || 1, state.doc.numPages);
     pres.ink = new Map();
     pres.cache = new Map();
     pres.started = Date.now();
+    pres.board = false;
+    pres.zoom = 0;
     presenter.hidden = false;
-    setMode(null);
-    black.hidden = true;
-    overview.hidden = true;
-    help.hidden = true;
+    setTool(null);
+    [black, overview, help, qrLayer].forEach(el => { el.hidden = true; });
+    closePops();
+    syncPressed();
+    updateStyleDot();
     presenter.classList.remove('is-loading');
     if (!document.fullscreenElement && presenter.requestFullscreen) {
       try { await presenter.requestFullscreen(); } catch (e) { /* stays as a full-window overlay */ }
     }
+    // Let Esc reach the page (close menus first); holding Esc still leaves full screen
+    if (navigator.keyboard && navigator.keyboard.lock) navigator.keyboard.lock(['Escape']).catch(() => {});
     showSlide(pres.index, true);
     clearInterval(pres.timer);
-    pres.timer = setInterval(updateTimer, 1000);
+    pres.timer = setInterval(updateTimer, 500);
     updateTimer();
     wake();
     presenter.focus();
@@ -440,7 +541,8 @@
     presenter.hidden = true;
     presenter.classList.remove('is-loading');
     clearInterval(pres.timer);
-    if (pres.task) pres.task.cancel();
+    closePops();
+    if (navigator.keyboard && navigator.keyboard.unlock) navigator.keyboard.unlock();
     if (document.fullscreenElement === presenter) document.exitFullscreen().catch(() => {});
     goToPage(pres.index);
   }
@@ -450,104 +552,260 @@
     if (!presenter.hidden) setTimeout(() => showSlide(pres.index, true), 50);
   });
 
+  // ── Timer: counts up, or down from a chosen talk length ──
+  function fmt(sec) {
+    const s = Math.abs(sec), h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), r = s % 60;
+    return (sec < 0 ? '−' : '') + (h ? h + ':' : '') + String(m).padStart(2, '0') + ':' + String(r).padStart(2, '0');
+  }
   function updateTimer() {
-    const s = Math.floor((Date.now() - pres.started) / 1000);
-    const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
-    timerEl.textContent = (h ? h + ':' : '') + String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+    const elapsed = Math.floor((Date.now() - pres.started) / 1000);
+    if (!pres.duration) {
+      timerEl.textContent = fmt(elapsed);
+      timerEl.classList.remove('is-warn', 'is-over');
+      return;
+    }
+    const left = pres.duration - elapsed;
+    const warnAt = Math.min(120, Math.round(pres.duration * 0.2));
+    timerEl.textContent = fmt(left);
+    timerEl.classList.toggle('is-warn', left >= 0 && left <= warnAt);
+    timerEl.classList.toggle('is-over', left < 0);
+  }
+  function setDuration(sec) {
+    pres.duration = sec;
+    store.set('duration', sec);
+    pres.started = Date.now();
+    updateTimer();
+    popTimer.querySelectorAll('[data-duration]').forEach(b => b.classList.toggle('is-active', +b.dataset.duration === sec));
   }
 
-  // Render slide n to fit the stage; neighbours are pre-rendered into a small cache
-  async function renderSlideTo(n, canvas) {
+  // ── Slides ──
+  function fitScaleFor(base) {
+    return Math.min(stage.clientWidth / base.width, stage.clientHeight / base.height);
+  }
+
+  async function renderSlideTo(n, canvas, zoom = 1) {
     const page = await state.doc.getPage(n);
     const base = page.getViewport({ scale: 1 });
-    const scale = Math.min(stage.clientWidth / base.width, stage.clientHeight / base.height);
-    const task = renderPage(page, canvas, scale);
-    await task.promise;
+    const fit = fitScaleFor(base);
+    await renderPage(page, canvas, fit * zoom).promise;
+    // Keep the on-screen size at the fit size; extra pixels make zoomed views sharp
+    canvas.style.width = Math.floor(base.width * fit) + 'px';
+    canvas.style.height = Math.floor(base.height * fit) + 'px';
     return canvas;
+  }
+
+  function blit(src) {
+    slideCanvas.width = src.width;
+    slideCanvas.height = src.height;
+    slideCanvas.style.width = src.style.width;
+    slideCanvas.style.height = src.style.height;
+    slideCanvas.getContext('2d').drawImage(src, 0, 0);
   }
 
   async function showSlide(n, force = false) {
     if (!state.doc) return;
     n = Math.min(state.doc.numPages, Math.max(1, n));
     const sizeKey = stage.clientWidth + 'x' + stage.clientHeight;
-    if (sizeKey !== pres.size) { pres.cache = new Map(); pres.size = sizeKey; }
+    if (sizeKey !== pres.size_) { pres.cache = new Map(); pres.size_ = sizeKey; }
     if (n === pres.index && !force && slideCanvas.width) return;
+    if (n !== pres.index) { setSlideZoom(0); setBoard(false); }
     pres.index = n;
     countEl.textContent = n + ' / ' + state.doc.numPages;
+    progressEl.style.width = (n / state.doc.numPages * 100) + '%';
 
     const cached = pres.cache.get(n);
-    if (cached) {
-      slideCanvas.width = cached.width;
-      slideCanvas.height = cached.height;
-      slideCanvas.style.width = cached.style.width;
-      slideCanvas.style.height = cached.style.height;
-      slideCanvas.getContext('2d').drawImage(cached, 0, 0);
-    } else {
+    if (cached) blit(cached);
+    else {
       const off = document.createElement('canvas');
       try { await renderSlideTo(n, off); } catch (e) { return; }
       if (pres.index !== n) return;
       pres.cache.set(n, off);
-      slideCanvas.width = off.width;
-      slideCanvas.height = off.height;
-      slideCanvas.style.width = off.style.width;
-      slideCanvas.style.height = off.style.height;
-      slideCanvas.getContext('2d').drawImage(off, 0, 0);
+      blit(off);
     }
+    if (pres.zoom) renderZoomed();
     sizeInk();
     redrawInk();
-    // Pre-render the next and previous slides
     for (const m of [n + 1, n - 1]) {
       if (m < 1 || m > state.doc.numPages || pres.cache.has(m)) continue;
       const off = document.createElement('canvas');
-      renderSlideTo(m, off).then(() => { if (pres.size === sizeKey) pres.cache.set(m, off); }).catch(() => {});
+      renderSlideTo(m, off).then(() => { if (pres.size_ === sizeKey) pres.cache.set(m, off); }).catch(() => {});
     }
   }
 
-  function next() { if (black.hidden) showSlide(pres.index + 1); else black.hidden = true; }
-  function prev() { if (black.hidden) showSlide(pres.index - 1); else black.hidden = true; }
+  function next() {
+    if (!black.hidden) { black.hidden = true; syncPressed(); return; }
+    if (pres.board) { setBoard(false); return; }
+    showSlide(pres.index + 1);
+  }
+  function prev() {
+    if (!black.hidden) { black.hidden = true; syncPressed(); return; }
+    if (pres.board) { setBoard(false); return; }
+    showSlide(pres.index - 1);
+  }
 
-  // ── Ink (stored in slide-relative coordinates so it survives resizes) ──
+  // ── Zoom: magnify around a point, re-rendered at higher resolution so text stays sharp ──
+  async function renderZoomed() {
+    const n = pres.index, z = pres.zoom;
+    const off = document.createElement('canvas');
+    try { await renderSlideTo(n, off, z); } catch (e) { return; }
+    if (pres.index !== n || pres.zoom !== z) return;
+    blit(off);
+    sizeInk();
+    redrawInk();
+  }
+
+  function applyZoomTransform() {
+    const [ox, oy] = pres.zoomOrigin;
+    const t = pres.zoom ? `scale(${pres.zoom})` : '';
+    for (const c of [slideCanvas, inkCanvas]) {
+      c.style.transformOrigin = `${ox * 100}% ${oy * 100}%`;
+      c.style.transform = t;
+    }
+    presenter.classList.toggle('is-zoomed', !!pres.zoom);
+  }
+
+  function setSlideZoom(z, origin) {
+    const was = pres.zoom;
+    pres.zoom = z ? Math.min(5, Math.max(1.5, z)) : 0;
+    if (origin) pres.zoomOrigin = origin;
+    applyZoomTransform();
+    if (pres.zoom && pres.zoom !== was) renderZoomed();
+    else if (!pres.zoom && was) {
+      const cached = pres.cache.get(pres.index);
+      if (cached) { blit(cached); sizeInk(); redrawInk(); }
+    }
+  }
+
+  // ── Whiteboard: a blank page with its own drawings ──
+  function setBoard(on) {
+    pres.board = on;
+    presenter.classList.toggle('is-board', on);
+    if (on) setSlideZoom(0);
+    redrawInk();
+    syncPressed();
+  }
+
+  // ── Ink: shapes and strokes in slide-relative coordinates, so they survive resizes and zoom ──
+  const inkKey = () => (pres.board ? 'board' : pres.index);
+  function layer(key = inkKey()) {
+    if (!pres.ink.has(key)) pres.ink.set(key, { items: [], redo: [] });
+    return pres.ink.get(key);
+  }
+
   function sizeInk() {
-    const ratio = window.devicePixelRatio || 1;
+    const ratio = (window.devicePixelRatio || 1) * (pres.zoom || 1);
     inkCanvas.style.width = slideCanvas.style.width;
     inkCanvas.style.height = slideCanvas.style.height;
-    inkCanvas.width = Math.floor(parseFloat(slideCanvas.style.width) * ratio);
-    inkCanvas.height = Math.floor(parseFloat(slideCanvas.style.height) * ratio);
+    inkCanvas.width = Math.floor(parseFloat(slideCanvas.style.width || 0) * ratio);
+    inkCanvas.height = Math.floor(parseFloat(slideCanvas.style.height || 0) * ratio);
+  }
+
+  function drawItem(ctx, it, w, h) {
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = it.color;
+    ctx.fillStyle = it.color;
+    ctx.lineWidth = Math.max(1.5, it.w * w);
+    if (it.type === 'highlighter') {
+      ctx.globalAlpha = 0.35;
+      ctx.lineWidth = Math.max(8, it.w * w * 4);
+      ctx.lineCap = 'butt';
+    }
+    if (it.type === 'pen' || it.type === 'highlighter') {
+      ctx.beginPath();
+      it.pts.forEach(([x, y], i) => (i ? ctx.lineTo(x * w, y * h) : ctx.moveTo(x * w, y * h)));
+      if (it.pts.length === 1) ctx.lineTo(it.pts[0][0] * w + 0.1, it.pts[0][1] * h);
+      ctx.stroke();
+    } else {
+      const ax = it.a[0] * w, ay = it.a[1] * h, bx = it.b[0] * w, by = it.b[1] * h;
+      ctx.beginPath();
+      if (it.type === 'rect') ctx.rect(Math.min(ax, bx), Math.min(ay, by), Math.abs(bx - ax), Math.abs(by - ay));
+      else if (it.type === 'ellipse') ctx.ellipse((ax + bx) / 2, (ay + by) / 2, Math.abs(bx - ax) / 2, Math.abs(by - ay) / 2, 0, 0, Math.PI * 2);
+      else if (it.type === 'arrow') { ctx.moveTo(ax, ay); ctx.lineTo(bx, by); }
+      ctx.stroke();
+      if (it.type === 'arrow') {
+        const ang = Math.atan2(by - ay, bx - ax), len = Math.max(12, ctx.lineWidth * 4.5);
+        ctx.beginPath();
+        ctx.moveTo(bx, by);
+        ctx.lineTo(bx - len * Math.cos(ang - 0.45), by - len * Math.sin(ang - 0.45));
+        ctx.lineTo(bx - len * Math.cos(ang + 0.45), by - len * Math.sin(ang + 0.45));
+        ctx.closePath();
+        ctx.fill();
+      }
+    }
+    ctx.restore();
   }
 
   function redrawInk() {
-    inkCtx.clearRect(0, 0, inkCanvas.width, inkCanvas.height);
-    const strokes = pres.ink.get(pres.index) || [];
     const w = inkCanvas.width, h = inkCanvas.height;
-    inkCtx.lineCap = 'round';
-    inkCtx.lineJoin = 'round';
-    inkCtx.strokeStyle = '#ff3b1f';
-    inkCtx.lineWidth = Math.max(2, w * 0.0035);
-    for (const s of strokes) {
-      inkCtx.beginPath();
-      s.forEach(([x, y], i) => (i ? inkCtx.lineTo(x * w, y * h) : inkCtx.moveTo(x * w, y * h)));
-      inkCtx.stroke();
-    }
+    inkCtx.clearRect(0, 0, w, h);
+    const items = layer().items.slice();
+    if (pres.drawing) items.push(pres.drawing);
+    for (const it of items) drawItem(inkCtx, it, w, h);
   }
+
+  function undo() { const L = layer(); if (L.items.length) { L.redo.push(L.items.pop()); redrawInk(); } }
+  function redo() { const L = layer(); if (L.redo.length) { L.items.push(L.redo.pop()); redrawInk(); } }
+  function eraseAll() { const L = layer(); if (L.items.length) { L.redo = L.items.reverse(); L.items = []; redrawInk(); } }
 
   function slidePoint(e) {
     const r = slideCanvas.getBoundingClientRect();
     return [(e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height];
   }
 
-  function setMode(mode) {
-    pres.mode = pres.mode === mode ? null : mode;
-    presenter.classList.toggle('is-laser', pres.mode === 'laser');
-    presenter.classList.toggle('is-pen', pres.mode === 'pen');
-    presenter.querySelector('[data-v="p-laser"]').setAttribute('aria-pressed', String(pres.mode === 'laser'));
-    presenter.querySelector('[data-v="p-pen"]').setAttribute('aria-pressed', String(pres.mode === 'pen'));
-    laser.hidden = pres.mode !== 'laser';
+  // ── Tools ──
+  function setTool(tool) {
+    pres.tool = pres.tool === tool ? null : tool;
+    presenter.dataset.tool = pres.tool || '';
+    laser.hidden = pres.tool !== 'laser';
+    spot.hidden = pres.tool !== 'spotlight';
+    if (pres.tool !== 'zoom' && pres.zoom && !DRAW_TOOLS.includes(pres.tool)) setSlideZoom(0);
+    syncPressed();
   }
 
+  function syncPressed() {
+    const on = (v, flag) => { const b = bar.querySelector(`[data-v="${v}"]`); if (b) b.setAttribute('aria-pressed', String(!!flag)); };
+    ['laser', 'spotlight', 'zoom', ...DRAW_TOOLS].forEach(t => on('t-' + t, pres.tool === t));
+    on('p-board', pres.board);
+    on('p-black', !black.hidden);
+    on('p-grid', !overview.hidden);
+    on('p-qr', !qrLayer.hidden);
+  }
+
+  function updateStyleDot() {
+    const dot = bar.querySelector('.style-dot');
+    dot.style.setProperty('--c', pres.color);
+    dot.dataset.size = pres.size;
+    popStyle.querySelectorAll('.swatch').forEach(b => b.classList.toggle('is-active', b.dataset.color === pres.color));
+    popStyle.querySelectorAll('.size-btn').forEach(b => b.classList.toggle('is-active', b.dataset.size === pres.size));
+  }
+  function setColor(c) {
+    pres.color = c;
+    store.set('color', c);
+    updateStyleDot();
+    if (!DRAW_TOOLS.includes(pres.tool)) setTool('pen');
+  }
+  function setSize(s) { pres.size = s; store.set('size', s); updateStyleDot(); }
+
+  // ── Popovers ──
+  function closePops() { pops.forEach(p => { p.hidden = true; }); }
+  function togglePop(pop, anchor) {
+    const open = pop.hidden;
+    closePops();
+    if (!open) return;
+    pop.hidden = false;
+    const a = anchor.getBoundingClientRect(), p = pop.getBoundingClientRect();
+    const left = Math.min(window.innerWidth - p.width - 8, Math.max(8, a.left + a.width / 2 - p.width / 2));
+    pop.style.left = left + 'px';
+    pop.style.bottom = (window.innerHeight - a.top + 10) + 'px';
+  }
+
+  // ── Overview ──
   function toggleOverview(force) {
     const show = force ?? overview.hidden;
     overview.hidden = !show;
-    presenter.querySelector('[data-v="p-grid"]').setAttribute('aria-pressed', String(show));
+    syncPressed();
     if (!show) return;
     overviewGrid.innerHTML = '';
     for (let i = 1; i <= state.doc.numPages; i++) {
@@ -570,31 +828,112 @@
     if (current) current.scrollIntoView({ block: 'center' });
   }
 
+  // ── QR code for the audience ──
+  let qrPromise = null;
+  function loadQr() {
+    if (!qrPromise) {
+      qrPromise = new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = QR_URL;
+        s.onload = () => resolve(window.qrcode);
+        s.onerror = () => { qrPromise = null; reject(new Error('qr')); };
+        document.head.appendChild(s);
+      });
+    }
+    return qrPromise;
+  }
+  function deckUrl() {
+    // A file:// or localhost address is useless to the audience, so point to the published page
+    const local = location.protocol === 'file:' || /^(localhost|127\.|0\.0\.0\.0|\[::1\])/.test(location.hostname);
+    return (local ? SITE_URL : location.origin + location.pathname) + '#' + state.card.id;
+  }
+  async function toggleQr(force) {
+    const show = force ?? qrLayer.hidden;
+    qrLayer.hidden = !show;
+    syncPressed();
+    if (!show) return;
+    const url = deckUrl();
+    qrLayer.querySelector('.qr-url').textContent = url.replace(/^https?:\/\//, '');
+    const box = qrLayer.querySelector('.qr-code');
+    box.textContent = '';
+    try {
+      const qrcode = await loadQr();
+      const qr = qrcode(0, 'M');
+      qr.addData(url);
+      qr.make();
+      box.innerHTML = qr.createSvgTag({ cellSize: 8, margin: 0, scalable: true });
+    } catch (e) {
+      box.textContent = 'QR code unavailable offline';
+    }
+  }
+
+  // ── Save the current slide (with drawings) as a PNG ──
+  function saveSlide() {
+    const out = document.createElement('canvas');
+    out.width = inkCanvas.width;
+    out.height = inkCanvas.height;
+    const ctx = out.getContext('2d');
+    if (pres.board) { ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, out.width, out.height); }
+    else ctx.drawImage(slideCanvas, 0, 0, out.width, out.height);
+    ctx.drawImage(inkCanvas, 0, 0);
+    out.toBlob(blob => {
+      if (!blob) return;
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `${state.card.id}-${pres.board ? 'whiteboard' : 'slide-' + pres.index}.png`;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    }, 'image/png');
+  }
+
+  // ── Pointer: drawing, zoom, laser, spotlight, click / swipe navigation ──
   stage.addEventListener('pointerdown', e => {
-    if (pres.mode === 'pen') {
+    closePops();
+    if (DRAW_TOOLS.includes(pres.tool)) {
       stage.setPointerCapture(e.pointerId);
-      pres.stroke = [slidePoint(e)];
-      if (!pres.ink.has(pres.index)) pres.ink.set(pres.index, []);
-      pres.ink.get(pres.index).push(pres.stroke);
+      const p = slidePoint(e);
+      const base = { type: pres.tool, color: pres.color, w: SIZES[pres.size] || SIZES.m };
+      pres.drawing = pres.tool === 'pen' || pres.tool === 'highlighter' ? { ...base, pts: [p] } : { ...base, a: p, b: p };
+      redrawInk();
+      return;
+    }
+    if (pres.tool === 'zoom' && e.button === 0) {
+      if (pres.zoom) setSlideZoom(0);
+      else {
+        const [x, y] = slidePoint(e);
+        setSlideZoom(pres.lastZoom || 2.5, [Math.min(1, Math.max(0, x)), Math.min(1, Math.max(0, y))]);
+      }
       return;
     }
     if (e.pointerType === 'touch') { pres.touchX = e.clientX; return; }
     if (e.button !== 0) return;
-    // Click: right two-thirds advances, left third goes back
     const r = stage.getBoundingClientRect();
     if (e.clientX - r.left < r.width / 3) prev(); else next();
   });
-  stage.addEventListener('pointermove', e => {
-    if (pres.mode === 'laser') {
-      laser.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+
+  presenter.addEventListener('pointermove', e => {
+    if (pres.tool === 'laser') laser.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    if (pres.tool === 'spotlight') {
+      spot.style.setProperty('--sx', e.clientX + 'px');
+      spot.style.setProperty('--sy', e.clientY + 'px');
     }
-    if (pres.mode === 'pen' && pres.stroke) {
-      pres.stroke.push(slidePoint(e));
+    if (pres.drawing) {
+      const p = slidePoint(e);
+      if (pres.drawing.pts) pres.drawing.pts.push(p); else pres.drawing.b = p;
       redrawInk();
     }
   });
+
   stage.addEventListener('pointerup', e => {
-    if (pres.stroke) { pres.stroke = null; return; }
+    if (pres.drawing) {
+      const d = pres.drawing;
+      pres.drawing = null;
+      const tiny = d.a && Math.hypot(d.b[0] - d.a[0], d.b[1] - d.a[1]) < 0.004;
+      if (!tiny) { const L = layer(); L.items.push(d); L.redo = []; }
+      redrawInk();
+      return;
+    }
     if (e.pointerType === 'touch' && pres.touchX !== undefined) {
       const dx = e.clientX - pres.touchX;
       if (Math.abs(dx) > 40) (dx < 0 ? next : prev)();
@@ -602,61 +941,120 @@
       pres.touchX = undefined;
     }
   });
-  black.addEventListener('click', () => { black.hidden = true; });
+
+  stage.addEventListener('wheel', e => {
+    e.preventDefault();
+    if (pres.tool === 'spotlight') {
+      pres.spotR = Math.min(600, Math.max(60, pres.spotR * (e.deltaY < 0 ? 1.1 : 1 / 1.1)));
+      spot.style.setProperty('--sr', pres.spotR + 'px');
+    } else if (pres.zoom || pres.tool === 'zoom') {
+      const z = (pres.zoom || 1) * (e.deltaY < 0 ? 1.15 : 1 / 1.15);
+      if (z < 1.4) setSlideZoom(0);
+      else {
+        const [x, y] = slidePoint(e);
+        pres.lastZoom = z;
+        setSlideZoom(z, pres.zoom ? pres.zoomOrigin : [x, y]);
+      }
+    } else if (Date.now() - pres.wheelAt > 450 && Math.abs(e.deltaY) > 20) {
+      pres.wheelAt = Date.now();
+      (e.deltaY > 0 ? next : prev)();
+    }
+  }, { passive: false });
+
+  black.addEventListener('click', () => { black.hidden = true; syncPressed(); });
+  qrLayer.addEventListener('click', () => toggleQr(false));
   overviewGrid.addEventListener('click', e => {
     const item = e.target.closest('.overview-item');
     if (!item) return;
     toggleOverview(false);
+    setBoard(false);
     showSlide(+item.dataset.slide);
   });
 
-  presenter.querySelector('.presenter-bar').addEventListener('click', e => {
-    const b = e.target.closest('[data-v]');
-    if (!b) return;
-    const v = b.dataset.v;
+  // ── Toolbar and popovers ──
+  function runAction(v, anchor) {
+    if (v.startsWith('t-')) return setTool(v.slice(2));
     if (v === 'p-prev') prev();
     else if (v === 'p-next') next();
-    else if (v === 'p-laser') setMode('laser');
-    else if (v === 'p-pen') setMode('pen');
-    else if (v === 'p-erase') { pres.ink.delete(pres.index); redrawInk(); }
-    else if (v === 'p-black') black.hidden = !black.hidden;
+    else if (v === 'p-style') togglePop(popStyle, anchor);
+    else if (v === 'p-undo') undo();
+    else if (v === 'p-redo') { redo(); closePops(); }
+    else if (v === 'p-erase') eraseAll();
+    else if (v === 'p-board') setBoard(!pres.board);
+    else if (v === 'p-black') { black.hidden = !black.hidden; syncPressed(); }
     else if (v === 'p-grid') toggleOverview();
-    else if (v === 'p-timer') { pres.started = Date.now(); updateTimer(); }
-    else if (v === 'p-help') help.hidden = !help.hidden;
+    else if (v === 'p-timer') togglePop(popTimer, anchor);
+    else if (v === 'p-qr') toggleQr();
+    else if (v === 'p-more') togglePop(popMore, anchor);
+    else if (v === 'p-save') { saveSlide(); closePops(); }
+    else if (v === 'p-help') { help.hidden = !help.hidden; closePops(); }
     else if (v === 'p-exit') stopPresenting();
+  }
+  presenter.addEventListener('click', e => {
+    const b = e.target.closest('[data-v]');
+    if (b && (bar.contains(b) || popMore.contains(b))) { runAction(b.dataset.v, b); return; }
+    const sw = e.target.closest('.swatch');
+    if (sw) { setColor(sw.dataset.color); return; }
+    const sz = e.target.closest('.size-btn');
+    if (sz) { setSize(sz.dataset.size); return; }
+    const d = e.target.closest('[data-duration]');
+    if (d) { setDuration(+d.dataset.duration); closePops(); return; }
+    if (e.target.closest('[data-timer="restart"]')) { pres.started = Date.now(); updateTimer(); closePops(); }
+  });
+  popTimer.querySelector('input').addEventListener('change', e => {
+    const m = Math.round(+e.target.value);
+    if (m > 0) { setDuration(m * 60); closePops(); }
   });
 
-  // Auto-hide the toolbar and cursor while presenting
+  // Auto-hide the toolbar and cursor while presenting (kept visible while a menu is open)
   function wake() {
     presenter.classList.remove('is-idle');
     clearTimeout(pres.idle);
-    pres.idle = setTimeout(() => { if (!presenter.hidden) presenter.classList.add('is-idle'); }, 2500);
+    pres.idle = setTimeout(() => {
+      if (!presenter.hidden && pops.every(p => p.hidden) && !pres.drawing) presenter.classList.add('is-idle');
+    }, 2500);
   }
   presenter.addEventListener('pointermove', wake);
 
   // ── Keyboard ──
   document.addEventListener('keydown', e => {
-    if (e.target.matches && e.target.matches('input, textarea')) return;
+    if (e.target.matches && e.target.matches('input, textarea')) {
+      if (e.key === 'Escape') e.target.blur();
+      return;
+    }
     if (!presenter.hidden) {
-      const k = e.key;
+      const k = e.key, lower = k.length === 1 ? k.toLowerCase() : k, mod = e.ctrlKey || e.metaKey;
       let handled = true;
-      if (/^[0-9]$/.test(k)) { pres.digits += k; }
-      else if (k === 'Enter' && pres.digits) { showSlide(parseInt(pres.digits, 10)); pres.digits = ''; }
+      if (mod && lower === 'z' && !e.shiftKey) undo();
+      else if (mod && (lower === 'y' || (lower === 'z' && e.shiftKey))) redo();
+      else if (mod && lower === 's') saveSlide();
+      else if (mod) handled = false;
+      else if (/^[0-9]$/.test(k)) pres.digits += k;
+      else if (k === 'Enter' && pres.digits) { setBoard(false); showSlide(parseInt(pres.digits, 10)); pres.digits = ''; }
       else if (['ArrowRight', 'ArrowDown', 'PageDown', ' ', 'Enter', 'n'].includes(k)) next();
       else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace', 'p'].includes(k)) prev();
-      else if (k === 'Home') showSlide(1);
-      else if (k === 'End') showSlide(state.doc.numPages);
-      else if (k === 'l' || k === 'L') setMode('laser');
-      else if (k === 'd' || k === 'D') setMode('pen');
-      else if (k === 'e' || k === 'E') { pres.ink.delete(pres.index); redrawInk(); }
-      else if (k === 'b' || k === 'B' || k === '.') black.hidden = !black.hidden;
-      else if (k === 'g' || k === 'G') toggleOverview();
-      else if (k === 't' || k === 'T') { pres.started = Date.now(); updateTimer(); }
-      else if (k === '?' || k === 'h' || k === 'H') help.hidden = !help.hidden;
+      else if (k === 'Home') { setBoard(false); showSlide(1); }
+      else if (k === 'End') { setBoard(false); showSlide(state.doc.numPages); }
+      else if (TOOL_KEYS[lower]) setTool(TOOL_KEYS[lower]);
+      else if (lower === 'c') setColor(COLORS[(COLORS.indexOf(pres.color) + 1) % COLORS.length]);
+      else if (k === '[') setSize(pres.size === 'l' ? 'm' : 's');
+      else if (k === ']') setSize(pres.size === 's' ? 'm' : 'l');
+      else if (lower === 'u') undo();
+      else if (lower === 'e') eraseAll();
+      else if (lower === 'w') setBoard(!pres.board);
+      else if (lower === 'b' || k === '.') { black.hidden = !black.hidden; syncPressed(); }
+      else if (lower === 'g') toggleOverview();
+      else if (lower === 'q') toggleQr();
+      else if (lower === 't') { pres.started = Date.now(); updateTimer(); }
+      else if (k === '?') help.hidden = !help.hidden;
       else if (k === 'Escape') {
-        if (!overview.hidden) toggleOverview(false);
+        if (pops.some(p => !p.hidden)) closePops();
+        else if (!qrLayer.hidden) toggleQr(false);
+        else if (!overview.hidden) toggleOverview(false);
         else if (!help.hidden) help.hidden = true;
-        else if (pres.mode) setMode(pres.mode);
+        else if (pres.zoom) setSlideZoom(0);
+        else if (pres.tool) setTool(pres.tool);
+        else if (pres.board) setBoard(false);
         else stopPresenting();
       } else handled = false;
       if (handled) { e.preventDefault(); wake(); }
