@@ -4,461 +4,388 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Events & Engagement - Prince Vats</title>
+  <title>Events &amp; Engagement · Prince Vats</title>
   <meta name="description"
     content="Conferences, symposia, and workshops attended and organized by Prince Vats, including oral and poster presentations on air quality and aerosol research." />
+  <meta name="color-scheme" content="dark light" />
   <link rel="icon" type="image/png" href="../assets/images/PV_logo.png" />
-  <link rel="stylesheet" href="../css/style.css?v=5" />
-  <style>
-    /* Custom Year Event Badge Colors */
-    .event-date-badge.year-2027 {
-      --event-bg: rgba(245, 158, 11, 0.12);
-      --event-border: rgba(245, 158, 11, 0.35);
-      --event-text: #fbbf24;
-    }
-
-    .event-date-badge.year-2026 {
-      --event-bg: rgba(59, 130, 246, 0.12);
-      --event-border: rgba(59, 130, 246, 0.35);
-      --event-text: #60a5fa;
-    }
-
-    .event-date-badge.year-2025 {
-      --event-bg: rgba(168, 85, 247, 0.12);
-      --event-border: rgba(168, 85, 247, 0.35);
-      --event-text: #c084fc;
-    }
-
-    .event-date-badge.year-2024 {
-      --event-bg: rgba(236, 72, 153, 0.12);
-      --event-border: rgba(236, 72, 153, 0.35);
-      --event-text: #f472b6;
-    }
-
-    .event-date-badge.year-2023 {
-      --event-bg: rgba(16, 185, 129, 0.12);
-      --event-border: rgba(16, 185, 129, 0.35);
-      --event-text: #34d399;
-    }
-
-    /* Darker badge text for contrast on light backgrounds */
-    :root.light-mode .event-date-badge.year-2027 { --event-text: #b45309; }
-    :root.light-mode .event-date-badge.year-2026 { --event-text: #1d4ed8; }
-    :root.light-mode .event-date-badge.year-2025 { --event-text: #7e22ce; }
-    :root.light-mode .event-date-badge.year-2024 { --event-text: #be185d; }
-    :root.light-mode .event-date-badge.year-2023 { --event-text: #047857; }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" />
+  <link rel="stylesheet" href="../css/style.css?v=10" />
+  <script>try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')}catch(e){}</script>
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Aerosol particle canvas -->
-  <canvas id="particleCanvas"></canvas>
+  <!-- Aerosol background -->
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
 
   <!-- ===== Navigation ===== -->
-  <nav class="navbar" id="navbar">
+  <nav class="navbar" id="navbar" aria-label="Main">
     <div class="nav-inner">
-      <a href="../index.html" class="nav-logo">
-        <img src="../assets/images/PV_logo.png" alt="PV Logo" />
+      <a href="../index.html" class="nav-logo" aria-label="Prince Vats, home">
+        <img src="../assets/images/PV_logo.png" alt="" width="34" height="34" />
       </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="education.html">Education</a></li>
+        <li><a href="../index.html">About</a></li>
         <li><a href="research.html">Research</a></li>
         <li><a href="publications.html">Publications</a></li>
-        <li><a href="events.html" class="active">Events</a></li>
         <li><a href="teaching.html">Teaching</a></li>
-        <li><a href="tools.html">Tools</a></li>
+        <li><a href="events.html" class="active" aria-current="page">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="../assets/pdf/CV.pdf" class="btn btn-outline btn-sm nav-cv" target="_blank" rel="noopener">CV</a></li>
       </ul>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
-        <span>🌙</span>
-      </button>
-      <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Light theme" aria-pressed="false" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5V4M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+        </button>
+        <button class="hamburger" id="hamburger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
-  <!-- ===== Page Header ===== -->
-  <div class="page-header">
-    <div class="section-container reveal">
-      <div class="breadcrumb">
-        <a href="../index.html">Home</a> <span class="separator">/</span> <span>Events & Engagement</span>
+  <main id="main">
+
+    <!-- ===== Page Header ===== -->
+    <header class="page-header">
+      <div class="section-container narrow reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><span>Events</span></nav>
+        <span class="section-label">Events &amp; engagement</span>
+        <h1 class="section-title">Conferences, symposia &amp; workshops</h1>
+        <p class="section-subtitle">Organizing academic symposia, presenting research, and actively engaging with the
+          scientific community across environmental science and air quality.</p>
       </div>
-      <span class="section-label">Events & Network</span>
-      <h1 class="section-title">Events & Engagement</h1>
-      <p class="section-subtitle">Organizing academic symposia, presenting research, and actively engaging with the scientific community across environmental science and air quality.</p>
-    </div>
-  </div>
+    </header>
 
-  <!-- ===== Events Area ===== -->
-  <section id="events" style="padding-top: 2rem;">
-    <div class="section-container">
+    <section id="events">
+      <div class="section-container narrow">
 
-      <div class="event-list" id="eventList">
+        <!-- ===== 2026 ===== -->
+        <div class="year-group">
+          <h2 class="year-heading">2026</h2>
+          <div class="event-list">
 
-        <!-- Event: Course on Air Pollution & Emerging Technologies 2026 -->
-        <div class="event-item" data-year="2026">
-          <a href="../assets/images/events/KPCSD10Oct2026.png" target="_blank" rel="noopener" class="event-media">
-            <img src="../assets/images/events/KPCSD10Oct2026.png" alt="One-Day Course on Air Pollution &amp; Emerging Technologies"
-              loading="lazy" />
-          </a>
-          <div class="event-content">
-            <div class="event-badge-row">
-              <span class="event-date-badge year-2026">Oct 2026</span>
-              <span class="role-badge attended">Attended</span>
-            </div>
-            <h3>One-Day Course on Air Pollution &amp; Emerging Technologies</h3>
-            <p>Organized by IIT Gandhinagar.</p>
-          </div>
-        </div>
-
-        <!-- Event: FDP 2026 -->
-        <div class="event-item" data-year="2026">
-          <a href="../assets/images/events/ASEAN2026.jpg" target="_blank" rel="noopener" class="event-media">
-            <img src="../assets/images/events/ASEAN2026.jpg" alt="Faculty Development Program for ASEAN and Global South"
-              loading="lazy" />
-          </a>
-          <div class="event-content">
-            <div class="event-badge-row">
-              <span class="event-date-badge year-2026">Sep 2026</span>
-              <span class="role-badge organizer">Organizing Team</span>
-            </div>
-            <h3>Faculty Development Program for ASEAN and Global South</h3>
-            <p>Organized by IIT Gandhinagar.</p>
-          </div>
-        </div>
-
-        <!-- Event: IPC 2026 -->
-        <div class="event-item" data-year="2026">
-          <a href="../assets/gif/events/IPC2026.gif" target="_blank" rel="noopener" class="event-media">
-            <img src="../assets/gif/events/IPC2026.gif" alt="Industry Partnership Conclave 2026"
-              loading="lazy" />
-          </a>
-          <div class="event-content">
-            <div class="event-badge-row">
-              <span class="event-date-badge year-2026">Apr 2026</span>
-              <span class="role-badge organizer">Organizing Team</span>
-            </div>
-            <h3>Industry Partnership Conclave (IPC 2026)</h3>
-            <p>Organized by IIT Gandhinagar.</p>
-            <div class="event-presentation">
-              <span class="presentation-label">📊 Poster Presentation</span>
-              <div class="event-citation">
-                <div class="citation-text">
-                  <strong>Vats, P.</strong>, Nagar, C., Sen, S., and Patel, S. (2026) “Low-Cost Environmental Quality Monitoring System for High-Resolution Spatiotemporal Urban Air Quality Monitoring and Multi-Scale Forecasting”, <em>Industry Partnership Conclave 2026</em>, India.
+            <article class="card event-item" data-year="2026">
+              <a href="../assets/images/events/KPCSD10Oct2026.png" class="event-media">
+                <img src="../assets/images/events/KPCSD10Oct2026.png" alt="One-Day Course on Air Pollution &amp; Emerging Technologies" loading="lazy" />
+              </a>
+              <div class="event-content">
+                <div class="event-meta">
+                  <span class="event-date">Oct 2026</span>
+                  <span class="tag">Attended</span>
                 </div>
-                <div class="citation-actions">
-                  <a href="../assets/pdf/PV_IPC2026.pdf" target="_blank" rel="noopener" class="citation-action-btn">
-                    📊 View Poster (PDF) ↗
-                  </a>
+                <h3>One-Day Course on Air Pollution &amp; Emerging Technologies</h3>
+                <p>Organized by IIT Gandhinagar.</p>
+              </div>
+            </article>
+
+            <article class="card event-item" data-year="2026">
+              <a href="../assets/images/events/ASEAN2026.jpg" class="event-media">
+                <img src="../assets/images/events/ASEAN2026.jpg" alt="Faculty Development Program for ASEAN and Global South" loading="lazy" />
+              </a>
+              <div class="event-content">
+                <div class="event-meta">
+                  <span class="event-date">Sep 2026</span>
+                  <span class="tag tag--accent">Organizing team</span>
+                </div>
+                <h3>Faculty Development Program for ASEAN and Global South</h3>
+                <p>Organized by IIT Gandhinagar.</p>
+              </div>
+            </article>
+
+            <article class="card event-item" data-year="2026">
+              <a href="../assets/gif/events/IPC2026.gif" class="event-media">
+                <img src="../assets/gif/events/IPC2026.gif" alt="Industry Partnership Conclave 2026" loading="lazy" />
+              </a>
+              <div class="event-content">
+                <div class="event-meta">
+                  <span class="event-date">Apr 2026</span>
+                  <span class="tag tag--accent">Organizing team</span>
+                </div>
+                <h3>Industry Partnership Conclave (IPC 2026)</h3>
+                <p>Organized by IIT Gandhinagar.</p>
+                <div class="event-presentation">
+                  <span class="presentation-label">Poster presentation</span>
+                  <p class="event-citation"><strong>Vats, P.</strong>, Nagar, C., Sen, S., and Patel, S. (2026) “Low-Cost
+                    Environmental Quality Monitoring System for High-Resolution Spatiotemporal Urban Air Quality Monitoring and
+                    Multi-Scale Forecasting”, <em>Industry Partnership Conclave 2026</em>, India.</p>
+                  <div class="citation-actions">
+                    <a href="resources.html#ipc2026-poster" class="link-btn">View poster →</a>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+            </article>
 
-        <!-- Event: KPCSD 2026 -->
-        <div class="event-item" data-year="2026">
-          <a href="../assets/images/events/KPCSD2026.jpg" target="_blank" rel="noopener" class="event-media">
-            <img src="../assets/images/events/KPCSD2026.jpg" alt="KPCSD Poster Competition on Sustainability"
-              loading="lazy" />
-          </a>
-          <div class="event-content">
-            <div class="event-badge-row">
-              <span class="event-date-badge year-2026">Apr 2026</span>
-              <span class="role-badge attended">Attended</span>
-            </div>
-            <h3>KPCSD Poster Competition on Sustainability</h3>
-            <p>Organized by Kiran C. Patel Centre for Sustainable Development, IIT Gandhinagar, India.</p>
-            <div class="event-presentation">
-              <span class="presentation-label">📊 Poster Presentation</span>
-              <div class="event-citation">
-                <div class="citation-text">
-                  <strong>Vats, P.</strong>, Nagar, C., Sen, S., and Patel, S. (2026) “Environmental Quality Monitoring System Using Low-Cost Sensors for Urban Air Quality Monitoring and Multi-Scale Forecasting”, <em>KPCSD Poster Competition on Sustainability</em>, IIT Gandhinagar, India.
+            <article class="card event-item" data-year="2026">
+              <a href="../assets/images/events/KPCSD2026.jpg" class="event-media">
+                <img src="../assets/images/events/KPCSD2026.jpg" alt="KPCSD Poster Competition on Sustainability" loading="lazy" />
+              </a>
+              <div class="event-content">
+                <div class="event-meta">
+                  <span class="event-date">Apr 2026</span>
+                  <span class="tag">Attended</span>
                 </div>
-                <div class="citation-actions">
-                  <a href="../assets/pdf/PV_KPCSD2026.pdf" target="_blank" rel="noopener" class="citation-action-btn">
-                    📊 View Poster (PDF) ↗
-                  </a>
+                <h3>KPCSD Poster Competition on Sustainability</h3>
+                <p>Organized by Kiran C. Patel Centre for Sustainable Development, IIT Gandhinagar, India.</p>
+                <div class="event-presentation">
+                  <span class="presentation-label">Poster presentation</span>
+                  <p class="event-citation"><strong>Vats, P.</strong>, Nagar, C., Sen, S., and Patel, S. (2026) “Environmental
+                    Quality Monitoring System Using Low-Cost Sensors for Urban Air Quality Monitoring and Multi-Scale
+                    Forecasting”, <em>KPCSD Poster Competition on Sustainability</em>, IIT Gandhinagar, India.</p>
+                  <div class="citation-actions">
+                    <a href="resources.html#kpcsd2026-poster" class="link-btn">View poster →</a>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+            </article>
 
-        <!-- Event 1: PAER 2026 -->
-        <div class="event-item" data-year="2026">
-          <a href="../assets/gif/events/PAER2026.gif" target="_blank" rel="noopener" class="event-media">
-            <img src="../assets/gif/events/PAER2026.gif" alt="Symposium on Promoting Aerosol Education and Research"
-              loading="lazy" />
-          </a>
-          <div class="event-content">
-            <div class="event-badge-row">
-              <span class="event-date-badge year-2026">Feb 2026</span>
-              <span class="role-badge organizer">Organizing Team</span>
-            </div>
-            <h3>Symposium on Promoting Aerosol Education and Research</h3>
-            <p>Organized by IIT Gandhinagar.</p>
-          </div>
-        </div>
-
-        <!-- Event 2: APHES 2025 -->
-        <div class="event-item" data-year="2025">
-          <a href="../assets/gif/events/APHES2025.gif" target="_blank" rel="noopener" class="event-media">
-            <img src="../assets/gif/events/APHES2025.gif" alt="Symposium on Advances in Tools and Technologies"
-              loading="lazy" />
-          </a>
-          <div class="event-content">
-            <div class="event-badge-row">
-              <span class="event-date-badge year-2025">Dec 2025</span>
-              <span class="role-badge organizer">Organizing Team</span>
-            </div>
-            <h3>Symposium on Advances in Tools and Technologies to Quantify Health Impacts of Air Pollution</h3>
-            <p>Organized by IIT Gandhinagar.</p>
-          </div>
-        </div>
-
-        <!-- Event 3: AAC 2025 -->
-        <div class="event-item" data-year="2025">
-          <a href="../assets/gif/events/AAC2025.gif" target="_blank" rel="noopener" class="event-media">
-            <img src="../assets/gif/events/AAC2025.gif" alt="Asian Aerosol Conference (AAC 2025)" loading="lazy" />
-          </a>
-          <div class="event-content">
-            <div class="event-badge-row">
-              <span class="event-date-badge year-2025">Dec 2025</span>
-              <span class="role-badge attended">Attended</span>
-            </div>
-            <h3>Asian Aerosol Conference (AAC 2025)</h3>
-            <p>Organized by IASTA, Mumbai.</p>
-
-            <!-- Oral Presentation -->
-            <div class="event-presentation">
-              <span class="presentation-label">🎤 Oral Presentation</span>
-              <div class="event-citation">
-                <div class="citation-text">
-                  <strong>Vats, P.</strong>, Thakur, A.K., and Patel, S. (2025) “Development and Deployment of a Low-Cost IoT Based Environmental Quality Monitoring System (EQMS) with Spatio-Temporal Predictive Modeling”, <em>14th Asian Aerosol Conference 2025</em>, Mumbai, India.
+            <article class="card event-item" data-year="2026">
+              <a href="../assets/gif/events/PAER2026.gif" class="event-media">
+                <img src="../assets/gif/events/PAER2026.gif" alt="Symposium on Promoting Aerosol Education and Research" loading="lazy" />
+              </a>
+              <div class="event-content">
+                <div class="event-meta">
+                  <span class="event-date">Feb 2026</span>
+                  <span class="tag tag--accent">Organizing team</span>
                 </div>
-                <div class="citation-actions">
-                  <a href="../assets/pdf/PV_AAC2025.pdf" target="_blank" rel="noopener" class="citation-action-btn">
-                    📄 View Oral Presentation (PDF) ↗
-                  </a>
+                <h3>Symposium on Promoting Aerosol Education and Research</h3>
+                <p>Organized by IIT Gandhinagar.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- ===== 2025 ===== -->
+        <div class="year-group">
+          <h2 class="year-heading">2025</h2>
+          <div class="event-list">
+
+            <article class="card event-item" data-year="2025">
+              <a href="../assets/gif/events/APHES2025.gif" class="event-media">
+                <img src="../assets/gif/events/APHES2025.gif" alt="Symposium on Advances in Tools and Technologies to Quantify Health Impacts of Air Pollution" loading="lazy" />
+              </a>
+              <div class="event-content">
+                <div class="event-meta">
+                  <span class="event-date">Dec 2025</span>
+                  <span class="tag tag--accent">Organizing team</span>
+                </div>
+                <h3>Symposium on Advances in Tools and Technologies to Quantify Health Impacts of Air Pollution</h3>
+                <p>Organized by IIT Gandhinagar.</p>
+              </div>
+            </article>
+
+            <article class="card event-item" data-year="2025">
+              <a href="../assets/gif/events/AAC2025.gif" class="event-media">
+                <img src="../assets/gif/events/AAC2025.gif" alt="Asian Aerosol Conference (AAC 2025)" loading="lazy" />
+              </a>
+              <div class="event-content">
+                <div class="event-meta">
+                  <span class="event-date">Dec 2025</span>
+                  <span class="tag">Attended</span>
+                </div>
+                <h3>Asian Aerosol Conference (AAC 2025)</h3>
+                <p>Organized by IASTA, Mumbai.</p>
+                <div class="event-presentation">
+                  <span class="presentation-label">Oral presentation</span>
+                  <p class="event-citation"><strong>Vats, P.</strong>, Thakur, A.K., and Patel, S. (2025) “Development and
+                    Deployment of a Low-Cost IoT Based Environmental Quality Monitoring System (EQMS) with Spatio-Temporal
+                    Predictive Modeling”, <em>14th Asian Aerosol Conference 2025</em>, Mumbai, India.</p>
+                  <div class="citation-actions">
+                    <a href="resources.html#aac2025-oral" class="link-btn">View slides →</a>
+                  </div>
+                </div>
+                <div class="event-presentation">
+                  <span class="presentation-label">Poster presentation</span>
+                  <p class="event-citation">Singh, A.P., <strong>Vats, P.</strong>, and Jain, M.K. (2025) “ML Model Evaluation
+                    for AQI Prediction in IGP Using Air Quality and Meteorological Features”, <em>14th Asian Aerosol Conference
+                    2025</em>, Mumbai, India.</p>
+                  <div class="citation-actions">
+                    <a href="resources.html#aac2025-poster-ml-aqi" class="link-btn">View poster →</a>
+                  </div>
                 </div>
               </div>
-            </div>
+            </article>
 
-            <!-- Poster Presentation -->
-            <div class="event-presentation">
-              <span class="presentation-label">📊 Poster Presentation</span>
-              <div class="event-citation">
-                <div class="citation-text">
-                  Singh, A.P., <strong>Vats, P.</strong>, and Jain, M.K. (2025) “ML Model Evaluation for AQI Prediction in IGP Using Air Quality and Meteorological Features”, <em>14th Asian Aerosol Conference 2025</em>, Mumbai, India.
+            <article class="card event-item" data-year="2025">
+              <a href="../assets/images/events/CES2025.jpg" class="event-media">
+                <img src="../assets/images/events/CES2025.jpg" alt="Chemical Engineering Symposium" loading="lazy" />
+              </a>
+              <div class="event-content">
+                <div class="event-meta">
+                  <span class="event-date">Oct 2025</span>
+                  <span class="tag">Attended</span>
                 </div>
-                <div class="citation-actions">
-                  <a href="../assets/pdf/AP_AAC2025.pdf" target="_blank" rel="noopener" class="citation-action-btn">
-                    📊 View Poster (PDF) ↗
-                  </a>
+                <h3>Chemical Engineering Symposium</h3>
+                <p>Organized jointly by IIT Gandhinagar and SVNIT, India.</p>
+                <div class="event-presentation">
+                  <span class="presentation-label">Poster presentation</span>
+                  <p class="event-citation"><strong>Vats, P.</strong>, and Patel, S. (2025) “Environmental Quality Monitoring
+                    System Using Low-Cost Sensors for Urban Air Quality Monitoring and Multi-Scale Forecasting”, <em>Chemical
+                    Engineering Symposium</em>, IIT Gandhinagar and SVNIT, India.</p>
+                  <div class="citation-actions">
+                    <a href="resources.html#ces2025-poster" class="link-btn">View poster →</a>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+            </article>
 
-        <!-- Event: Chemical Engineering Symposium 2025 -->
-        <div class="event-item" data-year="2025">
-          <a href="../assets/images/events/CES2025.jpg" target="_blank" rel="noopener" class="event-media">
-            <img src="../assets/images/events/CES2025.jpg" alt="Chemical Engineering Symposium"
-              loading="lazy" />
-          </a>
-          <div class="event-content">
-            <div class="event-badge-row">
-              <span class="event-date-badge year-2025">Oct 2025</span>
-              <span class="role-badge attended">Attended</span>
-            </div>
-            <h3>Chemical Engineering Symposium</h3>
-            <p>Organized jointly by IIT Gandhinagar and SVNIT, India.</p>
-            <div class="event-presentation">
-              <span class="presentation-label">📊 Poster Presentation</span>
-              <div class="event-citation">
-                <div class="citation-text">
-                  <strong>Vats, P.</strong>, and Patel, S. (2025) “Environmental Quality Monitoring System Using Low-Cost Sensors for Urban Air Quality Monitoring and Multi-Scale Forecasting”, <em>Chemical Engineering Symposium</em>, IIT Gandhinagar and SVNIT, India.
+            <article class="card event-item" data-year="2025">
+              <a href="../assets/images/events/ICAS2025.jpg" class="event-media">
+                <img src="../assets/images/events/ICAS2025.jpg" alt="India Clean Air Summit 2025" loading="lazy" />
+              </a>
+              <div class="event-content">
+                <div class="event-meta">
+                  <span class="event-date">Aug 2025</span>
+                  <span class="tag">Attended</span>
                 </div>
-                <div class="citation-actions">
-                  <a href="../assets/pdf/PV_CES2025.pdf" target="_blank" rel="noopener" class="citation-action-btn">
-                    📊 View Poster (PDF) ↗
-                  </a>
+                <h3>India Clean Air Summit 2025</h3>
+                <p>Organized by CSTEP, Bengaluru.</p>
+                <div class="event-presentation">
+                  <span class="presentation-label">Poster presentation 1</span>
+                  <p class="event-citation"><strong>Vats, P.</strong>, Singh, A.P., and Patel, S. (2025) “Evaluating CNN-LSTM
+                    and GNN-GRU Hybrid Models for Enhanced Air Quality Prediction and Dynamic Forecasting”, <em>India Clean Air
+                    Summit 2025</em>, Bengaluru, India.</p>
+                  <div class="citation-actions">
+                    <a href="resources.html#icas2025-poster" class="link-btn">View poster 1 →</a>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Event 4: ICAS 2025 -->
-        <div class="event-item" data-year="2025">
-          <a href="../assets/images/events/ICAS2025.jpg" target="_blank" rel="noopener" class="event-media">
-            <img src="../assets/images/events/ICAS2025.jpg" alt="India Clean Air Summit 2025" loading="lazy" />
-          </a>
-          <div class="event-content">
-            <div class="event-badge-row">
-              <span class="event-date-badge year-2025">Aug 2025</span>
-              <span class="role-badge attended">Attended</span>
-            </div>
-            <h3>India Clean Air Summit 2025</h3>
-            <p>Organized by CSTEP, Bengaluru.</p>
-
-            <!-- Poster 1 -->
-            <div class="event-presentation">
-              <span class="presentation-label">📊 Poster Presentation 1</span>
-              <div class="event-citation">
-                <div class="citation-text">
-                  <strong>Vats, P.</strong>, Singh, A.P., and Patel, S. (2025) “Evaluating CNN-LSTM and GNN-GRU Hybrid Models for Enhanced Air Quality Prediction and Dynamic Forecasting”, <em>India Clean Air Summit 2025</em>, Bengaluru, India.
-                </div>
-                <div class="citation-actions">
-                  <a href="../assets/pdf/PV_ICAS2025.pdf" target="_blank" rel="noopener" class="citation-action-btn">
-                    📊 View Poster 1 (PDF) ↗
-                  </a>
+                <div class="event-presentation">
+                  <span class="presentation-label">Poster presentation 2</span>
+                  <p class="event-citation">Singh, A.P., <strong>Vats, P.</strong>, and Jain, M.K. (2025) “ML Model Evaluation
+                    for AQI Prediction in Gangetic Plain Using Air Quality and Meteorological Features”, <em>India Clean Air
+                    Summit 2025</em>, Bengaluru, India.</p>
+                  <div class="citation-actions">
+                    <a href="resources.html#icas2025-poster-ml-aqi" class="link-btn">View poster 2 →</a>
+                  </div>
                 </div>
               </div>
-            </div>
+            </article>
 
-            <!-- Poster 2 -->
-            <div class="event-presentation">
-              <span class="presentation-label">📊 Poster Presentation 2</span>
-              <div class="event-citation">
-                <div class="citation-text">
-                  Singh, A.P., <strong>Vats, P.</strong>, and Jain, M.K. (2025) “ML Model Evaluation for AQI Prediction in Gangetic Plain Using Air Quality and Meteorological Features”, <em>India Clean Air Summit 2025</em>, Bengaluru, India.
+            <article class="card event-item" data-year="2025">
+              <a href="../assets/gif/events/IITB2025.gif" class="event-media">
+                <img src="../assets/gif/events/IITB2025.gif" alt="Smart Sensors and Data Analytics for Air Quality Management Workshop" loading="lazy" />
+              </a>
+              <div class="event-content">
+                <div class="event-meta">
+                  <span class="event-date">Mar 2025</span>
+                  <span class="tag">Attended</span>
                 </div>
-                <div class="citation-actions">
-                  <a href="../assets/pdf/AP_ICAS2025.pdf" target="_blank" rel="noopener" class="citation-action-btn">
-                    📊 View Poster 2 (PDF) ↗
-                  </a>
+                <h3>Smart Sensors and Data Analytics for Air Quality Management Workshop</h3>
+                <p>Organized by IIT Bombay.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- ===== 2023 ===== -->
+        <div class="year-group">
+          <h2 class="year-heading">2023</h2>
+          <div class="event-list">
+
+            <article class="card event-item" data-year="2023">
+              <a href="../assets/images/events/IICAQM.jpg" class="event-media">
+                <img src="../assets/images/events/IICAQM.jpg" alt="International Conference on Advances in Air Quality Management" loading="lazy" />
+              </a>
+              <div class="event-content">
+                <div class="event-meta">
+                  <span class="event-date">Dec 2023</span>
+                  <span class="tag">Attended</span>
+                </div>
+                <h3>International Conference on Advances in Air Quality Management (IICAQM 2023)</h3>
+                <p>Organized by IISc, Bengaluru.</p>
+                <div class="event-presentation">
+                  <span class="presentation-label">Oral presentation · presented by I. Dhada</span>
+                  <p class="event-citation">Dhada, I., <strong>Vats, P.</strong>, Singh, B. (2025). Probable Health Risk of
+                    Pollutants and Noise Found Inside Bottling Beverage Plant of Himachal Pradesh, India. In: Shiva Nagendra,
+                    S.M., Ramamurthy, P.C., Vardoulakis, S., Tantrakarnapa, K., Ball, R.J. (eds) <em>Select Proceedings of the
+                    8th Indian International Conference on Air Quality Management (IICAQM 2023)</em>. IICAQM 2023. Lecture Notes
+                    in Civil Engineering, vol 582. Springer, Singapore.</p>
+                  <div class="citation-actions">
+                    <a href="https://doi.org/10.1007/978-981-96-2359-4_18" target="_blank" rel="noopener" class="link-btn">Springer chapter ↗</a>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+            </article>
 
-        <!-- Event 5: Smart Sensors Workshop -->
-        <div class="event-item" data-year="2025">
-          <a href="../assets/gif/events/IITB2025.gif" target="_blank" rel="noopener" class="event-media">
-            <img src="../assets/gif/events/IITB2025.gif" alt="Smart Sensors and Data Analytics Workshop"
-              loading="lazy" />
-          </a>
-          <div class="event-content">
-            <div class="event-badge-row">
-              <span class="event-date-badge year-2025">Mar 2025</span>
-              <span class="role-badge attended">Attended</span>
-            </div>
-            <h3>Smart Sensors and Data Analytics for Air Quality Management Workshop</h3>
-            <p>Organized by IIT Bombay.</p>
-          </div>
-        </div>
-
-        <!-- Event 6: IICAQM 2023 -->
-        <div class="event-item" data-year="2023">
-          <a href="../assets/images/events/IICAQM.jpg" target="_blank" rel="noopener" class="event-media">
-            <img src="../assets/images/events/IICAQM.jpg"
-              alt="International Conference on Advances in Air Quality Management" loading="lazy" />
-          </a>
-          <div class="event-content">
-            <div class="event-badge-row">
-              <span class="event-date-badge year-2023">Dec 2023</span>
-              <span class="role-badge attended">Attended</span>
-            </div>
-            <h3>International Conference on Advances in Air Quality Management (IICAQM 2023)</h3>
-            <p>Organized by IISc, Bengaluru.</p>
-            <div class="event-presentation">
-              <span class="presentation-label">🎤 Oral Presentation (Presented by I. Dhada)</span>
-              <div class="event-citation">
-                <div class="citation-text">
-                  Dhada, I., <strong>Vats, P.</strong>, Singh, B. (2025). Probable Health Risk of Pollutants and Noise Found Inside Bottling Beverage Plant of Himachal Pradesh, India. In: Shiva Nagendra, S.M., Ramamurthy, P.C., Vardoulakis, S., Tantrakarnapa, K., Ball, R.J. (eds) <em>Select Proceedings of the 8th Indian International Conference on Air Quality Management (IICAQM 2023)</em>. IICAQM 2023. Lecture Notes in Civil Engineering, vol 582. Springer, Singapore.
+            <article class="card event-item" data-year="2023">
+              <a href="../assets/images/events/AI4Water.jpg" class="event-media">
+                <img src="../assets/images/events/AI4Water.jpg" alt="AI4Water Workshop" loading="lazy" />
+              </a>
+              <div class="event-content">
+                <div class="event-meta">
+                  <span class="event-date">Aug 2023</span>
+                  <span class="tag">Attended</span>
                 </div>
-                <div class="citation-actions">
-                  <a href="https://doi.org/10.1007/978-981-96-2359-4_18" target="_blank" rel="noopener" class="citation-action-btn">
-                    📖 Read Springer Chapter ↗
-                  </a>
+                <h3>AI4Water: Advanced Data-Driven and Artificial Intelligence Tools in Water Resources Workshop</h3>
+                <p>Organized by IIT Roorkee.</p>
+              </div>
+            </article>
+
+            <article class="card event-item" data-year="2023">
+              <a href="../assets/images/events/7NWS.jpg" class="event-media">
+                <img src="../assets/images/events/7NWS.jpg" alt="7th National Water Seminar" loading="lazy" />
+              </a>
+              <div class="event-content">
+                <div class="event-meta">
+                  <span class="event-date">Aug 2023</span>
+                  <span class="tag">Attended</span>
+                </div>
+                <h3>7th National Water Seminar</h3>
+                <p>Organized by National Institute of Hydrology, Roorkee.</p>
+                <div class="event-links">
+                  <span class="tag">2 paper presentations</span>
+                  <span class="tag tag--accent">Best Paper Award</span>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+            </article>
 
-        <!-- Event 7: AI4Water Workshop -->
-        <div class="event-item" data-year="2023">
-          <a href="../assets/images/events/AI4Water.jpg" target="_blank" rel="noopener" class="event-media">
-            <img src="../assets/images/events/AI4Water.jpg" alt="AI4Water Workshop" loading="lazy" />
-          </a>
-          <div class="event-content">
-            <div class="event-badge-row">
-              <span class="event-date-badge year-2023">Aug 2023</span>
-              <span class="role-badge attended">Attended</span>
-            </div>
-            <h3>AI4Water: Advanced Data-Driven and Artificial Intelligence Tools in Water Resources Workshop</h3>
-            <p>Organized by IIT Roorkee.</p>
-          </div>
-        </div>
-
-        <!-- Event 8: 7th National Water Seminar -->
-        <div class="event-item" data-year="2023">
-          <a href="../assets/images/events/7NWS.jpg" target="_blank" rel="noopener" class="event-media">
-            <img src="../assets/images/events/7NWS.jpg" alt="7th National Water Seminar" loading="lazy" />
-          </a>
-          <div class="event-content">
-            <div class="event-badge-row">
-              <span class="event-date-badge year-2023">Aug 2023</span>
-              <span class="role-badge attended">Attended</span>
-            </div>
-            <h3>7th National Water Seminar</h3>
-            <p>Organized by National Institute of Hydrology, Roorkee.</p>
-            <div class="event-links">
-              <span class="event-tag">2 Paper Presentations</span>
-              <span class="event-tag" style="background:rgba(52, 211, 153, 0.15);color:#34d399;">🏆 Best Paper Award</span>
-            </div>
           </div>
         </div>
 
       </div>
+    </section>
 
-    </div>
-  </section>
+  </main>
 
   <!-- ===== Footer ===== -->
   <footer class="footer">
-    <div class="footer-socials">
-      <a href="https://github.com/prince-vats" target="_blank" rel="noopener" title="GitHub">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-        </svg>
-      </a>
-      <a href="https://www.linkedin.com/in/prince-vats-iitrpr/" target="_blank" rel="noopener" title="LinkedIn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 1 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-        </svg>
-      </a>
-      <a href="https://scholar.google.com/citations?user=SPHQZR8AAAAJ&hl=en" target="_blank" rel="noopener"
-        title="Google Scholar">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z" />
-        </svg>
-      </a>
-      <a href="mailto:princevatsiitrpr@gmail.com" title="Email">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-        </svg>
-      </a>
+    <div class="footer-inner">
+      <div>
+        <span class="footer-name">Prince Vats</span>
+        <span class="footer-role">PhD Researcher, Environmental Engineering · IIT Gandhinagar</span>
+      </div>
+      <div class="footer-socials">
+        <a href="https://scholar.google.com/citations?user=SPHQZR8AAAAJ&amp;hl=en" target="_blank" rel="noopener" aria-label="Google Scholar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg></a>
+        <a href="https://github.com/prince-vats" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+        <a href="https://www.linkedin.com/in/prince-vats-iitrpr/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 1 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="mailto:princevatsiitrpr@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+      </div>
+      <ul class="footer-links">
+        <li><a href="../index.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="teaching.html">Teaching</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="../assets/pdf/CV.pdf" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+      <p class="footer-meta">© 2026 Prince Vats · Last updated October 2026</p>
     </div>
-    <p>© 2026 Prince Vats · <a href="../index.html">Home</a> · <a href="education.html">Education</a> · <a
-        href="research.html">Research</a> · <a href="publications.html">Publications</a> · <a
-        href="events.html">Events</a> · <a href="teaching.html">Teaching</a> · <a href="tools.html">Tools</a></p>
   </footer>
 
   <!-- ===== Scripts ===== -->
-  <script src="../js/particles.js?v=6"></script>
-  <script src="../js/nav.js"></script>
+  <script src="../js/particles.js?v=8"></script>
+  <script src="../js/nav.js?v=8"></script>
 
 </body>
 

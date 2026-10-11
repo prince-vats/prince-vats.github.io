@@ -2,28 +2,24 @@
 const themeToggle = document.getElementById('themeToggle');
 const html = document.documentElement;
 
-// Load saved theme preference
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-  html.classList.toggle('light-mode', savedTheme === 'light');
-  updateThemeIcon();
-}
+// The saved theme is applied by an inline script in each page's <head> (avoids a
+// flash of the wrong theme); this re-applies it in case that script was skipped.
+let savedTheme = null;
+try { savedTheme = localStorage.getItem('theme'); } catch (e) { /* storage unavailable */ }
+if (savedTheme) html.classList.toggle('light-mode', savedTheme === 'light');
+updateThemeState();
 
 if (themeToggle) {
   themeToggle.addEventListener('click', () => {
     const isLightMode = html.classList.toggle('light-mode');
-    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-    updateThemeIcon();
+    try { localStorage.setItem('theme', isLightMode ? 'light' : 'dark'); } catch (e) { /* ignore */ }
+    updateThemeState();
   });
 }
 
-function updateThemeIcon() {
-  if (themeToggle) {
-    const span = themeToggle.querySelector('span');
-    if (span) {
-      span.textContent = html.classList.contains('light-mode') ? '☀️' : '🌙';
-    }
-  }
+// The sun/moon icons are swapped in CSS; keep the button's state announced
+function updateThemeState() {
+  if (themeToggle) themeToggle.setAttribute('aria-pressed', String(html.classList.contains('light-mode')));
 }
 
 // ─── Navbar scroll effect ───
@@ -76,6 +72,21 @@ document.querySelectorAll('.reveal').forEach(el => {
   }
 });
 
+// ─── In-page sub-navigation: highlight the section in view ───
+const subnavLinks = document.querySelectorAll('.subnav a[href^="#"]');
+if (subnavLinks.length) {
+  const targets = Array.from(subnavLinks)
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+  const setActive = (id) => {
+    subnavLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + id));
+  };
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) setActive(entry.target.id); });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  targets.forEach(target => sectionObserver.observe(target));
+}
+
 // ─── Image Lightbox Modal ───
 document.addEventListener('DOMContentLoaded', () => {
   let lightbox = document.getElementById('lightboxModal');
@@ -84,10 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
     lightbox.id = 'lightboxModal';
     lightbox.className = 'lightbox-modal';
     lightbox.innerHTML = `
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close enlarged view">&times;</button>
       <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">&#10094;</button>
       <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">&#10095;</button>
       <div class="lightbox-container">
-        <button class="lightbox-close" id="lightboxClose" aria-label="Close enlarged view">&times;</button>
         <img class="lightbox-img" id="lightboxImg" src="" alt="Enlarged view" />
         <div class="lightbox-details" id="lightboxDetails"></div>
       </div>
@@ -125,7 +136,11 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxDetails.innerHTML = eventContent.innerHTML;
         lightboxDetails.style.display = 'block';
       } else if (alt) {
-        lightboxDetails.innerHTML = `<p style="text-align:center;margin:0;">${alt}</p>`;
+        lightboxDetails.innerHTML = '';
+        const caption = document.createElement('p');
+        caption.className = 'lightbox-alt';
+        caption.textContent = alt;
+        lightboxDetails.appendChild(caption);
         lightboxDetails.style.display = 'block';
       } else {
         lightboxDetails.style.display = 'none';

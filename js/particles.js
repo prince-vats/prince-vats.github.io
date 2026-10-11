@@ -985,6 +985,9 @@
 
   function drawReadout(th) {
     if (livePM === null) return;
+    // Hide once the footer reaches the bottom-left corner, where its text would collide
+    const footer = document.querySelector('.footer');
+    if (footer && footer.getBoundingClientRect().top < H - 8) return;
     const [label, col] = pmCategory(livePM);
     ctx.globalCompositeOperation = 'source-over';
     ctx.font = '500 11px Inter, system-ui, sans-serif';
@@ -1162,6 +1165,12 @@
 
   let last = performance.now();
   function loop(now) {
+    // Skip all work while a full-page viewer covers the background (see js/resources.js)
+    if (root.classList.contains('bg-paused')) {
+      last = now;
+      requestAnimationFrame(loop);
+      return;
+    }
     // rAF timestamps can precede the performance.now() taken at load, so the
     // first dt may be ≤ 0; stepping with it would turn positions into NaN
     const dt = Math.min(3, (now - last) / 16.667);

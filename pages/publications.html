@@ -4,244 +4,265 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Publications - Prince Vats</title>
+  <title>Publications · Prince Vats</title>
   <meta name="description"
     content="Peer-reviewed publications of Prince Vats - journal and conference papers on air quality, health risk assessment, and pollution exposure." />
+  <meta name="color-scheme" content="dark light" />
   <link rel="icon" type="image/png" href="../assets/images/PV_logo.png" />
-  <link rel="stylesheet" href="../css/style.css?v=5" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" />
+  <link rel="stylesheet" href="../css/style.css?v=10" />
+  <script>try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')}catch(e){}</script>
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Aerosol particle canvas -->
-  <canvas id="particleCanvas"></canvas>
+  <!-- Aerosol background -->
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
 
   <!-- ===== Navigation ===== -->
-  <nav class="navbar" id="navbar">
+  <nav class="navbar" id="navbar" aria-label="Main">
     <div class="nav-inner">
-      <a href="../index.html" class="nav-logo">
-        <img src="../assets/images/PV_logo.png" alt="PV Logo" />
+      <a href="../index.html" class="nav-logo" aria-label="Prince Vats, home">
+        <img src="../assets/images/PV_logo.png" alt="" width="34" height="34" />
       </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="education.html">Education</a></li>
+        <li><a href="../index.html">About</a></li>
         <li><a href="research.html">Research</a></li>
-        <li><a href="publications.html" class="active">Publications</a></li>
-        <li><a href="events.html">Events</a></li>
+        <li><a href="publications.html" class="active" aria-current="page">Publications</a></li>
         <li><a href="teaching.html">Teaching</a></li>
-        <li><a href="tools.html">Tools</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="../assets/pdf/CV.pdf" class="btn btn-outline btn-sm nav-cv" target="_blank" rel="noopener">CV</a></li>
       </ul>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
-        <span>🌙</span>
-      </button>
-      <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Light theme" aria-pressed="false" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5V4M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+        </button>
+        <button class="hamburger" id="hamburger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
-  <!-- ===== Page Header ===== -->
-  <div class="page-header">
-    <div class="section-container reveal">
-      <div class="breadcrumb">
-        <a href="../index.html">Home</a> <span class="separator">/</span> <span>Publications</span>
+  <main id="main">
+
+    <!-- ===== Page Header ===== -->
+    <header class="page-header">
+      <div class="section-container narrow reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><span>Publications</span></nav>
+        <span class="section-label">Publications</span>
+        <h1 class="section-title">Peer-reviewed research</h1>
+        <p class="section-subtitle">Focusing on air quality analysis, health risk estimation, and pollution assessment in
+          industrial and urban settings.</p>
       </div>
-      <span class="section-label">Publications</span>
-      <h1 class="section-title">Peer-Reviewed Research</h1>
-      <p class="section-subtitle">Focusing on air quality analysis, health risk estimation, and pollution assessment in
-        industrial and urban settings.</p>
-    </div>
-  </div>
+    </header>
 
-  <!-- ===== Publications Area ===== -->
-  <section id="publications" style="padding-top: 2rem;">
-    <div class="section-container">
+    <section id="publications">
+      <div class="section-container narrow">
 
-      <!-- Year Filters -->
-      <div class="filter-controls" id="pubFilters">
-        <button class="btn btn-primary filter-btn active" data-filter="all">All</button>
-        <button class="btn btn-outline filter-btn" data-filter="2025">2025</button>
-        <button class="btn btn-outline filter-btn" data-filter="2023">2023</button>
-      </div>
-
-      <!-- Journal Papers Section -->
-      <div class="pub-section" style="margin-bottom: 4rem;">
-        <h2
-          style="font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:1.5rem; color:var(--text-primary);">
-          📰 Journal Papers</h2>
-        <div class="publication-list">
-
-          <div class="publication-item filterable-item" data-year="2025">
-            <div class="pub-status-badge" style="background: rgba(74, 124, 126, 0.2); color: var(--accent-1); border-color: var(--accent-1);">Published</div>
-            <div class="publication-content-wrapper">
-              <!-- Thumbnail Link -->
-              <a href="https://doi.org/10.1007/s44274-025-00221-x" target="_blank" rel="noopener"
-                class="publication-thumbnail-link">
-                <img src="../assets/images/journals/J1.webp" alt="Journal Cover J1" class="publication-thumbnail"
-                  onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'140\' height=\'186\'><rect width=\'100%\' height=\'100%\' fill=\'%23111\'/><text x=\'50%\' y=\'50%\' fill=\'%23666\' font-family=\'sans-serif\' font-size=\'14\' text-anchor=\'middle\' dominant-baseline=\'middle\'>J1.jpg</text></svg>'">
-              </a>
-
-              <!-- Text Content -->
-              <div class="publication-details">
-                <div class="publication-number">1</div>
-                <h3 class="publication-title">
-                  <a href="https://doi.org/10.1007/s44274-025-00221-x" target="_blank" rel="noopener">
-                    Potential Health Risk Estimation Through Deterministic and Stochastic Approaches for the Air
-                    Pollutants Found Inside Bottling Beverage Industries of Himachal Pradesh in India
-                  </a>
-                </h3>
-                <div class="pub-categories">
-                  <span class="pub-category">Health Risk Assessment</span>
-                  <span class="pub-category">Indoor Air Quality</span>
-                  <span class="pub-category">Exposure Analysis</span>
-                </div>
-                <p class="publication-authors">Indramani Dhada, <strong>Prince Vats</strong>, Shailesh Kumar Samal</p>
-                <p class="publication-venue"><strong>Published in:</strong> Discover Environment, Springer, March 2025</p>
-
-                <ul
-                  style="padding-left:1rem; color:var(--text-secondary); margin-top:1rem; font-size:0.9rem; line-height:1.7;">
-                  <li style="margin-bottom:0.25rem;">Assessed indoor air pollution in 12 bottling and beverage
-                    industries during the monsoon season.</li>
-                  <li style="margin-bottom:0.25rem;">Monitored <strong>TVOCs, PM10, PM2.5, PM1, black carbon (BC), and
-                      noise levels.</strong></li>
-                  <li style="margin-bottom:0.25rem;">Performed deterministic and probabilistic health risk assessments,
-                    identifying non-carcinogenic hazard ratios (HRs) between 0.52–0.80.</li>
-                  <li style="margin-bottom:0.25rem;">Determined highest risk in males aged 50–60 and females aged 40–50.
-                  </li>
-                  <li style="margin-bottom:0.25rem;">Estimated carcinogenic risk of BC exposure between 5.8E-04 and
-                    6.8E-04.</li>
-                  <li>Recommended ventilation improvements and targeted mitigation strategies.</li>
-                </ul>
-                <a href="https://doi.org/10.1007/s44274-025-00221-x" target="_blank" rel="noopener" class="pub-link">Read Full Paper ↗</a>
-              </div>
-            </div>
-          </div>
-
+        <!-- Year filter -->
+        <div class="segmented" id="pubFilters" role="group" aria-label="Filter by year">
+          <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="filter-btn" data-filter="2025" aria-pressed="false">2025</button>
+          <button type="button" class="filter-btn" data-filter="2023" aria-pressed="false">2023</button>
         </div>
-      </div>
 
-      <!-- Conference Papers Section -->
-      <div class="pub-section" style="margin-bottom: 4rem;">
-        <h2
-          style="font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:1.5rem; color:var(--text-primary);">
-          🎤 Conference Papers</h2>
-        <div class="publication-list">
+        <!-- Journal papers -->
+        <div class="pub-section">
+          <h2 class="pub-section-title">Journal papers <span class="count">1</span></h2>
+          <div class="publication-list">
 
-          <div class="publication-item filterable-item" data-year="2023">
-            <div class="pub-status-badge" style="background: rgba(74, 124, 126, 0.2); color: var(--accent-1); border-color: var(--accent-1);">Published</div>
-            <div class="publication-content-wrapper">
-              <!-- Thumbnail Link -->
-              <a href="https://link.springer.com/chapter/10.1007/978-981-96-2359-4_18" target="_blank" rel="noopener"
-                class="publication-thumbnail-link">
-                <img src="../assets/images/conferences/C1.webp" alt="Conference Proceedings Cover C1"
-                  class="publication-thumbnail"
-                  onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'140\' height=\'186\'><rect width=\'100%\' height=\'100%\' fill=\'%23111\'/><text x=\'50%\' y=\'50%\' fill=\'%23666\' font-family=\'sans-serif\' font-size=\'14\' text-anchor=\'middle\' dominant-baseline=\'middle\'>C1.jpg</text></svg>'">
+            <article class="card publication-item filterable-item" data-year="2025">
+              <a href="https://doi.org/10.1007/s44274-025-00221-x" target="_blank" rel="noopener" class="publication-thumbnail-link" tabindex="-1" aria-hidden="true">
+                <img src="../assets/images/journals/J1.webp" alt="" class="publication-thumbnail" loading="lazy" />
               </a>
-
-              <!-- Text Content -->
               <div class="publication-details">
-                <div class="publication-number">1</div>
-                <h3 class="publication-title">
-                  <a href="https://link.springer.com/chapter/10.1007/978-981-96-2359-4_18" target="_blank"
-                    rel="noopener">
-                    Probable Health Risk of Pollutants and Noise Found Inside Bottling Beverage Plant of Himachal
-                    Pradesh, India
-                  </a>
-                </h3>
-                <div class="pub-categories">
-                  <span class="pub-category">Health Risk</span>
-                  <span class="pub-category">Noise Assessment</span>
+                <div class="pub-head">
+                  <span class="pub-id">J1</span>
+                  <span class="tag tag--solid">Published · 2025</span>
                 </div>
-                <p class="publication-authors">Indramani Dhada, <strong>Prince Vats</strong>, Brajesh Singh</p>
-                <p class="publication-venue"><strong>Published in:</strong> Select Proceedings of the 8th Indian International Conference on Air
-                  Quality Management (IICAQM 2023), pp. 219-238</p>
-                <a href="https://link.springer.com/chapter/10.1007/978-981-96-2359-4_18" target="_blank"
-                  rel="noopener" class="pub-link">Read Proceedings ↗</a>
+                <h3 class="publication-title">
+                  <a href="https://doi.org/10.1007/s44274-025-00221-x" target="_blank" rel="noopener">Potential Health Risk
+                    Estimation Through Deterministic and Stochastic Approaches for the Air Pollutants Found Inside Bottling
+                    Beverage Industries of Himachal Pradesh in India</a>
+                </h3>
+                <p class="cite-authors">Indramani Dhada, <strong>Prince Vats</strong>, Shailesh Kumar Samal</p>
+                <p class="cite-venue"><em>Discover Environment</em>, Springer · March 2025</p>
+                <p class="cite-doi">doi: <a href="https://doi.org/10.1007/s44274-025-00221-x" target="_blank" rel="noopener">10.1007/s44274-025-00221-x</a></p>
+
+                <div class="tag-list">
+                  <span class="tag">Health Risk Assessment</span>
+                  <span class="tag">Indoor Air Quality</span>
+                  <span class="tag">Exposure Analysis</span>
+                </div>
+
+                <details class="findings">
+                  <summary>Key findings</summary>
+                  <ul>
+                    <li>Assessed indoor air pollution in 12 bottling and beverage industries during the monsoon season.</li>
+                    <li>Monitored <strong>TVOCs, PM10, PM2.5, PM1, black carbon (BC), and noise levels.</strong></li>
+                    <li>Performed deterministic and probabilistic health risk assessments, identifying non-carcinogenic hazard ratios (HRs) between 0.52–0.80.</li>
+                    <li>Determined highest risk in males aged 50–60 and females aged 40–50.</li>
+                    <li>Estimated carcinogenic risk of BC exposure between 5.8E-04 and 6.8E-04.</li>
+                    <li>Recommended ventilation improvements and targeted mitigation strategies.</li>
+                  </ul>
+                </details>
+
+                <div class="pub-actions">
+                  <a href="https://doi.org/10.1007/s44274-025-00221-x" target="_blank" rel="noopener" class="link-btn">Read paper ↗</a>
+                  <button type="button" class="link-btn" data-copy="cite-J1">Copy citation</button>
+                  <button type="button" class="link-btn" data-copy="bib-J1">Copy BibTeX</button>
+                </div>
+                <template id="cite-J1">Dhada, I., Vats, P., &amp; Samal, S. K. (2025). Potential health risk estimation through deterministic and stochastic approaches for the air pollutants found inside bottling beverage industries of Himachal Pradesh in India. Discover Environment. https://doi.org/10.1007/s44274-025-00221-x</template>
+                <template id="bib-J1">@article{dhada2025potential,
+  title     = {Potential Health Risk Estimation Through Deterministic and Stochastic Approaches for the Air Pollutants Found Inside Bottling Beverage Industries of Himachal Pradesh in India},
+  author    = {Dhada, Indramani and Vats, Prince and Samal, Shailesh Kumar},
+  journal   = {Discover Environment},
+  publisher = {Springer},
+  year      = {2025},
+  doi       = {10.1007/s44274-025-00221-x}
+}</template>
               </div>
-            </div>
+            </article>
+
           </div>
-
         </div>
+
+        <!-- Conference papers -->
+        <div class="pub-section">
+          <h2 class="pub-section-title">Conference papers <span class="count">1</span></h2>
+          <div class="publication-list">
+
+            <article class="card publication-item filterable-item" data-year="2023">
+              <a href="https://doi.org/10.1007/978-981-96-2359-4_18" target="_blank" rel="noopener" class="publication-thumbnail-link" tabindex="-1" aria-hidden="true">
+                <img src="../assets/images/conferences/C1.webp" alt="" class="publication-thumbnail" loading="lazy" />
+              </a>
+              <div class="publication-details">
+                <div class="pub-head">
+                  <span class="pub-id">C1</span>
+                  <span class="tag tag--solid">Published · IICAQM 2023</span>
+                </div>
+                <h3 class="publication-title">
+                  <a href="https://doi.org/10.1007/978-981-96-2359-4_18" target="_blank" rel="noopener">Probable Health Risk of
+                    Pollutants and Noise Found Inside Bottling Beverage Plant of Himachal Pradesh, India</a>
+                </h3>
+                <p class="cite-authors">Indramani Dhada, <strong>Prince Vats</strong>, Brajesh Singh</p>
+                <p class="cite-venue"><em>Select Proceedings of the 8th Indian International Conference on Air Quality
+                  Management (IICAQM 2023)</em>, Lecture Notes in Civil Engineering, vol. 582, Springer · pp. 219–238</p>
+                <p class="cite-doi">doi: <a href="https://doi.org/10.1007/978-981-96-2359-4_18" target="_blank" rel="noopener">10.1007/978-981-96-2359-4_18</a></p>
+
+                <div class="tag-list">
+                  <span class="tag">Health Risk</span>
+                  <span class="tag">Noise Assessment</span>
+                </div>
+
+                <div class="pub-actions">
+                  <a href="https://doi.org/10.1007/978-981-96-2359-4_18" target="_blank" rel="noopener" class="link-btn">Read chapter ↗</a>
+                  <button type="button" class="link-btn" data-copy="cite-C1">Copy citation</button>
+                  <button type="button" class="link-btn" data-copy="bib-C1">Copy BibTeX</button>
+                </div>
+                <template id="cite-C1">Dhada, I., Vats, P., &amp; Singh, B. (2025). Probable health risk of pollutants and noise found inside bottling beverage plant of Himachal Pradesh, India. In S. M. Shiva Nagendra, P. C. Ramamurthy, S. Vardoulakis, K. Tantrakarnapa, &amp; R. J. Ball (Eds.), Select Proceedings of the 8th Indian International Conference on Air Quality Management (IICAQM 2023) (Lecture Notes in Civil Engineering, Vol. 582, pp. 219–238). Springer, Singapore. https://doi.org/10.1007/978-981-96-2359-4_18</template>
+                <template id="bib-C1">@incollection{dhada2025probable,
+  title     = {Probable Health Risk of Pollutants and Noise Found Inside Bottling Beverage Plant of Himachal Pradesh, India},
+  author    = {Dhada, Indramani and Vats, Prince and Singh, Brajesh},
+  booktitle = {Select Proceedings of the 8th Indian International Conference on Air Quality Management (IICAQM 2023)},
+  editor    = {Shiva Nagendra, S. M. and Ramamurthy, P. C. and Vardoulakis, S. and Tantrakarnapa, K. and Ball, R. J.},
+  series    = {Lecture Notes in Civil Engineering},
+  volume    = {582},
+  pages     = {219--238},
+  publisher = {Springer},
+  address   = {Singapore},
+  year      = {2025},
+  doi       = {10.1007/978-981-96-2359-4_18}
+}</template>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Scholar -->
+        <div class="card scholar-cta">
+          <p>Full and up-to-date list, with citation counts, on Google Scholar.</p>
+          <a href="https://scholar.google.com/citations?user=SPHQZR8AAAAJ&amp;hl=en" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Google Scholar profile ↗</a>
+        </div>
+
       </div>
+    </section>
 
-
-      <!-- Scholar CTA -->
-      <div class="scholar-cta">
-        <a href="https://scholar.google.com/citations?user=SPHQZR8AAAAJ&hl=en" target="_blank" rel="noopener"
-          class="btn btn-outline">
-          View Full Profile on Google Scholar →
-        </a>
-      </div>
-
-    </div>
-  </section>
+  </main>
 
   <!-- ===== Footer ===== -->
   <footer class="footer">
-    <div class="footer-socials">
-      <a href="https://github.com/prince-vats" target="_blank" rel="noopener" title="GitHub">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-      </a>
-      <a href="https://www.linkedin.com/in/prince-vats-iitrpr/" target="_blank" rel="noopener" title="LinkedIn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 1 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-      </a>
-      <a href="https://scholar.google.com/citations?user=SPHQZR8AAAAJ&hl=en" target="_blank" rel="noopener" title="Google Scholar">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
-      </a>
-      <a href="mailto:princevatsiitrpr@gmail.com" title="Email">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-      </a>
+    <div class="footer-inner">
+      <div>
+        <span class="footer-name">Prince Vats</span>
+        <span class="footer-role">PhD Researcher, Environmental Engineering · IIT Gandhinagar</span>
+      </div>
+      <div class="footer-socials">
+        <a href="https://scholar.google.com/citations?user=SPHQZR8AAAAJ&amp;hl=en" target="_blank" rel="noopener" aria-label="Google Scholar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg></a>
+        <a href="https://github.com/prince-vats" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+        <a href="https://www.linkedin.com/in/prince-vats-iitrpr/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 1 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="mailto:princevatsiitrpr@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+      </div>
+      <ul class="footer-links">
+        <li><a href="../index.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="teaching.html">Teaching</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="../assets/pdf/CV.pdf" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+      <p class="footer-meta">© 2026 Prince Vats · Last updated October 2026</p>
     </div>
-    <p>© 2026 Prince Vats · <a href="../index.html">Home</a> · <a href="education.html">Education</a> · <a
-        href="research.html">Research</a> · <a href="publications.html">Publications</a> · <a
-        href="events.html">Events</a> · <a href="teaching.html">Teaching</a> · <a href="tools.html">Tools</a></p>
   </footer>
 
   <!-- ===== Scripts ===== -->
-  <script src="../js/particles.js?v=6"></script>
-  <script src="../js/nav.js"></script>
+  <script src="../js/particles.js?v=8"></script>
+  <script src="../js/nav.js?v=8"></script>
   <script>
-    // Advanced filtering logic
-    document.addEventListener('DOMContentLoaded', () => {
-      const filterBtns = document.querySelectorAll('#pubFilters .filter-btn');
+    // Year filter and copy-to-clipboard for citations
+    (function () {
+      const buttons = document.querySelectorAll('#pubFilters .filter-btn');
       const items = document.querySelectorAll('.filterable-item');
       const sections = document.querySelectorAll('.pub-section');
-
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          // Update active class
-          filterBtns.forEach(b => {
-            b.classList.remove('btn-primary', 'active');
-            if (!b.classList.contains('btn-outline')) b.classList.add('btn-outline');
-          });
-          btn.classList.add('btn-primary', 'active');
-          btn.classList.remove('btn-outline');
-
-          const filterVal = btn.getAttribute('data-filter');
-
-          // Show/hide items
-          items.forEach(item => {
-            if (filterVal === 'all' || item.getAttribute('data-year') === filterVal) {
-              item.style.display = 'block';
-              item.style.opacity = '1';
-            } else {
-              item.style.display = 'none';
-            }
-          });
-
-          // Show/hide headers based on visible content
-          sections.forEach(section => {
-            let hasVisible = false;
-            section.querySelectorAll('.filterable-item').forEach(item => {
-              if (item.style.display !== 'none') {
-                hasVisible = true;
-              }
-            });
-            section.style.display = hasVisible ? 'block' : 'none';
-          });
+      buttons.forEach(btn => btn.addEventListener('click', () => {
+        const year = btn.dataset.filter;
+        buttons.forEach(b => {
+          b.classList.toggle('active', b === btn);
+          b.setAttribute('aria-pressed', String(b === btn));
         });
-      });
-    });
+        items.forEach(item => { item.hidden = !(year === 'all' || item.dataset.year === year); });
+        sections.forEach(section => {
+          section.hidden = !section.querySelector('.filterable-item:not([hidden])');
+        });
+      }));
+
+      document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
+        const tpl = document.getElementById(btn.dataset.copy);
+        if (!tpl) return;
+        const text = tpl.content.textContent.trim();
+        const label = btn.textContent;
+        try {
+          await navigator.clipboard.writeText(text);
+          btn.textContent = 'Copied';
+        } catch (e) {
+          window.prompt('Copy to clipboard:', text);
+          return;
+        }
+        btn.classList.add('is-done');
+        setTimeout(() => { btn.textContent = label; btn.classList.remove('is-done'); }, 1600);
+      }));
+    })();
   </script>
 
 </body>

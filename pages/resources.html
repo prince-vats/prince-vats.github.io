@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources · Prince Vats</title>
+  <meta name="description"
+    content="Slides and conference posters by Prince Vats on aerosol science and air quality: read online, present full screen, or download the PDF." />
+  <meta name="color-scheme" content="dark light" />
+  <link rel="icon" type="image/png" href="../assets/images/PV_logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" />
+  <link rel="stylesheet" href="../css/style.css?v=10" />
+  <script>try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')}catch(e){}</script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Aerosol background -->
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+
+  <!-- ===== Navigation ===== -->
+  <nav class="navbar" id="navbar" aria-label="Main">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo" aria-label="Prince Vats, home">
+        <img src="../assets/images/PV_logo.png" alt="" width="34" height="34" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="teaching.html">Teaching</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="resources.html" class="active" aria-current="page">Resources</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="../assets/pdf/CV.pdf" class="btn btn-outline btn-sm nav-cv" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Light theme" aria-pressed="false" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5V4M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+        </button>
+        <button class="hamburger" id="hamburger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ===== Page Header ===== -->
+    <header class="page-header">
+      <div class="section-container reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><span>Resources</span></nav>
+        <span class="section-label">Resources</span>
+        <h1 class="section-title">Slides &amp; posters</h1>
+        <p class="section-subtitle">Presentation decks and conference posters from my research. Read them here, present them
+          full screen, or download the PDF. Please credit the authors when you reuse material.</p>
+      </div>
+    </header>
+
+    <!--
+      Each card is self-contained: data-pdf, data-kind and data-pages drive the viewer in js/resources.js.
+      The card's id is its shareable link (resources.html#<id>). Without JavaScript, "Read" opens the PDF directly.
+      Thumbnails live in assets/images/resources/<id>.webp (first page, 720 px wide).
+    -->
+
+    <section id="slides">
+      <div class="section-container">
+        <div class="section-head">
+          <h2 class="section-title">Slide decks <span class="count">2</span></h2>
+        </div>
+        <div class="resource-grid">
+
+          <article class="card resource" id="mwma-platform" data-pdf="../assets/pdf/MWMA.pdf" data-kind="slides" data-pages="7">
+            <a class="resource-thumb" href="../assets/pdf/MWMA.pdf" data-action="read" tabindex="-1" aria-hidden="true">
+              <img src="../assets/images/resources/mwma-platform.webp" alt="" width="720" height="405" loading="lazy" />
+              <span class="resource-count">7 slides</span>
+            </a>
+            <div class="resource-body">
+              <div class="resource-meta">
+                <span class="tag">Slides</span>
+                <span class="tag tag--accent">Patent pending</span>
+              </div>
+              <h3 class="resource-title">Multi-Wavelength, Multi-Angle Optical Scattering Platform</h3>
+              <p class="resource-authors">Prince Vats, Sameer Patel</p>
+              <p class="resource-venue">Platform overview · IIT Gandhinagar</p>
+              <div class="resource-actions">
+                <a class="btn btn-primary btn-sm" href="../assets/pdf/MWMA.pdf" data-action="read">Read</a>
+                <button class="btn btn-outline btn-sm" type="button" data-action="present">Present</button>
+                <a class="link-btn" href="../assets/pdf/MWMA.pdf" download>PDF · 1.5 MB</a>
+                <button class="link-btn" type="button" data-action="share">Copy link</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card resource" id="aac2025-oral" data-pdf="../assets/pdf/PV_AAC2025.pdf" data-kind="slides" data-pages="19">
+            <a class="resource-thumb" href="../assets/pdf/PV_AAC2025.pdf" data-action="read" tabindex="-1" aria-hidden="true">
+              <img src="../assets/images/resources/aac2025-oral.webp" alt="" width="720" height="405" loading="lazy" />
+              <span class="resource-count">19 slides</span>
+            </a>
+            <div class="resource-body">
+              <div class="resource-meta">
+                <span class="tag">Slides</span>
+                <span class="tag">Oral presentation</span>
+                <span class="event-date">Dec 2025</span>
+              </div>
+              <h3 class="resource-title">Development and Deployment of a Low-Cost IoT Based Environmental Quality Monitoring System (EQMS) with Spatio-Temporal Predictive Modeling</h3>
+              <p class="resource-authors"><strong>Prince Vats</strong>, Alok K. Thakur, Sameer Patel</p>
+              <p class="resource-venue">14th Asian Aerosol Conference (AAC 2025), Mumbai</p>
+              <div class="resource-actions">
+                <a class="btn btn-primary btn-sm" href="../assets/pdf/PV_AAC2025.pdf" data-action="read">Read</a>
+                <button class="btn btn-outline btn-sm" type="button" data-action="present">Present</button>
+                <a class="link-btn" href="../assets/pdf/PV_AAC2025.pdf" download>PDF · 3.6 MB</a>
+                <button class="link-btn" type="button" data-action="share">Copy link</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="posters">
+      <div class="section-container">
+        <div class="section-head">
+          <h2 class="section-title">Posters <span class="count">6</span></h2>
+        </div>
+        <div class="resource-grid resource-grid--posters">
+
+          <article class="card resource resource--poster" id="ipc2026-poster" data-pdf="../assets/pdf/PV_IPC2026.pdf" data-kind="poster" data-pages="1">
+            <a class="resource-thumb" href="../assets/pdf/PV_IPC2026.pdf" data-action="read" tabindex="-1" aria-hidden="true">
+              <img src="../assets/images/resources/ipc2026-poster.webp" alt="" width="720" height="1018" loading="lazy" />
+            </a>
+            <div class="resource-body">
+              <div class="resource-meta"><span class="tag">Poster</span><span class="event-date">Apr 2026</span></div>
+              <h3 class="resource-title">Low-Cost Environmental Quality Monitoring System for High-Resolution Spatiotemporal Urban Air Quality Monitoring and Multi-Scale Forecasting</h3>
+              <p class="resource-authors"><strong>Prince Vats</strong>, C. Nagar, S. Sen, Sameer Patel</p>
+              <p class="resource-venue">Industry Partnership Conclave (IPC 2026), IIT Gandhinagar</p>
+              <div class="resource-actions">
+                <a class="btn btn-primary btn-sm" href="../assets/pdf/PV_IPC2026.pdf" data-action="read">View</a>
+                <a class="link-btn" href="../assets/pdf/PV_IPC2026.pdf" download>PDF · 1.8 MB</a>
+                <button class="link-btn" type="button" data-action="share">Copy link</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card resource resource--poster" id="kpcsd2026-poster" data-pdf="../assets/pdf/PV_KPCSD2026.pdf" data-kind="poster" data-pages="1">
+            <a class="resource-thumb" href="../assets/pdf/PV_KPCSD2026.pdf" data-action="read" tabindex="-1" aria-hidden="true">
+              <img src="../assets/images/resources/kpcsd2026-poster.webp" alt="" width="720" height="1018" loading="lazy" />
+            </a>
+            <div class="resource-body">
+              <div class="resource-meta"><span class="tag">Poster</span><span class="event-date">Apr 2026</span></div>
+              <h3 class="resource-title">Environmental Quality Monitoring System Using Low-Cost Sensors for Urban Air Quality Monitoring and Multi-Scale Forecasting</h3>
+              <p class="resource-authors"><strong>Prince Vats</strong>, C. Nagar, S. Sen, Sameer Patel</p>
+              <p class="resource-venue">KPCSD Poster Competition on Sustainability, IIT Gandhinagar</p>
+              <div class="resource-actions">
+                <a class="btn btn-primary btn-sm" href="../assets/pdf/PV_KPCSD2026.pdf" data-action="read">View</a>
+                <a class="link-btn" href="../assets/pdf/PV_KPCSD2026.pdf" download>PDF · 1.6 MB</a>
+                <button class="link-btn" type="button" data-action="share">Copy link</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card resource resource--poster" id="ces2025-poster" data-pdf="../assets/pdf/PV_CES2025.pdf" data-kind="poster" data-pages="1">
+            <a class="resource-thumb" href="../assets/pdf/PV_CES2025.pdf" data-action="read" tabindex="-1" aria-hidden="true">
+              <img src="../assets/images/resources/ces2025-poster.webp" alt="" width="720" height="1018" loading="lazy" />
+            </a>
+            <div class="resource-body">
+              <div class="resource-meta"><span class="tag">Poster</span><span class="event-date">Oct 2025</span></div>
+              <h3 class="resource-title">Environmental Quality Monitoring System Using Low-Cost Sensors for Urban Air Quality Monitoring and Multi-Scale Forecasting</h3>
+              <p class="resource-authors"><strong>Prince Vats</strong>, Sameer Patel</p>
+              <p class="resource-venue">Chemical Engineering Symposium, IIT Gandhinagar &amp; SVNIT</p>
+              <div class="resource-actions">
+                <a class="btn btn-primary btn-sm" href="../assets/pdf/PV_CES2025.pdf" data-action="read">View</a>
+                <a class="link-btn" href="../assets/pdf/PV_CES2025.pdf" download>PDF · 1.5 MB</a>
+                <button class="link-btn" type="button" data-action="share">Copy link</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card resource resource--poster" id="icas2025-poster" data-pdf="../assets/pdf/PV_ICAS2025.pdf" data-kind="poster" data-pages="1">
+            <a class="resource-thumb" href="../assets/pdf/PV_ICAS2025.pdf" data-action="read" tabindex="-1" aria-hidden="true">
+              <img src="../assets/images/resources/icas2025-poster.webp" alt="" width="720" height="960" loading="lazy" />
+            </a>
+            <div class="resource-body">
+              <div class="resource-meta"><span class="tag">Poster</span><span class="event-date">Aug 2025</span></div>
+              <h3 class="resource-title">Evaluating CNN-LSTM and GNN-GRU Hybrid Models for Enhanced Air Quality Prediction and Dynamic Forecasting</h3>
+              <p class="resource-authors"><strong>Prince Vats</strong>, A.P. Singh, Sameer Patel</p>
+              <p class="resource-venue">India Clean Air Summit 2025, Bengaluru</p>
+              <div class="resource-actions">
+                <a class="btn btn-primary btn-sm" href="../assets/pdf/PV_ICAS2025.pdf" data-action="read">View</a>
+                <a class="link-btn" href="../assets/pdf/PV_ICAS2025.pdf" download>PDF · 1.7 MB</a>
+                <button class="link-btn" type="button" data-action="share">Copy link</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card resource resource--poster" id="aac2025-poster-ml-aqi" data-pdf="../assets/pdf/AP_AAC2025.pdf" data-kind="poster" data-pages="1">
+            <a class="resource-thumb" href="../assets/pdf/AP_AAC2025.pdf" data-action="read" tabindex="-1" aria-hidden="true">
+              <img src="../assets/images/resources/aac2025-poster-ml-aqi.webp" alt="" width="720" height="800" loading="lazy" />
+            </a>
+            <div class="resource-body">
+              <div class="resource-meta"><span class="tag">Poster</span><span class="tag">Co-author</span><span class="event-date">Dec 2025</span></div>
+              <h3 class="resource-title">ML Model Evaluation for AQI Prediction in IGP Using Air Quality and Meteorological Features</h3>
+              <p class="resource-authors">A.P. Singh, <strong>Prince Vats</strong>, M.K. Jain</p>
+              <p class="resource-venue">14th Asian Aerosol Conference (AAC 2025), Mumbai</p>
+              <div class="resource-actions">
+                <a class="btn btn-primary btn-sm" href="../assets/pdf/AP_AAC2025.pdf" data-action="read">View</a>
+                <a class="link-btn" href="../assets/pdf/AP_AAC2025.pdf" download>PDF · 1.1 MB</a>
+                <button class="link-btn" type="button" data-action="share">Copy link</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card resource resource--poster" id="icas2025-poster-ml-aqi" data-pdf="../assets/pdf/AP_ICAS2025.pdf" data-kind="poster" data-pages="1">
+            <a class="resource-thumb" href="../assets/pdf/AP_ICAS2025.pdf" data-action="read" tabindex="-1" aria-hidden="true">
+              <img src="../assets/images/resources/icas2025-poster-ml-aqi.webp" alt="" width="720" height="960" loading="lazy" />
+            </a>
+            <div class="resource-body">
+              <div class="resource-meta"><span class="tag">Poster</span><span class="tag">Co-author</span><span class="event-date">Aug 2025</span></div>
+              <h3 class="resource-title">ML Model Evaluation for AQI Prediction in Gangetic Plain Using Air Quality and Meteorological Features</h3>
+              <p class="resource-authors">A.P. Singh, <strong>Prince Vats</strong>, M.K. Jain</p>
+              <p class="resource-venue">India Clean Air Summit 2025, Bengaluru</p>
+              <div class="resource-actions">
+                <a class="btn btn-primary btn-sm" href="../assets/pdf/AP_ICAS2025.pdf" data-action="read">View</a>
+                <a class="link-btn" href="../assets/pdf/AP_ICAS2025.pdf" download>PDF · 1.3 MB</a>
+                <button class="link-btn" type="button" data-action="share">Copy link</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <span class="footer-name">Prince Vats</span>
+        <span class="footer-role">PhD Researcher, Environmental Engineering · IIT Gandhinagar</span>
+      </div>
+      <div class="footer-socials">
+        <a href="https://scholar.google.com/citations?user=SPHQZR8AAAAJ&amp;hl=en" target="_blank" rel="noopener" aria-label="Google Scholar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg></a>
+        <a href="https://github.com/prince-vats" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+        <a href="https://www.linkedin.com/in/prince-vats-iitrpr/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 1 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="mailto:princevatsiitrpr@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+      </div>
+      <ul class="footer-links">
+        <li><a href="../index.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="teaching.html">Teaching</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="../assets/pdf/CV.pdf" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+      <p class="footer-meta">© 2026 Prince Vats · Last updated October 2026</p>
+    </div>
+  </footer>
+
+  <!-- ===== Scripts ===== -->
+  <script src="../js/particles.js?v=8"></script>
+  <script src="../js/nav.js?v=8"></script>
+  <script src="../js/resources.js?v=3"></script>
+
+</body>
+
+</html>

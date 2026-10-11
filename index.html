@@ -4,399 +4,454 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prince Vats</title>
+  <title>Prince Vats · Aerosol Science &amp; Environmental Engineering</title>
   <meta name="description"
     content="Prince Vats - PhD Researcher at IIT Gandhinagar specializing in aerosol science, environmental engineering, air pollution monitoring, AI/ML calibration, and deep-learning based spatio-temporal modelling." />
+  <meta name="color-scheme" content="dark light" />
   <link rel="icon" type="image/png" href="assets/images/PV_logo.png" />
-  <link rel="stylesheet" href="css/style.css?v=5" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" />
+  <link rel="stylesheet" href="css/style.css?v=10" />
+  <script>try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light-mode')}catch(e){}</script>
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Aerosol particle canvas -->
-  <canvas id="particleCanvas"></canvas>
+  <!-- Aerosol background -->
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
 
   <!-- ===== Navigation ===== -->
-  <nav class="navbar" id="navbar">
+  <nav class="navbar" id="navbar" aria-label="Main">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
-        <img src="assets/images/PV_logo.png" alt="PV Logo" />
+      <a href="index.html" class="nav-logo" aria-label="Prince Vats, home">
+        <img src="assets/images/PV_logo.png" alt="" width="34" height="34" />
       </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="pages/education.html">Education</a></li>
+        <li><a href="index.html" class="active" aria-current="page">About</a></li>
         <li><a href="pages/research.html">Research</a></li>
         <li><a href="pages/publications.html">Publications</a></li>
-        <li><a href="pages/events.html">Events</a></li>
         <li><a href="pages/teaching.html">Teaching</a></li>
-        <li><a href="pages/tools.html">Tools</a></li>
+        <li><a href="pages/events.html">Events</a></li>
+        <li><a href="pages/resources.html">Resources</a></li>
+        <li><a href="pages/education.html">Education</a></li>
+        <li><a href="assets/pdf/CV.pdf" class="btn btn-outline btn-sm nav-cv" target="_blank" rel="noopener">CV</a></li>
       </ul>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
-        <span>🌙</span>
-      </button>
-      <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Light theme" aria-pressed="false" title="Switch theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5V4M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+        </button>
+        <button class="hamburger" id="hamburger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
-  <!-- ===== Hero ===== -->
-  <section class="hero" id="hero">
-    <div class="section-container">
-      <div class="hero-grid">
-        <div class="hero-text">
-          <div class="hero-badge"><span class="dot"></span> PhD Researcher · IIT Gandhinagar</div>
-          <h1 class="hero-name">Prince Vats</h1>
-          <p class="hero-title">Aerosol Science | Environmental Engineering</p>
-          <p class="hero-affiliation">Multi-Wavelength Optical Scattering • Physics-Informed AI • IoT Sensors (EQMS) • Aerosol Dynamics</p>
-          <p class="hero-tagline">“Studying Aerosol Science to better understand the tiny particles polluting our air.”</p>
-          <div class="hero-buttons">
-            <a href="#overview" class="btn btn-primary">Explore Research ↓</a>
-            <a href="assets/pdf/CV.pdf" class="btn btn-outline" target="_blank" rel="noopener">View CV</a>
-            <!-- Social links -->
-            <div class="hero-socials">
-              <a href="https://github.com/prince-vats" target="_blank" rel="noopener" class="social-link" title="GitHub">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-              </svg>
-            </a>
-            <a href="https://www.linkedin.com/in/prince-vats-iitrpr/" target="_blank" rel="noopener" class="social-link"
-              title="LinkedIn">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 1 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
-            </a>
-            <a href="https://scholar.google.com/citations?user=SPHQZR8AAAAJ&hl=en" target="_blank" rel="noopener"
-              class="social-link" title="Google Scholar">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z" />
-              </svg>
-            </a>
-            <a href="mailto:princevatsiitrpr@gmail.com" class="social-link" title="Email Me">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-              </svg>
-            </a>
+  <main id="main">
+
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="top">
+      <div class="section-container">
+        <div class="hero-grid">
+          <div class="hero-text">
+            <p class="hero-eyebrow"><span class="dot" aria-hidden="true"></span>PhD Researcher · IIT Gandhinagar</p>
+            <h1 class="hero-name">Prince Vats</h1>
+            <p class="hero-title">Aerosol Science · Environmental Engineering</p>
+            <p class="hero-lede">Studying aerosol science to better understand the tiny particles polluting our air.</p>
+            <div class="hero-buttons">
+              <a href="pages/research.html" class="btn btn-primary">Explore research →</a>
+              <a href="assets/pdf/CV.pdf" class="btn btn-outline" target="_blank" rel="noopener">CV (PDF)</a>
+            </div>
+            <ul class="hero-links">
+              <li>
+                <a href="https://scholar.google.com/citations?user=SPHQZR8AAAAJ&amp;hl=en" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z" /></svg>
+                  Google Scholar
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/prince-vats" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" /></svg>
+                  GitHub
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/prince-vats-iitrpr/" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 1 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="mailto:princevatsiitrpr@gmail.com">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" /></svg>
+                  Email
+                </a>
+              </li>
+            </ul>
           </div>
-          </div>
+          <figure class="hero-portrait">
+            <div class="frame">
+              <img src="assets/images/profile/PV5.png" alt="Portrait of Prince Vats" />
+            </div>
+            <figcaption><span>Environmental Engineering</span><span>IIT Gandhinagar</span></figcaption>
+          </figure>
         </div>
-        <div class="hero-image-wrapper">
-          <div class="hero-image-frame">
-            <img src="assets/images/profile/PV5.png" alt="Prince Vats" class="hero-image" />
-            <div class="floating-particle"></div>
-            <div class="floating-particle"></div>
-            <div class="floating-particle"></div>
+      </div>
+    </section>
+
+    <!-- ===== Highlights ===== -->
+    <section class="highlights-section" aria-label="Highlights">
+      <div class="section-container">
+        <div class="highlights">
+          <div class="highlight">
+            <div class="highlight-value">Patent filed</div>
+            <div class="highlight-label">IN App. No. 202621106781 (pending) · optical scattering platform</div>
+          </div>
+          <div class="highlight">
+            <div class="highlight-value">4<span class="unit"> events</span></div>
+            <div class="highlight-label">Academic symposia &amp; programmes co-organized at IIT Gandhinagar</div>
+          </div>
+          <div class="highlight">
+            <div class="highlight-value">29 · 32</div>
+            <div class="highlight-label">All-India rank, GATE 2025 · 2026 (99.56 percentile)</div>
+          </div>
+          <div class="highlight">
+            <div class="highlight-value">3<span class="unit"> courses</span></div>
+            <div class="highlight-label">Taught as Teaching Assistant &amp; Graduate Teaching Fellow, IIT Gandhinagar</div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== About ===== -->
-  <section id="about">
-    <div class="section-container reveal">
-      <span class="section-label">About</span>
-      <h2 class="section-title">Understanding Air Pollution Dynamics Through Aerosol Research</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <p>
-            I am a PhD researcher in Environmental Engineering at <a href="https://www.iitgn.ac.in/">Indian
-              Institute of Technology Gandhinagar</a>, working at the convergence of <strong>aerosol science,
-              optical instrumentation, physics-informed machine learning, and environmental sensing.</strong>
-          </p>
-          <p>
-            My flagship doctoral research focuses on developing a <strong>patented multi-wavelength, multi-angle optical scattering platform (MWMA)</strong> coupled with Physics-Informed Neural Networks (PINNs) and aerosol dynamics modeling. Grounded in aerosol optical theories (Mie and Rayleigh scattering), this hardware-AI platform achieves real-time retrieval of particle size distributions, complex refractive index (n, k), single scattering albedo, and optical extinction down to ~10 nm at a fraction of laboratory instrument cost.
-          </p>
-          <p>
-            In parallel, my research encompasses large-scale <strong>Environmental Quality Monitoring Systems (EQMS)</strong>, deploying dense low-cost IoT sensor networks alongside spatio-temporal deep learning models (CNNs, GNNs, LSTMs) for urban air quality forecasting, automated sensor calibration, and high-resolution pollution mapping.
-          </p>
-          <p>
-            My work aims to transform complex atmospheric and optical data into actionable insights that
-            support scientific discovery, public health, and evidence-based environmental policy.
-          </p>
-          <div style="color: var(--accent-1); font-weight: 500; margin-top: 1.5rem;">
-            <strong>Key Distinctions</strong>
-            <ul style="margin-top: 0.4rem; padding-left: 1.25rem;">
-              <li>Patent Pending: Multi-Wavelength, Multi-Angle Optical Scattering Platform (IN Patent App. No. 202621106781)</li>
-              <li>Ranked 29th nationwide (99.56 percentile) in GATE-2025 — India's premier engineering competitive exam</li>
-              <li>Ranked 32nd nationwide (99.56 percentile) in GATE-2026</li>
+    <!-- ===== About ===== -->
+    <section id="about">
+      <div class="section-container reveal">
+        <div class="split">
+          <div>
+            <span class="section-label">About</span>
+            <h2 class="section-title">Understanding air pollution dynamics through aerosol research</h2>
+          </div>
+          <div class="prose">
+            <p>
+              I am a PhD researcher in Environmental Engineering at <a href="https://www.iitgn.ac.in/" target="_blank" rel="noopener">Indian
+              Institute of Technology Gandhinagar</a>, working at the convergence of <strong>aerosol science, optical
+              instrumentation, physics-informed machine learning, and environmental sensing.</strong>
+            </p>
+            <p>
+              My flagship doctoral research focuses on developing a <strong>patent-pending multi-wavelength, multi-angle optical
+              scattering platform (MWMA)</strong> coupled with Physics-Informed Neural Networks (PINNs) and aerosol dynamics
+              modeling. Grounded in aerosol optical theories (Mie and Rayleigh scattering), this hardware-AI platform achieves
+              real-time retrieval of particle size distributions, complex refractive index (n, k), single scattering albedo,
+              and optical extinction down to ~10 nm at a fraction of laboratory instrument cost.
+            </p>
+            <p>
+              In parallel, my research encompasses large-scale <strong>Environmental Quality Monitoring Systems (EQMS)</strong>,
+              deploying dense low-cost IoT sensor networks alongside spatio-temporal deep learning models (CNNs, GNNs, LSTMs)
+              for urban air quality forecasting, automated sensor calibration, and high-resolution pollution mapping.
+            </p>
+            <p>
+              My work aims to transform complex atmospheric and optical data into actionable insights that support scientific
+              discovery, public health, and evidence-based environmental policy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Featured research ===== -->
+    <section id="research">
+      <div class="section-container reveal">
+        <div class="section-head">
+          <div>
+            <span class="section-label">Research</span>
+            <h2 class="section-title">Current projects</h2>
+          </div>
+          <a href="pages/research.html" class="more-link">All research →</a>
+        </div>
+
+        <div class="feature-list">
+          <article class="card feature">
+            <div class="feature-body">
+              <span class="tag tag--accent">Patent pending · IN 202621106781</span>
+              <h3 class="feature-title"><a href="pages/research.html#mwma">Multi-wavelength, multi-angle optical scattering platform</a></h3>
+              <p>A mass-deployable optical diagnostic that combines multi-wavelength laser probing, multi-angle light collection
+                and physics-informed deep learning to retrieve aerosol size distributions and optical properties in real time,
+                at a fraction of laboratory-instrument cost.</p>
+              <div class="metrics">
+                <div class="metric"><div class="metric-value">~10 nm</div><div class="metric-label">Smallest size resolved</div></div>
+                <div class="metric"><div class="metric-value">1 s</div><div class="metric-label">Response, no scan delay</div></div>
+                <div class="metric"><div class="metric-value">9</div><div class="metric-label">Optical signals</div></div>
+                <div class="metric"><div class="metric-value">0.29%</div><div class="metric-label">Mean-size error (MAPE)</div></div>
+              </div>
+              <a href="pages/research.html#mwma" class="more-link">Read about the platform →</a>
+            </div>
+            <figure class="figure">
+              <a href="assets/images/research/mwma_slide_4.webp" class="research-media">
+                <img src="assets/images/research/mwma_slide_4.webp" alt="MWMA real-time diagnostic instrument: hardware and deployment options" loading="lazy" />
+              </a>
+            </figure>
+          </article>
+
+          <article class="card feature">
+            <div class="feature-body">
+              <span class="tag">Oral presentation · AAC 2025</span>
+              <h3 class="feature-title"><a href="pages/research.html#eqms">Environmental Quality Monitoring System (EQMS)</a></h3>
+              <p>A dense network of low-cost IoT sensor nodes for urban air quality, with automated field calibration against
+                reference monitors and spatio-temporal deep learning for pollution forecasting.</p>
+              <div class="metrics">
+                <div class="metric"><div class="metric-value">PM₁–PM₁₀</div><div class="metric-label">Particulate matter</div></div>
+                <div class="metric"><div class="metric-value">CO · CO₂</div><div class="metric-label">Plus TVOCs and noise</div></div>
+                <div class="metric"><div class="metric-value">50–60</div><div class="metric-label">Nodes planned for urban expansion</div></div>
+              </div>
+              <a href="pages/research.html#eqms" class="more-link">Read about EQMS →</a>
+            </div>
+            <figure class="figure">
+              <a href="assets/images/research/eqms_hardware_deployed.webp" class="research-media">
+                <img src="assets/images/research/eqms_hardware_deployed.webp" alt="EQM sensor nodes deployed at IIT Gandhinagar" loading="lazy" />
+              </a>
+            </figure>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Focus areas ===== -->
+    <section id="focus">
+      <div class="section-container reveal">
+        <span class="section-label">Research domains</span>
+        <h2 class="section-title">Core focus areas</h2>
+        <ol class="focus-list">
+          <li class="focus-item">
+            <span class="focus-num">01</span>
+            <h3>Aerosol science &amp; optical instrumentation</h3>
+            <p>Multi-wavelength, multi-angle laser scattering, particle size distribution (PNSD) reconstruction from optical
+              measurements, complex refractive index (n, k), single scattering albedo, and aerosol dynamic evolution down to ~10 nm.</p>
+          </li>
+          <li class="focus-item">
+            <span class="focus-num">02</span>
+            <h3>Air quality monitoring &amp; IoT sensor networks</h3>
+            <p>Real-time ambient and indoor air pollution assessment using dense low-cost IoT sensor networks (EQMS) for
+              multi-pollutant monitoring (PM2.5, PM10, CO2, CO, TVOCs), automated calibration, and health risk analysis.</p>
+          </li>
+          <li class="focus-item">
+            <span class="focus-num">03</span>
+            <h3>Physics-informed AI &amp; spatio-temporal modeling</h3>
+            <p>Physics-Informed Neural Networks (PINNs) for optical scattering inversion and aerosol digital twins, alongside
+              spatio-temporal deep learning (CNN, GNN, LSTM) for urban air quality forecasting and anomaly detection.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== Selected publications ===== -->
+    <section id="publications">
+      <div class="section-container reveal">
+        <div class="section-head">
+          <div>
+            <span class="section-label">Publications</span>
+            <h2 class="section-title">Selected publications</h2>
+          </div>
+          <a href="pages/publications.html" class="more-link">All publications →</a>
+        </div>
+        <ol class="cite-list">
+          <li class="cite">
+            <span class="cite-id">J1</span>
+            <div>
+              <h3 class="cite-title"><a href="https://doi.org/10.1007/s44274-025-00221-x" target="_blank" rel="noopener">Potential
+                Health Risk Estimation Through Deterministic and Stochastic Approaches for the Air Pollutants Found Inside
+                Bottling Beverage Industries of Himachal Pradesh in India</a></h3>
+              <p class="cite-authors">Indramani Dhada, <strong>Prince Vats</strong>, Shailesh Kumar Samal</p>
+              <p class="cite-venue"><em>Discover Environment</em>, Springer · 2025</p>
+              <p class="cite-doi">doi: <a href="https://doi.org/10.1007/s44274-025-00221-x" target="_blank" rel="noopener">10.1007/s44274-025-00221-x</a></p>
+            </div>
+          </li>
+          <li class="cite">
+            <span class="cite-id">C1</span>
+            <div>
+              <h3 class="cite-title"><a href="https://doi.org/10.1007/978-981-96-2359-4_18" target="_blank" rel="noopener">Probable
+                Health Risk of Pollutants and Noise Found Inside Bottling Beverage Plant of Himachal Pradesh, India</a></h3>
+              <p class="cite-authors">Indramani Dhada, <strong>Prince Vats</strong>, Brajesh Singh</p>
+              <p class="cite-venue"><em>Select Proceedings of IICAQM 2023</em>, Lecture Notes in Civil Engineering, vol. 582, Springer · pp. 219–238</p>
+              <p class="cite-doi">doi: <a href="https://doi.org/10.1007/978-981-96-2359-4_18" target="_blank" rel="noopener">10.1007/978-981-96-2359-4_18</a></p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== Recent events ===== -->
+    <section id="news">
+      <div class="section-container reveal">
+        <div class="section-head">
+          <div>
+            <span class="section-label">News</span>
+            <h2 class="section-title">Recent events</h2>
+          </div>
+          <a href="pages/events.html" class="more-link">All events →</a>
+        </div>
+        <ul class="news-list">
+          <li class="news-item">
+            <span class="news-date">Oct 2026</span>
+            <div>
+              <p class="news-title">One-Day Course on Air Pollution &amp; Emerging Technologies</p>
+              <p class="news-meta"><span class="tag">Attended</span>IIT Gandhinagar</p>
+            </div>
+          </li>
+          <li class="news-item">
+            <span class="news-date">Sep 2026</span>
+            <div>
+              <p class="news-title">Faculty Development Program for ASEAN and Global South</p>
+              <p class="news-meta"><span class="tag tag--accent">Organizing team</span>IIT Gandhinagar</p>
+            </div>
+          </li>
+          <li class="news-item">
+            <span class="news-date">Apr 2026</span>
+            <div>
+              <p class="news-title">Industry Partnership Conclave (IPC 2026)</p>
+              <p class="news-meta"><span class="tag tag--accent">Organizing team</span><span class="tag">Poster</span>IIT Gandhinagar</p>
+            </div>
+          </li>
+          <li class="news-item">
+            <span class="news-date">Apr 2026</span>
+            <div>
+              <p class="news-title">KPCSD Poster Competition on Sustainability</p>
+              <p class="news-meta"><span class="tag">Poster</span>Kiran C. Patel Centre for Sustainable Development, IIT Gandhinagar</p>
+            </div>
+          </li>
+          <li class="news-item">
+            <span class="news-date">Feb 2026</span>
+            <div>
+              <p class="news-title">Symposium on Promoting Aerosol Education and Research</p>
+              <p class="news-meta"><span class="tag tag--accent">Organizing team</span>IIT Gandhinagar</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Toolkit ===== -->
+    <section id="skills">
+      <div class="section-container reveal">
+        <span class="section-label">Technical toolkit</span>
+        <h2 class="section-title">Skills &amp; methodologies</h2>
+        <div class="toolkit">
+          <div class="toolkit-row">
+            <h3 class="toolkit-label">Programming &amp; software</h3>
+            <div class="tag-list">
+              <span class="tag">Python</span><span class="tag">C</span><span class="tag">C++</span><span class="tag">MATLAB</span>
+              <span class="tag">R</span><span class="tag">ArcGIS / QGIS</span><span class="tag">MS Office Suite</span>
+            </div>
+          </div>
+          <div class="toolkit-row">
+            <h3 class="toolkit-label">Deep learning &amp; AI</h3>
+            <div class="tag-list">
+              <span class="tag">CNN</span><span class="tag">GNN</span><span class="tag">LSTM / GRU</span>
+              <span class="tag">Transformers / Predictors</span><span class="tag">TensorFlow / PyTorch</span>
+              <span class="tag">Feature Engineering (PCA)</span>
+            </div>
+          </div>
+          <div class="toolkit-row">
+            <h3 class="toolkit-label">Specialized context</h3>
+            <div class="tag-list">
+              <span class="tag">IoT Sensor Design</span><span class="tag">Environmental Data Calibration</span>
+              <span class="tag">Deterministic Health Risk Assessments</span><span class="tag">Stochastic Modeling</span>
+              <span class="tag">Air Quality Monitoring (PM2.5, PM10, TVOCs)</span>
+            </div>
+          </div>
+          <div class="toolkit-row">
+            <h3 class="toolkit-label">Languages</h3>
+            <p class="toolkit-text">English (fluent) · Hindi (fluent) · Japanese (basic)</p>
+          </div>
+          <div class="toolkit-row">
+            <h3 class="toolkit-label">Co-curricular &amp; leadership</h3>
+            <ul class="plain-list">
+              <li>Taught underprivileged students through an NGO initiative</li>
+              <li>Vice President of the Green Club</li>
+              <li>Volunteered in community clean-up drives &amp; tree plantations</li>
+              <li>Managed cultural fest events &amp; acted in college dramas</li>
+              <li>Organized technical seminars &amp; joined environmental hackathons</li>
             </ul>
           </div>
         </div>
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-number">MWMA</div>
-            <div class="stat-label">Optical Platform</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">PINN</div>
-            <div class="stat-label">Physics-AI</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">EQMS</div>
-            <div class="stat-label">IoT Networks</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">ST</div>
-            <div class="stat-label">Spatio-Temporal</div>
-          </div>
-        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== Overview - Summary Cards ===== -->
-  <section id="overview">
-    <div class="section-container reveal">
-      <span class="section-label">At a Glance</span>
-      <h2 class="section-title">Explore My Journey</h2>
-      <div class="summary-grid">
-
-        <!-- Academic -->
-        <div class="summary-card">
-          <div class="summary-icon">🎓</div>
-          <h3>Academic Journey</h3>
-          <p>
-            Pursuing a PhD at IIT Gandhinagar, with an M.Tech from IIT Ropar
-            and B.Tech from GBPUA&T Pantnagar, building a strong foundation
-            in environmental engineering and civil science driven by curiosity
-            and interdisciplinary learning.
-          </p>
-          <a href="pages/education.html" class="btn btn-outline btn-sm">View Details →</a>
-        </div>
-
-        <!-- Research + Publications-->
-        <div class="summary-card">
-          <div class="summary-icon">🔬</div>
-          <h3>Research &amp; Publications</h3>
-          <p>
-            Leading primary research on patented multi-wavelength optical scattering platforms for aerosol size retrieval (IN Patent App. No. 202621106781), alongside secondary projects in dense IoT environmental sensing (EQMS) and spatio-temporal AI.
-          </p>
-          <a href="pages/research.html" class="btn btn-outline btn-sm">View Details →</a>
-        </div>
-
-        <!-- Events & Engagement -->
-        <div class="summary-card">
-          <div class="summary-icon">🎤</div>
-          <h3>Events &amp; Engagement</h3>
-          <p>
-            Organized academic symposia and contributed at global scientific platforms
-            including AAC 2025, India Clean Air Summit, and IICAQM, actively engaging in
-            knowledge exchange and environmental research.
-          </p>
-          <a href="pages/events.html" class="btn btn-outline btn-sm">View Details →</a>
-        </div>
-
+    <!-- ===== Contact ===== -->
+    <section id="contact">
+      <div class="section-container reveal">
+        <span class="section-label">Contact</span>
+        <h2 class="section-title">Let's connect</h2>
+        <dl class="contact-list">
+          <div class="contact-row">
+            <svg viewBox="52 42 88 66" aria-hidden="true"><path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6"/><path fill="#34a853" d="M120 108h14c3.32 0 6-2.69 6-6V59l-20 15"/><path fill="#fbbc04" d="M120 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2"/><path fill="#ea4335" d="M72 74V48l24 18 24-18v26L96 92"/><path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2"/></svg>
+            <dt>Email</dt>
+            <dd><a href="mailto:princevatsiitrpr@gmail.com">princevatsiitrpr@gmail.com</a></dd>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285f4" d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269z"/><circle fill="#356ac3" cx="12" cy="17" r="7"/></svg>
+            <dt>Scholar</dt>
+            <dd><a href="https://scholar.google.com/citations?user=SPHQZR8AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar profile</a></dd>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34a853" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <dt>Phone</dt>
+            <dd><a href="tel:+919027902245">+91-9027902245</a></dd>
+          </div>
+          <div class="contact-row">
+            <svg class="icon-github" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" /></svg>
+            <dt>GitHub</dt>
+            <dd><a href="https://github.com/prince-vats" target="_blank" rel="noopener">github.com/prince-vats</a></dd>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ea4335" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle fill="#a50e0e" cx="12" cy="9" r="2.6"/></svg>
+            <dt>Location</dt>
+            <dd>Haridwar, India (and IIT Gandhinagar)</dd>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0a66c2"/><path fill="#fff" d="M7.12 20.45H3.56V9h3.56v11.45zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28z"/></svg>
+            <dt>LinkedIn</dt>
+            <dd><a href="https://www.linkedin.com/in/prince-vats-iitrpr/" target="_blank" rel="noopener">linkedin.com/in/prince-vats-iitrpr</a></dd>
+          </div>
+        </dl>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== Research Focus Areas ===== -->
-  <section id="research-focus">
-    <div class="section-container reveal">
-      <span class="section-label">Research Domains</span>
-      <h2 class="section-title">Core Research Focus Areas</h2>
-      <div class="focus-areas-grid">
-        <div class="focus-area-card">
-          <h3>🌫️ Aerosol Science &amp; Optical Instrumentation</h3>
-          <p>
-            Investigating multi-wavelength, multi-angle laser scattering, particle size distribution (PNSD) reconstruction from optical measurements, complex refractive index (n, k), single scattering albedo, and aerosol dynamic evolution down to ~10 nm.
-          </p>
-        </div>
-        <div class="focus-area-card">
-          <h3>💨 Air Quality Monitoring &amp; IoT Sensor Networks</h3>
-          <p>
-            Secondary research in real-time ambient and indoor air pollution assessment using dense low-cost IoT sensor networks (EQMS) for multi-pollutant monitoring (PM2.5, PM10, CO2, CO, TVOCs), automated calibration, and health risk analysis.
-          </p>
-        </div>
-        <div class="focus-area-card">
-          <h3>🤖 Physics-Informed AI &amp; Spatio-Temporal Modeling</h3>
-          <p>
-            Developing Physics-Informed Neural Networks (PINNs) for optical scattering inversion and aerosol digital twins, alongside spatio-temporal deep learning architectures (CNN, GNN, LSTM) for urban air quality forecasting and anomaly detection.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Skills ===== -->
-  <section id="skills">
-    <div class="section-container reveal">
-      <span class="section-label">Technical Toolkit</span>
-      <h2 class="section-title">Skills &amp; Methodologies</h2>
-
-      <div style="margin-bottom: 2rem;">
-        <h3 style="color: var(--accent-2); font-size: 1.1rem; margin-bottom: 0.5rem;">Programming &amp; Software</h3>
-        <div class="skills-container">
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">C</span>
-          <span class="skill-tag">C++</span>
-          <span class="skill-tag">MATLAB</span>
-          <span class="skill-tag">R</span>
-          <span class="skill-tag">ArcGIS / QGIS</span>
-          <span class="skill-tag">MS Office Suite</span>
-        </div>
-      </div>
-
-      <div style="margin-bottom: 2rem;">
-        <h3 style="color: var(--accent-2); font-size: 1.1rem; margin-bottom: 0.5rem;">Deep Learning &amp; AI</h3>
-        <div class="skills-container">
-          <span class="skill-tag">CNN</span>
-          <span class="skill-tag">GNN</span>
-          <span class="skill-tag">LSTM / GRU</span>
-          <span class="skill-tag">Transformers / Predictors</span>
-          <span class="skill-tag">TensorFlow / PyTorch</span>
-          <span class="skill-tag">Feature Engineering (PCA)</span>
-        </div>
-      </div>
-
-      <div style="margin-bottom: 2rem;">
-        <h3 style="color: var(--accent-2); font-size: 1.1rem; margin-bottom: 0.5rem;">Specialized Context</h3>
-        <div class="skills-container">
-          <span class="skill-tag">IoT Sensor Design</span>
-          <span class="skill-tag">Environmental Data Calibration</span>
-          <span class="skill-tag">Deterministic Health Risk Assessments</span>
-          <span class="skill-tag">Stochastic Modeling</span>
-          <span class="skill-tag">Air Quality Monitoring (PM2.5, PM10, TVOCs)</span>
-        </div>
-      </div>
-
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-        <!-- Languages -->
-        <div>
-          <h3 style="color: var(--accent-2); font-size: 1.1rem; margin-bottom: 0.5rem;">Languages</h3>
-          <ul style="list-style-type: none; padding-left: 0; color: var(--text-secondary); line-height: 1.8;">
-            <li>• English (Fluent)</li>
-            <li>• Hindi (Fluent)</li>
-            <li>• Japanese (Basic)</li>
-          </ul>
-        </div>
-
-        <!-- Co-Curricular -->
-        <div>
-          <h3 style="color: var(--accent-2); font-size: 1.1rem; margin-bottom: 0.5rem;">Co-Curricular &amp; Leadership
-          </h3>
-          <ul style="list-style-type: none; padding-left: 0; color: var(--text-secondary); line-height: 1.8;">
-            <li>• Taught underprivileged students through NGO initiative</li>
-            <li>• Vice President of the Green Club</li>
-            <li>• Volunteered in community clean-up drives &amp; tree plantations</li>
-            <li>• Managed cultural fest events &amp; acted in college dramas</li>
-            <li>• Organized technical seminars &amp; joined environmental hackathons</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===== Contact ===== -->
-  <section id="contact">
-    <div class="section-container reveal">
-      <span class="section-label">Contact</span>
-      <h2 class="section-title">Let's Connect</h2>
-      <div class="contact-info">
-        <div class="contact-item">
-          <div class="contact-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-            </svg>
-          </div>
-          <div>
-            <strong>GitHub</strong><br />
-            <a href="https://github.com/prince-vats" target="_blank" rel="noopener">github.com/prince-vats</a>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 1 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-            </svg>
-          </div>
-          <div>
-            <strong>LinkedIn</strong><br />
-            <a href="https://www.linkedin.com/in/prince-vats-iitrpr/" target="_blank"
-              rel="noopener">linkedin.com/in/prince-vats-iitrpr</a>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z" />
-            </svg>
-          </div>
-          <div>
-            <strong>Google Scholar</strong><br />
-            <a href="https://scholar.google.com/citations?user=SPHQZR8AAAAJ&hl=en" target="_blank" rel="noopener">Google
-              Scholar Profile</a>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>
-          </div>
-          <div>
-            <strong>Email</strong><br />
-            <a href="mailto:princevatsiitrpr@gmail.com">princevatsiitrpr@gmail.com</a>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-            </svg>
-          </div>
-          <div>
-            <strong>Phone</strong><br />
-            <a href="tel:+919027902245">+91-9027902245</a>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-            </svg>
-          </div>
-          <div>
-            <strong>Location</strong><br />
-            Haridwar, India (and IIT Gandhinagar)
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  </main>
 
   <!-- ===== Footer ===== -->
   <footer class="footer">
-    <div class="footer-socials">
-      <a href="https://github.com/prince-vats" target="_blank" rel="noopener" title="GitHub">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-      </a>
-      <a href="https://www.linkedin.com/in/prince-vats-iitrpr/" target="_blank" rel="noopener" title="LinkedIn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 1 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-      </a>
-      <a href="https://scholar.google.com/citations?user=SPHQZR8AAAAJ&hl=en" target="_blank" rel="noopener" title="Google Scholar">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
-      </a>
-      <a href="mailto:princevatsiitrpr@gmail.com" title="Email">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-      </a>
+    <div class="footer-inner">
+      <div>
+        <span class="footer-name">Prince Vats</span>
+        <span class="footer-role">PhD Researcher, Environmental Engineering · IIT Gandhinagar</span>
+      </div>
+      <div class="footer-socials">
+        <a href="https://scholar.google.com/citations?user=SPHQZR8AAAAJ&amp;hl=en" target="_blank" rel="noopener" aria-label="Google Scholar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg></a>
+        <a href="https://github.com/prince-vats" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+        <a href="https://www.linkedin.com/in/prince-vats-iitrpr/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 1 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="mailto:princevatsiitrpr@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html">About</a></li>
+        <li><a href="pages/research.html">Research</a></li>
+        <li><a href="pages/publications.html">Publications</a></li>
+        <li><a href="pages/teaching.html">Teaching</a></li>
+        <li><a href="pages/events.html">Events</a></li>
+        <li><a href="pages/resources.html">Resources</a></li>
+        <li><a href="pages/education.html">Education</a></li>
+        <li><a href="pages/tools.html">Tools</a></li>
+        <li><a href="assets/pdf/CV.pdf" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+      <p class="footer-meta">© 2026 Prince Vats · Last updated October 2026</p>
     </div>
-    <p>© 2026 Prince Vats · <a href="index.html">Home</a> · <a href="pages/education.html">Education</a> · <a
-        href="pages/research.html">Research</a> · <a href="pages/publications.html">Publications</a> · <a
-        href="pages/events.html">Events</a> · <a href="pages/teaching.html">Teaching</a> · <a href="pages/tools.html">Tools</a></p>
   </footer>
 
   <!-- ===== Scripts ===== -->
-  <script src="js/particles.js?v=6"></script>
-  <script src="js/nav.js"></script>
+  <script src="js/particles.js?v=8"></script>
+  <script src="js/nav.js?v=8"></script>
 
 </body>
 
