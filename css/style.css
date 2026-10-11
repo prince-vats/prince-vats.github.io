@@ -155,6 +155,25 @@ em { font-style: italic; }
 .prose p { color: var(--text-2); margin-bottom: 1.1rem; }
 .prose p:last-child { margin-bottom: 0; }
 
+/* Justified body text; hyphenation keeps word spacing even on narrow screens */
+.prose p,
+.section-subtitle,
+.feature-body p,
+.focus-item p,
+.focus-card p,
+.block p,
+.check-list li,
+.findings li,
+.figure figcaption,
+.teaching-desc,
+.timeline-details p,
+.event-citation,
+.tool-card p {
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
 /* ===== Layout ===== */
 main { position: relative; z-index: 1; }
 
